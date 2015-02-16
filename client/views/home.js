@@ -1,11 +1,8 @@
 Template.home.helpers({
-  myAppVariable: function() {
-    return Session.get('myAppVariable');
-  }
+  queries: function () {
+      return Queries.find({}, {});
+  },
 });
 
 Template.home.events({
-  'click button': function(event, template) {
-    Session.set('myAppVariable', Math.floor(Math.random() * 11));
-  }
 });
