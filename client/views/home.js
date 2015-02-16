@@ -5,4 +5,7 @@ Template.home.helpers({
 });
 
 Template.home.events({
+    "click #btn_save_query" : function(event) {
+        alert("save (todo)");
+    }
 });
