@@ -1,11 +1,26 @@
 <template name="home">
 
   <div class="container">
-      <header>
+
+      <button id="btn_new_query">New Query</button>
+
+      <h2>
           Query List
-      </header>
+      </h2>
       {{#each queries}}
-        {{> query_edit_template}}
+        {{> query_short_template}}
       {{/each}}
+
+      {{#with selected_query}}
+        {{> query_edit_template}}
+      {{/with}}
   </div>
+</template>
+
+
+<template name="query_short_template">
+    {{name}}
+    <button id="btn_select_query">Select</button>
+    <button id="btn_delete_query">Delete</button>
+    <br/>
 </template>

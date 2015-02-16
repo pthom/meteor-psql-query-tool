@@ -1,8 +1,8 @@
 <template name="query_edit_template">
     <form>
-        <input type="text" name="name" placeholder="Describe the query" value="{{name}}" />
+        <input type="text" placeholder="Describe the query" value="{{name}}" id="txt_name"/>
         <br/>
-        <textarea rows=10 cols=80>{{query}}</textarea>
+        <textarea rows=10 cols=80 id="txt_query">{{query}}</textarea>
         <br/>
         <button id="btn_save_query">Save</button>
     </form>
