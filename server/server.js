@@ -1,7 +1,7 @@
 Meteor.methods({
     addQuery: function () {
       Queries.insert({
-        name: "",
+        name: "New Query",
         query: "",
       });
     },
