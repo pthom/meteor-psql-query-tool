@@ -7,10 +7,11 @@
       <h2>
           Query List
       </h2>
-      {{#each queries}}
-        {{> query_short_template}}
-      {{/each}}
-
+      <div class="list-group">
+          {{#each queries}}
+            {{> query_short_template}}
+          {{/each}}
+      </div>
       {{#with selected_query}}
         {{> query_edit_template}}
       {{/with}}
@@ -19,8 +20,12 @@
 
 
 <template name="query_short_template">
-    {{name}}
-    <button id="btn_select_query">Select</button>
-    <button id="btn_delete_query">Delete</button>
-    <br/>
+    <a href="#" class="list-group-item" id="btn_select_query">
+        <div class="row">
+            <div class="col-md-6">{{name}}</div>
+            <div class="col-md-6 text-right">
+                <button id="btn_delete_query">Delete</button>
+            </div>
+        </div>
+    </a>
 </template>
