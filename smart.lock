@@ -2,13 +2,19 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "bootstrap3-less": {}
+      "bootstrap3-less": {},
+      "postgresql": {}
     },
     "packages": {
       "bootstrap3-less": {
         "git": "https://github.com/simison/bootstrap3-less",
         "tag": "v0.2.1",
         "commit": "dc94a51ed00d7de6d6f2b6d65107a876d849ad61"
+      },
+      "postgresql": {
+        "git": "https://github.com/austinrivas/meteor-postgresql",
+        "tag": "v2.11.3",
+        "commit": "f2d43b1a5b57c67ca1546c3a67535e89d791cb2b"
       }
     }
   }
