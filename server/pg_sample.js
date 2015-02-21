@@ -1,3 +1,6 @@
+//Sample postgresql code that is run at server startup...
+//useless on the client side
+
 var pg_ShowQueryResult_CSV = function(result) {
     var firstRow = result.rows[0];
 

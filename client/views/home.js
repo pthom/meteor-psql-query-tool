@@ -22,6 +22,10 @@ Template.home.events({
     },
     "click #btn_select_query" : function(event) {
         Session.set("currentQueryId", this._id);
-    }
+    },
+    "click #btn_run_query" : function(event) {
+        console.log("about to run");
+        Meteor.call("runPostgresqlQuery", this.query);
+    },
 
 });
