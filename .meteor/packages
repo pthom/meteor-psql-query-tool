@@ -2,3 +2,4 @@ standard-app-packages
 iron:router
 less
 postgresql
+meteortypescript:compiler
