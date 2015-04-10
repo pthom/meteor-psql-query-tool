@@ -24,3 +24,5 @@ node_modules
 .git
 .build*
 packages/
+/zzz.ts-compiler.ts
+*.reviewboardrc
