@@ -1,9 +1,20 @@
+/// <reference path="../../packages/typescript-libs/all-definitions.d.ts" />
+
 //TRICK : pg_query_wrapAsync is a sync version of pg_query which is async@
 //
 //READ THE DOCS
 //https://www.discovermeteor.com/blog/wrapping-npm-packages/
 //http://stackoverflow.com/questions/26058205/meteor-wrapasync-syntax
 //https://atmospherejs.com/meteorhacks/async
+
+
+declare var pg;//kill typescript compile errors on pg
+
+//meteor.d.ts does not include this (why ?)
+declare module Meteor {
+  function wrapAsync(func : Function) :Function;
+}
+
 
 console.log("Load pg_query.js");
 
@@ -35,4 +46,6 @@ var pg_query = function(sql_query, callback) {
     });
 };
 
+//With typescript, global vars need to be declared as globals : read https://atmospherejs.com/meteortypescript/typescript-libs
+declare var pg_query_wrapAsync;
 pg_query_wrapAsync = Meteor.wrapAsync(pg_query);

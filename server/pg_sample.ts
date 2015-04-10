@@ -1,3 +1,5 @@
+///<reference path="lib/pg_query.ts" />
+
 //Sample postgresql code that is run at server startup...
 //useless on the client side
 

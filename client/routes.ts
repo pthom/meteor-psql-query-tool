@@ -1,3 +1,7 @@
+/// <reference path="../packages/typescript-libs/meteor.d.ts" />
+
+declare var Router;//kill compilation errors about Router
+
 Router.configure({
   layoutTemplate: 'layout'
 });
@@ -8,4 +12,3 @@ Router.map(function() {
     template: 'home'
   });
 });
-
