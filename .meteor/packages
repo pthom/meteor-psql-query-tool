@@ -3,3 +3,4 @@ iron:router
 less
 postgresql
 meteortypescript:compiler
+typescript-libs

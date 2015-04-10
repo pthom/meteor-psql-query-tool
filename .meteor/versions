@@ -53,6 +53,7 @@ spacebars-compiler@1.0.4
 standard-app-packages@1.0.4
 templating@1.0.11
 tracker@1.0.5
+typescript-libs@0.0.0
 ui@1.0.5
 underscore@1.0.2
 url@1.0.3

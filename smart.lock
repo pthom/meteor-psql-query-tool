@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "bootstrap3-less": {},
-      "postgresql": {}
+      "postgresql": {},
+      "typescript-libs": {}
     },
     "packages": {
       "bootstrap3-less": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/austinrivas/meteor-postgresql",
         "tag": "v2.11.3",
         "commit": "f2d43b1a5b57c67ca1546c3a67535e89d791cb2b"
+      },
+      "typescript-libs": {
+        "git": "https://github.com/orefalo/meteor-typescript-libs.git",
+        "tag": "v0.8.6",
+        "commit": "b417aea3c5f17bfc637d98249e488c36c6ba203c"
       }
     }
   }
