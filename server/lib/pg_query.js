@@ -36,24 +36,3 @@ var pg_query = function(sql_query, callback) {
 };
 
 pg_query_wrapAsync = Meteor.wrapAsync(pg_query);
-
-var pg_ShowQueryResult_CSV = function(result) {
-    var firstRow = result.rows[0];
-
-    //Show columns names
-    var str = "";
-    for(var columnName in firstRow) {
-        str = str + columnName + ", ";
-    }
-    console.log(str);
-
-
-    result.rows.forEach( function(row) { //iterate on each row
-        str = "";
-        for(columnName in row) {
-            str = str + row[columnName] + ", ";
-        }
-        console.log(str );
-    });
-    console.log("\n");
-};
