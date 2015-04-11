@@ -6,3 +6,4 @@ meteortypescript:compiler
 typescript-libs
 erasaur:server-session
 webix:webix
+insecure
