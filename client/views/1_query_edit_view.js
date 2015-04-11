@@ -30,11 +30,18 @@ query_edit_view = {
       elements: [{
         view: 'text',
         name: 'name',
-        label: 'Query Name'
+        label: 'Name'
       }, {
-        view: 'text',
+        view: 'textarea',
+        height : 250,
         name: 'query',
         label: 'Query SQL'
+      },
+      {
+        view: 'textarea',
+        height : 250,
+        name: 'params',
+        label: 'Query Params'
       },
       savequery_button
       ]
