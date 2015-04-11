@@ -18,6 +18,7 @@ erasaur:server-session@0.0.3
 fastclick@1.0.3
 fortawesome:fontawesome@4.2.0_2
 geojson-utils@1.0.3
+gwendall:auth-client-callbacks@0.1.0
 html-tools@1.0.4
 htmljs@1.0.4
 http@1.1.0

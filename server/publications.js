@@ -2,5 +2,7 @@
 /// <reference path="../lib/collections.ts" />
 
 Meteor.publish('Queries', function() {
+  if (! this.userId )
+    return {};
   return Queries.find();
 });

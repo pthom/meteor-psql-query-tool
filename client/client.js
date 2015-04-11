@@ -146,8 +146,20 @@ function MakeWebixUi_QueryResult() {
   });
 }
 
+function SetupUi() {
+  if (Meteor.userId()) {
+    MakeWebixUi_Queries();
+    MakeWebixUi_QueryResult();
+  }
+}
+
+Accounts.onLogin(function() {
+  SetupUi();
+});
+Accounts.onLogout(function() {
+  window.location.reload(false);
+});
 
 Meteor.startup(function() {
-  MakeWebixUi_Queries();
-  MakeWebixUi_QueryResult();
+  SetupUi();
 });

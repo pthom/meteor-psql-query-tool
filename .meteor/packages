@@ -9,3 +9,4 @@ webix:webix
 insecure
 accounts-ui
 accounts-password
+gwendall:auth-client-callbacks
