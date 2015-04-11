@@ -14,6 +14,7 @@ http://webix.com/demos/admin-app/#!/app/dashboard
 http://jsbin.com/xuboxo/4/ (test par Pascal)
 
 ### Webix & Meteor
+https://atmospherejs.com/webix/webix
 https://www.youtube.com/watch?v=s3ylMIf_0XU
 
 ## Chartings
