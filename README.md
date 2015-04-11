@@ -1,12 +1,15 @@
 #TODO
-Clean
-Tab / Create view / Use View
-Review table width
-login module
-Return to Collection
-Backup db mongo / script import
+X Message webix/meteor : how to us without insecure mode
+  En attente retour => maj module
 
-Message webix/meteor : how to us without insecure mode
+X Backup db mongo / script import
+
+Tab / Create view / Use View
+  Restrict to login
+
+Review table width
+Return to Collection
+
 connect db ivs
   Import query
   Add json editor
