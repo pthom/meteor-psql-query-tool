@@ -3,6 +3,7 @@
 
 console.log("Load server.js");
 
+declare var ServerSession;
 
 Meteor.methods({
     addQuery: function() {
@@ -29,12 +30,6 @@ Meteor.methods({
         //pg_query is async, but pg_query_wrapAsync is sync,
         //and uses futures ()
         var result  = pg_query_wrapAsync(sql_query);
-
-        //Empty the PsqlResults collection
-        PsqlResults.remove({});
-        result.rows.forEach( function(item) {
-            PsqlResults.insert(item);
-            console.log("psqlresults insert: " + JSON.stringify(item));
-        });
+        ServerSession.set("QueryResult", result);
     }
 });

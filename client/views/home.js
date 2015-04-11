@@ -5,8 +5,8 @@ Template.home.helpers({
   selected_query: function() {
       return Queries.findOne( Session.get("currentQueryId") );
   },
-  psqlresults: function() {
-      return PsqlResults.find();
+  QueryResultRows: function() {
+      return ServerSession.get("QueryResult").rows;
   }
 });
 
