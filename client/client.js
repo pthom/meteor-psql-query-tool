@@ -1,62 +1,96 @@
 //declare var webix;
 
-function MakeWebixUi() {
-  querytable_uidef = {
-        //container:'webix_queries_div',
-        view: 'datatable',
-        id: 'querytable',
-        autoConfig: true,  // infer columns from data
-        select: true,
-        sortable: true,
-        editable: true, editaction: 'dblclick',
-        resizeColumn: true,
-        url:  webix.proxy('meteor', Queries),  // <-- this is it!
-        save: webix.proxy('meteor', Queries)   // Mongo.Collection
-    };
+function MakeWebixUi_Queries() {
+  var querytable = {
+    //container:'webix_queries_div',
+    view: 'datatable',
+    id: 'querytable',
+    autoConfig: true, // infer columns from data
+    select: true,
+    sortable: true,
+    editable: true,
+    editaction: 'dblclick',
+    resizeColumn: true,
+    url: webix.proxy('meteor', Queries), // <-- this is it!
+    save: webix.proxy('meteor', Queries) // Mongo.Collection
+  };
 
-    var toolbar = {
-      view: 'toolbar',
-      elements: [
-        { view: 'label', label: 'Queries list' },
-        { view: 'button', value: 'Add', width: 100,
-          click: function () {
-            //var row = $$('querytable').add({name:'',query:''});
-            var row = $$('querytable').add({});
-            $$('querytable').editCell(row, 'name');
-          }
-        },
-        { view: 'button', value: 'Remove', width: 100,
-          click: function () {
-            var id = $$('querytable').getSelectedId();
-            if (id)
-              $$('querytable').remove(id);
-            else
-              webix.message('Please select a row to delete');
-          }}
-      ]
-    };
+  var toolbar = {
+    view: 'toolbar',
+    elements: [{
+      view: 'label',
+      label: 'Queries list'
+    }, {
+      view: 'button',
+      value: 'Add',
+      width: 100,
+      click: function() {
+        //var row = $$('querytable').add({name:'',query:''});
+        var row = $$('querytable').add({});
+        $$('querytable').editCell(row, 'name');
+      }
+    }, {
+      view: 'button',
+      value: 'Remove',
+      width: 100,
+      click: function() {
+        var id = $$('querytable').getSelectedId();
+        if (id)
+          $$('querytable').remove(id);
+        else
+          webix.message('Please select a row to delete');
+      }
+    }]
+  };
 
-    var panel = {
-      container:'webix_queries_div',
-      view:'layout',
-      rows:[toolbar, querytable_uidef]
-    };
+  var queryForm = {
+    view: 'form',
+    id: 'queryForm',
+    elements: [{
+      view: 'text',
+      name: 'name',
+      label: 'Query Name'
+    }, {
+      view: 'text',
+      name: 'query',
+      label: 'Query SQL'
+    }, {
+      view: 'button',
+      label: 'Save',
+      type: 'form', // a Submit button; 'form' is an odd type name for buttons - http://docs.webix.com/api__ui.button_type_config.html#comment-1863007844
+      click: function() {
+        this.getFormView().save();
+        this.getFormView().clear();
+      }
+    }]
+  };
 
 
-  var webixContainer = webix.ui( panel );
-  //webixContainer.resize();
+  var panel = {
+    view: 'layout',
+    container: 'webix_queries_div',
+    rows: [toolbar, querytable, queryForm]
+  };
+
+  var webixContainer = webix.ui(panel);
+
+  // http://docs.webix.com/desktop__data_binding.html
+  $$('queryForm').bind($$('querytable'));
 
 }
 
 
-Meteor.startup(function () {
-  MakeWebixUi();
+
+Meteor.startup(function() {
+  MakeWebixUi_Queries();
 
 
   // The problem with mixing Webix components and non-Webix HTML markup is that Webix UI components won't resize
   // automatically if you place them in an HTML container. You have to resize them manually, like below.
   // Read more at http://forum.webix.com/discussion/comment/3650/#Comment_3650.
-  webix.event(window, 'resize', function(){
+  webix.event(window, 'resize', function() {
     webixContainer.resize();
   });
+
+
 });
