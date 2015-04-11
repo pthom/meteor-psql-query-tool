@@ -3,9 +3,9 @@ populate_datatable_psql_results = function(data, table)
 {
   table.clearAll();
 
-  columnConfig = [];
+  var columnConfig = [];
 
-  for (idx = 0; idx < data.fields.length; ++idx) {
+  for (var idx = 0; idx < data.fields.length; ++idx) {
     var field = data.fields[idx];
     var colname = field.name;
     columnConfig.push({id:colname, header:colname, sort:"string", adjust:"data"});
