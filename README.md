@@ -1,4 +1,24 @@
-meteor add erasaur:server-session
+#TODO
+
+Tab / Create view / Use View
+Review table width
+login module
+Return to Collection
+Backup db mongo / script import
+
+Message webix/meteor : how to us without insecure mode
+connect db ivs
+  Import query
+  Add json editor
+
+Editeur query
+  Query
+  Json editor for params
+
+
+traineq
+  ssh-agent
+  install
 
 
 #POSTGRES
