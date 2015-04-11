@@ -39,15 +39,25 @@ query_edit_view = {
       savequery_button
       ]
     };
-    /*
-    var panel = {
-      autoheight:true,
-      rows: [queryForm, savequery_button]
+
+    var edit_window =
+    {
+      view:"window",
+      id : "query_edit_view",
+      height:700,
+      width:1000,
+      left:50, top:50,
+      move:true,
+      head:{
+        view:"toolbar", cols:[
+          {view:"label", label: "Edit Query" },
+          { view:"button", label: 'Close', width: 100, align: 'right', click:"$$('query_edit_view').hide();"}
+          ]
+      },
+      body:queryForm
     };
 
-    return panel;
-    */
-    return queryForm;
+    return edit_window;
   },
 
 

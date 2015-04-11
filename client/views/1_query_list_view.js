@@ -36,7 +36,7 @@ query_list_view = {
         if (id)
           $$('querytable').remove(id);
         else
-          webix.message('Please select a row to delete');
+          webix.message('Please select a query to delete');
       }
     };
 
@@ -53,10 +53,26 @@ query_list_view = {
         },
     };
 
+    var editquery_button =
+    {
+      view: 'button',
+      value: 'Edit',
+      width: 100,
+      click: function() {
+        var id = $$('querytable').getSelectedId();
+        if (id)
+          $$('query_edit_view').show();
+        else
+          webix.message('Please select a query');
+      }
+    };
+
+
     var toolbar = {
       view: 'toolbar',
       elements: [
         runquery_button,
+        editquery_button,
         addquery_button,
         removequery_button,
       ]

@@ -1,7 +1,6 @@
 
 
 
-
 function SetupUi() {
   if ( ! Meteor.userId())
     return;
@@ -14,6 +13,8 @@ function SetupUi() {
   webix.event(window, 'resize', function() {
     webixContainer.resize();
   });
+
+  webix.ui(query_edit_view.ui_definition());  
 }
 
 Accounts.onLogin(function() {

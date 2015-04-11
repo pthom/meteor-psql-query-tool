@@ -4,10 +4,10 @@ X Message webix/meteor : how to us without insecure mode
 
 X Backup db mongo / script import
 
-Tab / Create view / Use View
-  Restrict to login
+X Review table width
+X Tab / Create view / Use View
 
-Review table width
+
 Return to Collection
 
 connect db ivs
@@ -17,6 +17,8 @@ connect db ivs
 Editeur query
   Query
   Json editor for params
+
+Restrict Edit to login admin
 
 
 traineq

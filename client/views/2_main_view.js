@@ -28,7 +28,7 @@ main_view = {
     */
     var result = {
       container: "webix_content",
-      rows: [ query_list_view.ui_definition(), query_edit_view.ui_definition(), query_result_view.ui_definition() ]
+      rows: [ query_list_view.ui_definition(), query_result_view.ui_definition() ]
     };
     return result;
   }
