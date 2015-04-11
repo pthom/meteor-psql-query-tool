@@ -25,6 +25,7 @@ function MakeWebixUi_Queries() {
     view: 'datatable',
     id: 'querytable',
     autoConfig: true, // infer columns from data
+    columnWidth:500,
     select: true,
     sortable: true,
     editable: true,
@@ -122,14 +123,18 @@ function MakeWebixUi_Queries() {
 
 function MakeWebixUi_QueryResult() {
   var queryresulttable = {
-    container: 'webix_queryresult_div',
     view: 'datatable',
+    container: 'webix_queryresult_div',
     id: 'queryresulttable',
     autoConfig: true, // infer columns from data
     select: true,
     sortable: true,
     editable: true,
     resizeColumn: true,
+    scrollX:true,
+    scrollY:true,
+    //autowidth:false,
+    //maxWidth:600,
     data: [ {content : "goes", here:"yes"} ]
   };
   var webixContainer = webix.ui(queryresulttable);
@@ -145,8 +150,4 @@ function MakeWebixUi_QueryResult() {
 Meteor.startup(function() {
   MakeWebixUi_Queries();
   MakeWebixUi_QueryResult();
-
-
-
-
 });
