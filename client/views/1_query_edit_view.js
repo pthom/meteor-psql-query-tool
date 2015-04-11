@@ -11,6 +11,7 @@ query_edit_view = {
   },
 
   ui_definition : function() {
+
     var querytable = {
       view: 'datatable',
       id: 'querytable',
@@ -93,7 +94,6 @@ query_edit_view = {
 
     var panel = {
       view: 'layout',
-      container: 'webix_queries_div',
       rows: [toolbar, querytable, queryForm]
     };
 
