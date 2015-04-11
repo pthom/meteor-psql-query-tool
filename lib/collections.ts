@@ -3,7 +3,7 @@
 //Queries is a MongoDB collection stored in the mongo database
 declare var Queries; //:Mongo.Collection<...>;
 Queries = new Meteor.Collection("Queries");
-
+/*
 Queries.allow({
   insert: function (userId, doc) {
     //A safer alternative would be :
@@ -22,3 +22,4 @@ Queries.allow({
   },
   fetch: ['owner']
 });
+*/
