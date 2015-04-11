@@ -44,11 +44,12 @@ query_result_view = {
       }]
     };
 */
-    
+
 
     var queryresulttable = {
       view: 'datatable',
       id: 'queryresulttable',
+      gravity:2,
       autoConfig: true, // infer columns from data
       select: true,
       sortable: true,

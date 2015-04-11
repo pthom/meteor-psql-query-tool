@@ -55,6 +55,7 @@ query_edit_view = {
     };
 
     var queryForm = {
+      gravity:1,
       view: 'form',
       id: 'queryForm',
       elements: [{
@@ -94,6 +95,8 @@ query_edit_view = {
 
     var panel = {
       view: 'layout',
+      autoheight:true,
+      
       rows: [toolbar, querytable, queryForm]
     };
 

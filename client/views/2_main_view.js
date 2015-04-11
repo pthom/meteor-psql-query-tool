@@ -12,7 +12,7 @@ main_view = {
   ui_definition: function() {
     /*
     var result = {
-      container: "webix_content", 
+      container: "webix_content",
       view: "tabview",
       cells: [
         {
