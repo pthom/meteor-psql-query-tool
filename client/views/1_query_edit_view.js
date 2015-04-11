@@ -12,47 +12,16 @@ query_edit_view = {
 
   ui_definition : function() {
 
-    var querytable = {
-      view: 'datatable',
-      id: 'querytable',
-      autoConfig: true, // infer columns from data
-      columnWidth:500,
-      select: true,
-      sortable: true,
-      editable: true,
-      editaction: 'dblclick',
-      resizeColumn: true,
-      url: webix.proxy('meteor', Queries), // <-- this is it!
-      save: webix.proxy('meteor', Queries) // Mongo.Collection
+    var savequery_button =
+    {
+      view: 'button',
+      label: 'Save',
+      type: 'form', // a Submit button; 'form' is an odd type name for buttons - http://docs.webix.com/api__ui.button_type_config.html#comment-1863007844
+      click: function() {
+        this.getFormView().save();
+      },
     };
 
-    var toolbar = {
-      view: 'toolbar',
-      elements: [{
-        view: 'label',
-        label: 'Queries list'
-      }, {
-        view: 'button',
-        value: 'Add',
-        width: 100,
-        click: function() {
-          //var row = $$('querytable').add({name:'',query:''});
-          var row = $$('querytable').add({});
-          $$('querytable').editCell(row, 'name');
-        }
-      }, {
-        view: 'button',
-        value: 'Remove',
-        width: 100,
-        click: function() {
-          var id = $$('querytable').getSelectedId();
-          if (id)
-            $$('querytable').remove(id);
-          else
-            webix.message('Please select a row to delete');
-        }
-      }]
-    };
 
     var queryForm = {
       gravity:1,
@@ -66,41 +35,19 @@ query_edit_view = {
         view: 'text',
         name: 'query',
         label: 'Query SQL'
-      }, {
-        view: 'layout',
-        cols: [{
-            view: 'button',
-            label: 'Run',
-            click: function() {
-              var sql = $$('querytable').getSelectedItem().query;
-              //alert("Run : " + sql);
-              Meteor.call("runPostgresqlQuery", sql);
-              var data = ServerSession.get("QueryResult");
-              populate_datatable_psql_results(data, $$('queryresulttable'));
-            },
-          },
-          {
-            view: 'button',
-            label: 'Save',
-            type: 'form', // a Submit button; 'form' is an odd type name for buttons - http://docs.webix.com/api__ui.button_type_config.html#comment-1863007844
-            click: function() {
-              this.getFormView().save();
-              this.getFormView().clear();
-            },
-          },
-        ]
-      }]
+      },
+      savequery_button
+      ]
     };
-
-
+    /*
     var panel = {
-      view: 'layout',
       autoheight:true,
-      
-      rows: [toolbar, querytable, queryForm]
+      rows: [queryForm, savequery_button]
     };
 
     return panel;
+    */
+    return queryForm;
   },
 
 
