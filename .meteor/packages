@@ -7,3 +7,5 @@ typescript-libs
 erasaur:server-session
 webix:webix
 insecure
+accounts-ui
+accounts-password
