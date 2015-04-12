@@ -20,7 +20,7 @@ webix.protoUI({
       this._editor.set(value);
     return value;
   },
-  json: function() {
+  getJson: function() {
     return this._editor.get();
   },
   $getSize: function() {

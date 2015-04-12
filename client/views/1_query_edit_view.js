@@ -22,7 +22,6 @@ query_edit_view = {
       },
     };
 
-
     var queryForm = {
       gravity:1,
       view: 'form',
@@ -38,10 +37,52 @@ query_edit_view = {
         label: 'Query SQL'
       },
       {
-        view: 'textarea',
-        height : 250,
-        name: 'params',
-        label: 'Query Params'
+        cols : [
+          {
+            view: 'textarea',
+            id:'queryform_jsontext',
+            height : 250,
+            name: 'params',
+            label: 'Query Params'
+          },
+          {
+            width : 30,
+            rows : [
+              {
+                view: 'button',
+                label: '=>',
+                click: function copyToEditor(){
+                  var rawText = $$("queryform_jsontext").getValue();
+                  try {
+                    var jsonObject = JSON.parse(rawText);
+                    $$("queryform_jsonedit").json_setter(jsonObject);
+                  }
+                  catch(e) {
+                    var msg = "JSON parse error : " + e;
+                    console.error(msg);
+                    webix.message(msg);
+                  }
+                }
+              },
+              {
+                view: 'button',
+                label: '<=',
+                click: function copyFromEditor(){
+                  var jsonObject = $$("queryform_jsonedit").getJson();
+                  var rawText = JSON.stringify(jsonObject, null, 2);
+                  $$("queryform_jsontext").setValue(rawText);
+                }
+              }
+            ]
+          },
+          {
+            view: 'jsoneditor_wx',
+            id:'queryform_jsonedit',
+            height : 250,
+            label: 'Query Params',
+            json: {a:4}
+          },
+        ]
       },
       savequery_button
       ]
