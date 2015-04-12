@@ -72,6 +72,7 @@ query_edit_view = {
       id: 'queryForm',
       elements: [
         { view: 'text', name: 'name', label: 'Name'},
+        { view: 'text', name: 'tags', label: 'Tags'},
         { view: 'textarea', height : 250, name: 'query',label: 'Query SQL'},
         jsonEditorAndTextArea,
         savequery_button
