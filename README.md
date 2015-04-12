@@ -25,9 +25,18 @@ traineq
   ssh-agent
   install
 
+#METEOR GREAT RESOURCES
+***********************
+https://gentlenode.com/journal/meteor-4-best-ressources-to-become-a-master/6
+https://gentlenode.com/journal/meteor-5-complete-cheatsheet/7
+https://www.eventedmind.com/classes
 
-#POSTGRES
-********
+###How to build custom reactive data sources:
+Deps was renamed to Tracker!
+https://www.eventedmind.com/feed/meteor-introducing-deps
+https://www.eventedmind.com/feed/meteor-build-a-reactive-data-source
+
+### Turn Postgres into a reactive data source
 Voir http://www.lshift.net/blog/2013/02/25/live-updates-to-meteor-from-postgres
 
 #WIDGETS
