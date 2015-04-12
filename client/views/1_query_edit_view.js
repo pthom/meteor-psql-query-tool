@@ -83,9 +83,9 @@ query_edit_view = {
     {
       view:"window",
       id : "query_edit_view",
-      height:700,
-      width:1000,
-      left:50, top:50,
+      height:'60%',
+      width:'60%',
+      position: 'center',
       move:true,
       head:{
         view:"toolbar", cols:[

@@ -22,6 +22,41 @@ query_result_view = {
       //maxWidth:600,
       data: [ {content : "goes", here:"yes"} ]
     };
-    return queryresulttable;
+
+    var exportjson_button =
+    {
+      view: 'button',
+      value: 'Show as Json',
+      width: 100,
+      click: function() {
+      }
+    };
+
+    var exportcsv_button =
+    {
+      view: 'button',
+      value: 'Export as CSV',
+      width: 100,
+      click: function() {
+      }
+    };
+
+    var toolbar = {
+      view: 'toolbar',
+      elements: [
+        exportjson_button,
+        exportcsv_button
+      ]
+    };
+
+
+
+    var panel = {
+      view: 'layout',
+      autoheight:true,
+      rows: [queryresulttable, toolbar]
+    };
+
+    return panel;
   }
 };

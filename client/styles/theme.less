@@ -8,6 +8,36 @@
 @background: transparent;
 @border: #fff;
 
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+.login {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:300px;
+  z-index:10;
+}
+
+.webix-fullscreen {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  width: 100%;
+  margin: 0;// auto -40px;
+}
+
+.white {
+  background-color: white;
+}
+
+.footer, .push {
+    height: 20px;
+}
 
 footer {
   background: lightyellow;
@@ -23,10 +53,10 @@ body {
   background: transparent;
   margin: 0;
   padding: 0;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
+
 
 .jumbotron {
   background: transparent;

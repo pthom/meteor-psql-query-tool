@@ -52,7 +52,7 @@ query_list_view = {
     var runquery_button = {
         view: 'button',
         label: 'Run',
-        width:300,
+        width:150,
         click: function() {
           var sql = $$('querytable').getSelectedItem().query;
           //alert("Run : " + sql);
@@ -91,6 +91,7 @@ query_list_view = {
     var panel = {
       view: 'layout',
       autoheight:true,
+      height:'40%',
 
       rows: [querytable, toolbar]
     };
