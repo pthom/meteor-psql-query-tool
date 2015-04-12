@@ -39,7 +39,7 @@ query_list_view = {
             text: "Are you sure to remove this query ?",
             callback: function onConfirm(userConfirmation) {
               if (userConfirmation) {
-                $$('querytable').remove(id);                
+                $$('querytable').remove(id);
               }
             }
           });
@@ -57,8 +57,6 @@ query_list_view = {
           var sql = $$('querytable').getSelectedItem().query;
           //alert("Run : " + sql);
           Meteor.call("runPostgresqlQuery", sql);
-          var data = ServerSession.get("QueryResult");
-          populate_datatable_psql_results(data, $$('queryresulttable'));
         },
     };
 
