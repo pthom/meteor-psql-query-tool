@@ -19,8 +19,7 @@ declare module Meteor {
 console.log("Load pg_query.js");
 
 //Enter here your connection info
-var pg_connection_string = "postgres://pascal:asedr@192.168.1.15/northwind";
-
+var pg_connection_string = "postgres://northwind_user:thewindisblowing@127.0.0.1/northwind";
 var pg_query = function(sql_query, callback) {
     console.log("About to run query:" + sql_query);
 
@@ -35,8 +34,10 @@ var pg_query = function(sql_query, callback) {
         psql_client.query(sql_query, function(err, result) {
             if (err) {
                 // An error occurred, remove the client from the connection pool.
+                var msg = "Error during query : ";
+                console.log(msg);
                 done(psql_client);
-                callback("Error during query : " + err, null);
+                callback(msg, null);
                 return;
             }
 
