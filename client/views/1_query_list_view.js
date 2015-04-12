@@ -33,8 +33,17 @@ query_list_view = {
       width: 100,
       click: function() {
         var id = $$('querytable').getSelectedId();
-        if (id)
-          $$('querytable').remove(id);
+        if (id) {
+          webix.confirm({
+            title: "Please confirm",
+            text: "Are you sure to remove this query ?",
+            callback: function onConfirm(userConfirmation) {
+              if (userConfirmation) {
+                $$('querytable').remove(id);                
+              }
+            }
+          });
+        }
         else
           webix.message('Please select a query to delete');
       }
