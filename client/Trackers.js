@@ -20,3 +20,10 @@ function ShowSpinningWheelDuringQueries() {
   SpinningWheel.hide();
 }
 Tracker.autorun(ShowSpinningWheelDuringQueries);
+
+function AlertQueryError() {
+  var error = ServerSession.get("QueryError");
+  if ( error )
+    webix.alert("Query error : " + error);
+}
+Tracker.autorun(AlertQueryError);
