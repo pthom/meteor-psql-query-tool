@@ -7,6 +7,7 @@ declare var ServerSession;
 
 Meteor.methods({
     runPostgresqlQuery: function(sql_query) {
+        ServerSession.set("QueryRunning", "true");
         if (! Meteor.userId()) {
           throw new Meteor.Error("not-authorized");
         }
@@ -15,5 +16,6 @@ Meteor.methods({
         //and uses futures ()
         var result  = pg_query_wrapAsync(sql_query);
         ServerSession.set("QueryResult", result);
+        ServerSession.set("QueryRunning", false);
     }
 });

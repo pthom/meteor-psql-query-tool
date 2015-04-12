@@ -57,6 +57,7 @@ query_list_view = {
           var sql = $$('querytable').getSelectedItem().query;
           //alert("Run : " + sql);
           Meteor.call("runPostgresqlQuery", sql);
+          SpinningWheel.show();
         },
     };
 

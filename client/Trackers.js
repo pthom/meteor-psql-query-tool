@@ -1,4 +1,4 @@
-//Magic ! ShowQueryResults function is called automatically 
+//Magic ! ShowQueryResults function is called automatically
 //whenever ServerSession.get("QueryResult") changes !
 function ShowQueryResults() {
   var data = ServerSession.get("QueryResult");
@@ -11,3 +11,12 @@ function ShowQueryResults() {
 }
 
 Tracker.autorun(ShowQueryResults);
+
+
+function ShowSpinningWheelDuringQueries() {
+  if (ServerSession.get("QueryRunning"))
+    SpinningWheel.show();
+  else
+  SpinningWheel.hide();
+}
+Tracker.autorun(ShowSpinningWheelDuringQueries);

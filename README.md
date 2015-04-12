@@ -8,15 +8,33 @@ X Review table width
 X Tab / Create view / Use View
 
 
-Return to Collection
-
 connect db ivs
   Import query
   Add json editor
 
+Spin
+
+Add northwind queries
+
+
 Editeur query
   Query
   Json editor for params
+  Samples
+  Tags
+
+Search query
+  Tags / Tag lists
+  Name
+
+Export JSON / CSV
+
+
+Query Display
+  Params
+    Calendar
+    Text
+
 
 Restrict Edit to login admin
 
