@@ -60,8 +60,10 @@ query_list_view = {
       width: 100,
       click: function() {
         var id = $$('querytable').getSelectedId();
-        if (id)
+        if (id) {
           $$('query_edit_view').show();
+          query_edit_view.copyToEditor(true); //true <=> setNullOnError
+        }
         else
           webix.message('Please select a query');
       }
