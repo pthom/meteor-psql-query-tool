@@ -34,15 +34,20 @@ main_view = {
 
     var jsoneditor_wx_test = {
       view:"jsoneditor_wx",
+      container: "webix_content",
       id:'ed',
-      height: 200,
+      height: 600,
+      width:304,
       json:json_data
     };
 
     var result = {
       container: "webix_content",
-      rows: [ jsoneditor_wx_test, query_list_view.ui_definition(), query_result_view.ui_definition() ]
+      //rows: [ query_list_view.ui_definition(), query_result_view.ui_definition(), jsoneditor_wx_test ],
+      rows: [ query_list_view.ui_definition(), query_result_view.ui_definition(), jsoneditor_wx_test ],
     };
     return result;
+
+    //return jsoneditor_wx_test;
   }
 };
