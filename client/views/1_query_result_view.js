@@ -29,6 +29,7 @@ query_result_view = {
       value: 'Show as Json',
       width: 100,
       click: function() {
+        $$("json_export_view").show();
       }
     };
 

@@ -13,6 +13,7 @@ function SetupUi() {
   });
 
   webix.ui(query_edit_view.ui_definition());
+  webix.ui(json_export_view.ui_definition());
 }
 
 Accounts.onLogin(function() {

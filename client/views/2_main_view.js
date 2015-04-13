@@ -10,22 +10,6 @@ main_view = {
   },
 
   ui_definition: function() {
-    /*
-    var result = {
-      container: "webix_content",
-      view: "tabview",
-      cells: [
-        {
-          header: "Run Queries",
-          body: query_result_view.ui_definition(),
-        },
-        {
-          header: "Definie Queries",
-          body: query_edit_view.ui_definition(),
-        }
-      ]
-    };
-    */
 
     var result = {
       container: "webix_content",

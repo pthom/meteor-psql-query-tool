@@ -6,16 +6,15 @@ X Backup db mongo / script import
 
 X Review table width
 X Tab / Create view / Use View
+X Spin
 
+X Add northwind queries
+
+X Export JSON / CSV
+X Datatable / scroll horizontal (marche sous chrome, pas osx firefox)
 
 connect db ivs
   Import query
-  Add json editor
-
-Spin
-
-Add northwind queries
-
 
 Editeur query
   Query
@@ -26,8 +25,6 @@ Editeur query
 Search query
   Tags / Tag lists
   Name
-
-Export JSON / CSV
 
 
 Query Display
