@@ -1,0 +1,102 @@
+
+<head>
+    <title>orb</title>
+
+  <link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.1/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="libs/bootstrap-3.3.1/css/bootstrap-theme.css" />
+	<link rel="stylesheet" type="text/css" href="libs/orb/orb.css" />
+
+	<script type="text/javascript" src="libs/react/react-0.12.2.js"></script>
+	<script type="text/javascript" src="libs/orb/orb.js"></script>
+
+
+  <style type="text/css">
+  body {
+      font-size: 1.2em;
+  }
+  </style>
+</head>
+
+<body>
+    <div id="rr" style="padding: 7px;"></div>
+
+    <script type="text/javascript">
+
+data = [
+  {
+    "supplierid": 1,
+    "companyname": "Exotic Liquids",
+    "contactname": "Charlotte Cooper",
+    "contacttitle": "Purchasing Manager",
+    "address": "49 Gilbert St.",
+    "city": "London",
+    "region": null,
+    "postalcode": "EC1 4SD",
+    "country": "UK",
+    "phone": "(171) 555-2222",
+    "fax": null,
+    "homepage": null
+  },
+  {
+    "supplierid": 2,
+    "companyname": "New Orleans Cajun Delights",
+    "contactname": "Shelley Burke",
+    "contacttitle": "Order Administrator",
+    "address": "P.O. Box 78934",
+    "city": "New Orleans",
+    "region": "LA",
+    "postalcode": "70117",
+    "country": "USA",
+    "phone": "(100) 555-4822",
+    "fax": null,
+    "homepage": "#CAJUN.HTM#"
+  },
+  {
+    "supplierid": 3,
+    "companyname": "Grandma Kelly's Homestead",
+    "contactname": "Regina Murphy",
+    "contacttitle": "Sales Representative",
+    "address": "707 Oxford Rd.",
+    "city": "Ann Arbor",
+    "region": "MI",
+    "postalcode": "48104",
+    "country": "USA",
+    "phone": "(313) 555-5735",
+    "fax": "(313) 555-3349",
+    "homepage": null
+  }
+];
+
+function GetGetHttpData(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
+}
+
+var dataGet = GetGetHttpData("data");
+if (dataGet) {
+  try {
+    data = JSON.parse(dataGet);
+  }
+  catch(e) {
+    console.log("Error parsing data : " + e);
+  }
+}
+
+var config = {
+     dataSource: data,
+     //fields : ["companyname", "city", "region", "contactname"],
+     fields: [
+         { name: 'companyname', caption: 'companyname' },
+         { name: 'city', caption: 'city' },
+         { name: 'region', caption: 'region' },
+         { name: 'contactname', caption: 'contactname' },
+     ],
+};
+
+var elem = document.getElementById('rr')
+
+var pgridwidget = new orb.pgridwidget(config);
+pgridwidget.render(elem);
+
+    </script>
+</body>
