@@ -4,8 +4,12 @@ query_list_view = {
     var querytable = {
       view: 'datatable',
       id: 'querytable',
-      autoConfig: true, // infer columns from data
-      columnWidth:500,
+      //autoConfig: true, // infer columns from data
+      columns:[
+      { id:"name",	header:"Name", fillspace:8},
+      { id:"comment",	header:"Comment", fillspace:4, },
+      { id:"tags",	header:"Tags",fillspace:3},
+      ],
       select: true,
       sortable: true,
       editable: true,
@@ -22,6 +26,7 @@ query_list_view = {
       click: function() {
         //var row = $$('querytable').add({name:'',query:''});
         var row = $$('querytable').add({name:'Edit me...', params:'{}'});
+        $$('querytable').select(row);
         $$('querytable').editCell(row, 'name');
       }
     };
@@ -90,9 +95,7 @@ query_list_view = {
 
     var panel = {
       view: 'layout',
-      autoheight:true,
-      height:'40%',
-
+      gravity:1,
       rows: [querytable, toolbar]
     };
 

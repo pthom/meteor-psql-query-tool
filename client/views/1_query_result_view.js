@@ -10,7 +10,6 @@ query_result_view = {
     var queryresulttable = {
       view: 'datatable',
       id: 'queryresulttable',
-      gravity:2,
       autoConfig: true, // infer columns from data
       select: true,
       sortable: true,
@@ -55,6 +54,7 @@ query_result_view = {
     var panel = {
       view: 'layout',
       autoheight:true,
+      gravity:2,
       rows: [queryresulttable, toolbar]
     };
 

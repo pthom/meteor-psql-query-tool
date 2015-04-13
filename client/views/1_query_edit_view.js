@@ -38,7 +38,8 @@ query_edit_view = {
         id:'queryform_jsontext',
         height : 250,
         name: 'params',
-        label: 'Query Params'
+        label: 'Query Params',
+        css: 'fixedFont'
       },
       {
         width : 30,
@@ -74,7 +75,7 @@ query_edit_view = {
         { view: 'text', name: 'name', label: 'Name'},
         { view: 'text', name: 'comment', label: 'Comments'},
         { view: 'text', name: 'tags', label: 'Tags'},
-        { view: 'textarea', height : 250, name: 'query',label: 'Query SQL'},
+        { view: 'textarea', height : 250, name: 'query',label: 'Query SQL', css:'fixedFont'},
         jsonEditorAndTextArea,
         savequery_button
       ]

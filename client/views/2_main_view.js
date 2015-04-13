@@ -18,7 +18,8 @@ main_view = {
         { view:'label', align:'right', label:'QueryTool, made with meteor / webix / psql &nbsp;&nbsp;&nbsp;', css:'white'},
         query_list_view.ui_definition(),
         { view:'resizer'},
-        query_result_view.ui_definition() ],
+        query_result_view.ui_definition() 
+        ]
     };
     return result;
   }
