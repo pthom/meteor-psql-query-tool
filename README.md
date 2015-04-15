@@ -13,14 +13,15 @@ X Add northwind queries
 X Export JSON / CSV
 X Datatable / scroll horizontal (marche sous chrome, pas osx firefox)
 
+
+
 connect db ivs
   Import query
 
 Editeur query
-  Query
-  Json editor for params
+  Notes :
+    SqlWidgetController_Base
   Samples
-  Tags
 
 Search query
   Tags / Tag lists

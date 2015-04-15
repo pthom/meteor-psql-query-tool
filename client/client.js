@@ -25,6 +25,8 @@ Accounts.onLogout(function() {
 });
 
 Meteor.startup(function() {
+  TestSqlWidgets();
+  return;
   SetupUi();
 
   main_view.on_document_ready();
