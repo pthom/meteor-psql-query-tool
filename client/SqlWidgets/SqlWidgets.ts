@@ -65,84 +65,11 @@ AND freight > _minfreight
 }
 */
 
-//Monkey patching...
-interface Array<T> {
-  move(o:T, by:number) : Array<T>;
-  moveUp(o: T, by?:number): Array<T>;
-  moveDown(o: T, by?:number): Array<T>;
-  removeByValue(o:T);
-}
-
-Array.prototype.move = function (value, by?) {
-  var index = this.indexOf(value);
-  var newPos = index + by;
-
-  if (index === -1)
-    throw new Error("Element not found in array");
-
-  if (newPos < 0)
-    newPos = 0;
-  if (newPos >= this.length)
-    newPos = this.length;
-
-  this.splice(index, 1);
-  this.splice(newPos, 0, value);
-  return this;
-}
-
-Array.prototype.moveUp = function (value, by?) {
-  this.move(value, - 1 * (by || 1));
-  return this;
-};
-
-Array.prototype.moveDown = function (value, by?) {
-  this.move(value, by || 1);
-  return this;
-};
-
-Array.prototype.removeByValue = function(what) {
-  var ax;
-  while ((ax = this.indexOf(what)) !== -1) {
-    this.splice(ax, 1);
-  }
-  return this;
-};
 
 
 ///<reference path="../../typings/webix/webix.d.ts"/>
-//declare var $$;
-
-class HtmlElementIdProvider
-{
-  guid:string;
-  constructor() {
-      var d = new Date().getTime();
-      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-      });
-      this.guid = uuid;
-  }
-
-  Id(name:string) {
-    return name + "-" + this.guid;
-  }
-
-  Id_GuiEdit() {
-    return "GuiEdit-" + this.guid;
-  }
-  Id_GuiUse() {
-    return "GuiUse-" + this.guid;
-  }
-
-  GuiEdit() {
-    return <webix.ui.layout> $$(this.Id_GuiEdit());
-  }
-  GuiUse() {
-    return <webix.ui.layout> $$(this.Id_GuiUse());
-  }
-}
+///<reference path="lib/ArrayUtils.ts" />
+///<reference path="lib/HtmlElementIdProvider.ts" />
 
 class QueryParam {
   label:string;
@@ -186,7 +113,7 @@ class SqlWidgetController_Base {
 
   GuiDefinition_Edit() : any{
     var toolbar =         {
-      id: this.idProvider.Id_GuiEdit(),
+      id: this.idProvider.Id("GuiEdit"),
       view: 'toolbar',
       cols: [
         {
@@ -271,7 +198,7 @@ class SqlWidgetController_Base {
   GuiDefinition_Use() : any {
     var result =
     {
-      id: this.idProvider.Id_GuiEdit(),
+      id: this.idProvider.Id("GuiUse"),
       view:'label',
       label: 'widget_' + this.queryParams.type
     };
@@ -327,7 +254,7 @@ class SqlWidgetsCollection {
     {
       view:'layout',
       container:"webix_content",
-      id: this.idProvider.Id_GuiEdit(),
+      id: this.idProvider.Id("GuiEdit"),
       scrollable:true,
       rows:
           [
@@ -360,7 +287,7 @@ class SqlWidgetsCollection {
     var result =
     {
       view:'layout',
-      id: this.idProvider.Id_GuiUse(),
+      id: this.idProvider.Id("GuiUse"),
       rows:
           [
           ]
