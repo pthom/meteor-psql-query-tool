@@ -18,9 +18,12 @@ declare module Meteor {
 
 console.log("Load pg_query.js");
 
-//Enter here your connection info
-var pg_connection_string = "postgres://northwind_user:thewindisblowing@127.0.0.1/northwind";
-var pg_query = function(sql_query, callback) {
+
+function pg_query(sql_query, callback) {
+
+    //Enter here your connection info
+    var pg_connection_string = "postgres://northwind_user:thewindisblowing@127.0.0.1/northwind";
+
     console.log("About to run query:" + sql_query);
 
     pg.connect(pg_connection_string, function(err, psql_client, done) {
@@ -48,5 +51,6 @@ var pg_query = function(sql_query, callback) {
 };
 
 //With typescript, global vars need to be declared as globals : read https://atmospherejs.com/meteortypescript/typescript-libs
+//declare var pg_query_wrapAsync;
 declare var pg_query_wrapAsync;
 pg_query_wrapAsync = Meteor.wrapAsync(pg_query);
