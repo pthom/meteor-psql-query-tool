@@ -2,7 +2,6 @@ standard-app-packages
 iron:router
 less
 postgresql
-meteortypescript:compiler
 typescript-libs
 erasaur:server-session
 webix:webix
@@ -11,3 +10,4 @@ accounts-ui
 accounts-password
 gwendall:auth-client-callbacks
 enteye:spinner
+mologie:typescript
