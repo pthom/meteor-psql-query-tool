@@ -112,6 +112,9 @@ class SqlWidgetController_Base {
   }
 
   GuiDefinition_Edit() : any{
+    var controller = this;
+
+
     var toolbar =         {
       id: this.idProvider.Id("GuiEdit"),
       view: 'toolbar',
@@ -125,6 +128,7 @@ class SqlWidgetController_Base {
           view:'button',
           label: 'remove',
           click: () => {
+            controller.UpdateQueryParams();
             this.parentSqlWidgetsCollection.widgetsControllers.removeByValue(this);
             this.parentSqlWidgetsCollection.ShowEditWidgets();
           }
@@ -133,6 +137,7 @@ class SqlWidgetController_Base {
           view:'button',
           label:'Move Up',
           click: () => {
+            controller.UpdateQueryParams();
             this.parentSqlWidgetsCollection.widgetsControllers.moveUp(this);
             this.parentSqlWidgetsCollection.ShowEditWidgets();
           }
@@ -141,6 +146,7 @@ class SqlWidgetController_Base {
           view:'button',
           label:'Move Down',
           click: () => {
+            controller.UpdateQueryParams();
             this.parentSqlWidgetsCollection.widgetsControllers.moveDown(this);
             this.parentSqlWidgetsCollection.ShowEditWidgets();
           }
@@ -148,11 +154,10 @@ class SqlWidgetController_Base {
       ]
     };
 
-    var parent = this;
 
     var onModified = {
       'onKeyPress': function() {
-        parent.queryParams = <QueryParam>parent.GetFormEditValues();
+        controller.UpdateQueryParams();
       }
     };
 
@@ -262,10 +267,10 @@ class SqlWidgetsCollection {
               view:"toolbar",
                 cols: [
                         { view : 'label', label:'Query Params', gravity:1.5},
-                        { view : 'button', label:'Add Date Param', click: () => { this.AddEditParam('date');} },
-                        { view : 'button', label:'Add Text Param', click: () => { this.AddEditParam('text');} },
-                        { view : 'button', label:'Add Bool Param', click: () => { this.AddEditParam('bool');} },
-                        { view : 'button', label:'Values', click: () => { alert(JSON.stringify(this.GetFormEditValues(), null, 2)) } },
+                        { view : 'button', label:'Add Date Param', click: () => { this.UpdateQueryParams(); this.AddEditParam('date');} },
+                        { view : 'button', label:'Add Text Param', click: () => { this.UpdateQueryParams(); this.AddEditParam('text');} },
+                        { view : 'button', label:'Add Bool Param', click: () => { this.UpdateQueryParams(); this.AddEditParam('bool');} },
+                        { view : 'button', label:'Values', click: () => { this.UpdateQueryParams(); alert(JSON.stringify(this.GetFormEditValues(), null, 2)) } },
                       ]
             },
             {
@@ -275,6 +280,10 @@ class SqlWidgetsCollection {
           ]
     };
     return result;
+  }
+
+  UpdateQueryParams() {
+    this.widgetsControllers.forEach(widget => { widget.UpdateQueryParams() });
   }
 
   GetFormEditValues() {
