@@ -71,47 +71,45 @@ AND freight > _minfreight
 ///<reference path="lib/ArrayUtils.ts" />
 ///<reference path="lib/HtmlElementIdProvider.ts" />
 
+
 class QueryParam {
   label:string;
   sql_tag : string;
   type : string;
   default : string;
 
-  specifics: any;
-
   constructor() {
     this.label = "Edit label...";
     this.sql_tag = "";
     this.type = "";
     this.default = "";
-    this.specifics = {};
   }
 }
 
 
 class SqlWidgetController_Base {
 
-  queryParams : QueryParam;
+  modelQueryParam_EditMode : QueryParam;
   idProvider : HtmlElementIdProvider;
-  parentSqlWidgetsCollection : SqlWidgetsCollection;
+  parentSqlWidgetsCollection : SqlWidgetsCollectionController;
 
 
   constructor(params:QueryParam, parentSqlWidgetsCollection) {
-    this.queryParams = params;
+    this.modelQueryParam_EditMode = params;
     this.idProvider = new HtmlElementIdProvider();
     this.parentSqlWidgetsCollection = parentSqlWidgetsCollection;
   }
 
-  GetFormEditValues() : QueryParam {
+  GetFormValues_EditMode() : QueryParam {
     var form = <webix.ui.form>$$(this.idProvider.Id("formEdit"));
     var result = <QueryParam>form.getValues();
     return result;
   }
-  UpdateQueryParams() {
-    this.queryParams = this.GetFormEditValues();
+  UpdateModel_EditMode() {
+    this.modelQueryParam_EditMode = this.GetFormValues_EditMode();
   }
 
-  GuiDefinition_Edit() : any{
+  ViewDefinition_EditMode() : any{
     var controller = this;
 
 
@@ -121,52 +119,40 @@ class SqlWidgetController_Base {
       cols: [
         {
           view:'label',
-          label: 'Widget ' + this.queryParams.type,
+          label: 'Widget ' + this.modelQueryParam_EditMode.type,
           gravity:6
         },
         {
           view:'button',
           label: 'remove',
           click: () => {
-            controller.UpdateQueryParams();
-            this.parentSqlWidgetsCollection.widgetsControllers.removeByValue(this);
-            this.parentSqlWidgetsCollection.ShowEditWidgets();
+            controller.UpdateModel_EditMode();
+            this.parentSqlWidgetsCollection.sqlWidgetsControllers.removeByValue(this);
+            this.parentSqlWidgetsCollection.RefreshView_EditMode();
           }
         },
         {
           view:'button',
           label:'Move Up',
           click: () => {
-            controller.UpdateQueryParams();
-            this.parentSqlWidgetsCollection.widgetsControllers.moveUp(this);
-            this.parentSqlWidgetsCollection.ShowEditWidgets();
+            controller.UpdateModel_EditMode();
+            this.parentSqlWidgetsCollection.sqlWidgetsControllers.moveUp(this);
+            this.parentSqlWidgetsCollection.RefreshView_EditMode();
           }
         },
         {
           view:'button',
           label:'Move Down',
           click: () => {
-            controller.UpdateQueryParams();
-            this.parentSqlWidgetsCollection.widgetsControllers.moveDown(this);
-            this.parentSqlWidgetsCollection.ShowEditWidgets();
+            controller.UpdateModel_EditMode();
+            this.parentSqlWidgetsCollection.sqlWidgetsControllers.moveDown(this);
+            this.parentSqlWidgetsCollection.RefreshView_EditMode();
           }
         }
       ]
     };
 
 
-    var onModified = {
-      'onKeyPress': function() {
-        controller.UpdateQueryParams();
-      }
-    };
-
-    /*
-     label:string;
-     sql_tag : string;
-     type : string;
-     default : string;
-     */
     var stdFields =
     {
       view:"form",
@@ -174,13 +160,14 @@ class SqlWidgetController_Base {
       elementsConfig:{
         labelPosition:"top"
       },
-      data: this.queryParams,
+      data: this.modelQueryParam_EditMode,
       elements:[
         { cols: [
-          { view:"text", label:"Label", name:'label', on:onModified},
-          { view:"text", label:"Sql Tag", name: 'sql_tag', on:onModified},
-          { view:"text", label:"Default value", name:'default', on:onModified},
+          { view:"text", label:"Label", name:'label'},
+          { view:"text", label:"Sql Tag", name: 'sql_tag'},
+          { view:"text", label:"Default value", name:'default'},
         ]},
+          this.SpecificViewDefinition_EditMode()
       ]
     };
 
@@ -189,28 +176,24 @@ class SqlWidgetController_Base {
       rows : [
         toolbar,
         stdFields,
-        this.SpecificGuiDefinition_Edit()
       ]
     };
 
     return result;
   }
 
-  SpecificGuiDefinition_Edit() : any {
+  SpecificViewDefinition_EditMode() : any {
     return {};
   }
 
-  GuiDefinition_Use() : any {
+  ViewDefinition_RunMode() : any {
     var result =
     {
       id: this.idProvider.Id("GuiUse"),
       view:'label',
-      label: 'widget_' + this.queryParams.type
+      label: 'widget_' + this.modelQueryParam_EditMode.type
     };
     return result;
-  }
-  getValue() : string {
-    return "";
   }
 }
 
@@ -219,12 +202,38 @@ class SqlWidgetController_Text extends SqlWidgetController_Base {
 }
 
 class SqlWidgetController_Date extends SqlWidgetController_Base {
+  SpecificViewDefinition_EditMode() : any
+  {
+    var help =
+        "<font size=-1>" +
+        "Default dates and min/max date can be expressed expressively, such as :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+        "<em>now - 1d</em> (now minus 1 day), <em>now + 3m</em> (now + 3 months), <em>now - 2y</em> (now minus 2 years), <br/>" +
+        "<em>this_monday</em>, <em>next_monday</em> (this_monday is today or in the past) , <em>this_tuesday + 1m</em>, <em>last_wednesday + 1y</em> <br/>" +
+        "<em>last_year - 2d </em>, <em>this_month</em>,  <em>next_month</em>" +
+        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(Spaces around '+' and '-' are required)</b>" +
+        "</font>";
+    var result =
+    {
+      rows:[
+        {
+          cols:[
+            { view:"text", label: "Date min", name:"date_min", tooltip:{view:"template", template:help} },
+            { view:"text", label: "Date max", name:"date_max", tooltip:help },
+          ]
+        },
+        {
+          view:"template", template:help, height:80
+        }
+      ]
+    }
+    return result;
+  }
  }
 
 class SqlWidgetController_Bool extends SqlWidgetController_Base {
 }
 
-function SqlWidgetFactory(params : QueryParam, sqlWidgetsCollection:SqlWidgetsCollection) : SqlWidgetController_Base {
+function SqlWidgetFactory(params : QueryParam, sqlWidgetsCollection:SqlWidgetsCollectionController) : SqlWidgetController_Base {
   if (params.type === "text") {
     return new SqlWidgetController_Text(params, sqlWidgetsCollection);
   }
@@ -238,22 +247,22 @@ function SqlWidgetFactory(params : QueryParam, sqlWidgetsCollection:SqlWidgetsCo
 }
 
 
-class SqlWidgetsCollection {
-  widgetsControllers : Array<SqlWidgetController_Base>;
+class SqlWidgetsCollectionController {
+  sqlWidgetsControllers : Array<SqlWidgetController_Base>;
   idProvider : HtmlElementIdProvider;
 
 
-  constructor(sql_query : string, paramsList : Array<QueryParam>){
+  constructor(paramsList : Array<QueryParam>){
     this.idProvider = new HtmlElementIdProvider();
-    this.widgetsControllers = [];
+    this.sqlWidgetsControllers = [];
 
     paramsList.forEach( params => {
-      this.widgetsControllers.push(SqlWidgetFactory(params, this));
+      this.sqlWidgetsControllers.push(SqlWidgetFactory(params, this));
     });
   }
 
 
-  GuiDefinition_Edit() {
+  ViewDefinition_EditMode() {
 
     var result =
     {
@@ -267,32 +276,53 @@ class SqlWidgetsCollection {
               view:"toolbar",
                 cols: [
                         { view : 'label', label:'Query Params', gravity:1.5},
-                        { view : 'button', label:'Add Date Param', click: () => { this.UpdateQueryParams(); this.AddEditParam('date');} },
-                        { view : 'button', label:'Add Text Param', click: () => { this.UpdateQueryParams(); this.AddEditParam('text');} },
-                        { view : 'button', label:'Add Bool Param', click: () => { this.UpdateQueryParams(); this.AddEditParam('bool');} },
-                        { view : 'button', label:'Values', click: () => { this.UpdateQueryParams(); alert(JSON.stringify(this.GetFormEditValues(), null, 2)) } },
+                        { view : 'button', label:'Add Date Param', click: () => { this.UpdateModel_EditMode(); this.AddParam_EditMode('date');} },
+                        { view : 'button', label:'Add Text Param', click: () => { this.UpdateModel_EditMode(); this.AddParam_EditMode('text');} },
+                        { view : 'button', label:'Add Bool Param', click: () => { this.UpdateModel_EditMode(); this.AddParam_EditMode('bool');} },
+                        { view : 'button', label:'Values', click: () => { this.UpdateModel_EditMode(); alert(JSON.stringify(this.GetModel_EditMode(), null, 2)) } },
                       ]
             },
             {
               id: this.idProvider.Id('widgetEditList'),
-              rows:this.GuiDefinition_WidgetEditList()
+              rows:this.ViewDefinition_EditMode_WidgetsList()
             }
           ]
     };
     return result;
   }
 
-  UpdateQueryParams() {
-    this.widgetsControllers.forEach(widget => { widget.UpdateQueryParams() });
+  private ViewDefinition_EditMode_WidgetsList() {
+    var widgetsList = [];
+    this.sqlWidgetsControllers.forEach( (widget) => { widgetsList.push(widget.ViewDefinition_EditMode()) } );
+    return widgetsList;
   }
 
-  GetFormEditValues() {
+  RefreshView_EditMode() {
+    var parentElement = $$(this.idProvider.Id('widgetEditList'));
+    webix.ui(this.ViewDefinition_EditMode_WidgetsList()  , parentElement);
+  }
+
+
+  AddParam_EditMode(type:string){
+    var sqlParam = new QueryParam();
+    sqlParam.type = type;
+    var widgetController = SqlWidgetFactory(sqlParam, this);
+    this.sqlWidgetsControllers.push(widgetController);
+    this.RefreshView_EditMode();
+  }
+
+
+  UpdateModel_EditMode() {
+    this.sqlWidgetsControllers.forEach(widget => { widget.UpdateModel_EditMode() });
+  }
+
+  GetModel_EditMode() {
     var result= [];
-    this.widgetsControllers.forEach( (widget) => { result.push( widget.GetFormEditValues() ) } );
+    this.sqlWidgetsControllers.forEach( (widget) => { result.push( widget.modelQueryParam_EditMode ) } );
     return result;
   }
 
-  GuiDefinition_Use() {
+  ViewDefinition_RunMode() {
     var result =
     {
       view:'layout',
@@ -304,29 +334,7 @@ class SqlWidgetsCollection {
     return result;
   }
 
-  GetSqlQuery() : string {
-    return "";
-  }
 
-  private GuiDefinition_WidgetEditList() {
-    var widgetsList = [];
-    this.widgetsControllers.forEach( (widget) => { widgetsList.push(widget.GuiDefinition_Edit()) } );
-    return widgetsList;
-  }
-
-  ShowEditWidgets() {
-    var parentElement = $$(this.idProvider.Id('widgetEditList'));
-    webix.ui(this.GuiDefinition_WidgetEditList()  , parentElement);
-  }
-
-
-  AddEditParam(type:string){
-    var sqlParam = new QueryParam();
-    sqlParam.type = type;
-    var widgetController = SqlWidgetFactory(sqlParam, this);
-    this.widgetsControllers.push(widgetController);
-    this.ShowEditWidgets();
-  }
 }
 
 var sqlQuery = "\
@@ -340,8 +348,31 @@ AND freight > _minfreight\
 -- Plus bool param\
 ";
 
+var paramsList = [
+  {
+    "label": "Date Prod",
+    "sql_tag": "date_prod",
+    "type": "date",
+    "default": "now",
+    "date_min": "now - 1y",
+    "date_max": "now"
+  },
+  {
+    "label": "Company",
+    "sql_tag": "company",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "label": "Product",
+    "sql_tag": "product",
+    "type": "text",
+    "default": ""
+  }
+];
+
 declare var TestSqlWidgets;
 TestSqlWidgets = function(){
-  var sqlWidgetsCollection = new SqlWidgetsCollection(sqlQuery, []);
-  webix.ui(sqlWidgetsCollection.GuiDefinition_Edit());
+  var sqlWidgetsCollection = new SqlWidgetsCollectionController(paramsList);
+  webix.ui(sqlWidgetsCollection.ViewDefinition_EditMode());
 };
