@@ -70,6 +70,7 @@ AND freight > _minfreight
 ///<reference path="../../typings/webix/webix.d.ts"/>
 ///<reference path="lib/ArrayUtils.ts" />
 ///<reference path="lib/HtmlElementIdProvider.ts" />
+///<reference path="lib/date_expressive.ts" />
 
 
 class QueryParam {
@@ -114,7 +115,7 @@ class SqlWidgetController_Base {
 
 
     var toolbar =         {
-      id: this.idProvider.Id("GuiEdit"),
+      id: this.idProvider.Id("View_EditMode"),
       view: 'toolbar',
       cols: [
         {
@@ -187,26 +188,33 @@ class SqlWidgetController_Base {
   }
 
   ViewDefinition_RunMode() : any {
-    var result =
-    {
-      id: this.idProvider.Id("GuiUse"),
-      view:'label',
-      label: 'widget_' + this.modelQueryParam_EditMode.type
-    };
-    return result;
+    return {};
   }
 }
 
 
 class SqlWidgetController_Text extends SqlWidgetController_Base {
+  ViewDefinition_RunMode() : any {
+    return {view:"text", label:this.modelQueryParam_EditMode.label, value:this.modelQueryParam_EditMode.default};
+  }
 }
 
+
 class SqlWidgetController_Date extends SqlWidgetController_Base {
+  ViewDefinition_RunMode() : any {
+    var result =
+      {
+        view:"datepicker", label:this.modelQueryParam_EditMode.label,
+        value:DateExpressive.date_expressive(this.modelQueryParam_EditMode.default)
+      };
+    return result;
+  }
+
   SpecificViewDefinition_EditMode() : any
   {
     var help =
         "<font size=-1>" +
-        "Default dates and min/max date can be expressed expressively, such as :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+        "Default date can be expressed expressively, such as :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
         "<em>now - 1d</em> (now minus 1 day), <em>now + 3m</em> (now + 3 months), <em>now - 2y</em> (now minus 2 years), <br/>" +
         "<em>this_monday</em>, <em>next_monday</em> (this_monday is today or in the past) , <em>this_tuesday + 1m</em>, <em>last_wednesday + 1y</em> <br/>" +
         "<em>last_year - 2d </em>, <em>this_month</em>,  <em>next_month</em>" +
@@ -214,23 +222,21 @@ class SqlWidgetController_Date extends SqlWidgetController_Base {
         "</font>";
     var result =
     {
-      rows:[
-        {
-          cols:[
-            { view:"text", label: "Date min", name:"date_min", tooltip:{view:"template", template:help} },
-            { view:"text", label: "Date max", name:"date_max", tooltip:help },
-          ]
-        },
-        {
-          view:"template", template:help, height:80
-        }
-      ]
+      view:"template", template:help, height:80
     }
     return result;
   }
  }
 
 class SqlWidgetController_Bool extends SqlWidgetController_Base {
+  ViewDefinition_RunMode() : any {
+    var result =
+    {
+      view:"checkbox", label:this.modelQueryParam_EditMode.label,
+      value:this.modelQueryParam_EditMode.default
+    };
+    return result;
+  }
 }
 
 function SqlWidgetFactory(params : QueryParam, sqlWidgetsCollection:SqlWidgetsCollectionController) : SqlWidgetController_Base {
@@ -268,7 +274,7 @@ class SqlWidgetsCollectionController {
     {
       view:'layout',
       container:"webix_content",
-      id: this.idProvider.Id("GuiEdit"),
+      id: this.idProvider.Id("View_EditMode"),
       scrollable:true,
       rows:
           [
@@ -322,18 +328,25 @@ class SqlWidgetsCollectionController {
     return result;
   }
 
+
+
   ViewDefinition_RunMode() {
     var result =
     {
-      view:'layout',
-      id: this.idProvider.Id("GuiUse"),
-      rows:
-          [
-          ]
+      view:'form',
+      container:"webix_content",
+      id: this.idProvider.Id("View_RunMode"),
+      scrollable:true,
+      rows: this.ViewDefinition_RunMode_WidgetsList()
     };
     return result;
   }
 
+  private ViewDefinition_RunMode_WidgetsList() {
+    var widgetsList = [];
+    this.sqlWidgetsControllers.forEach( (widget) => { widgetsList.push(widget.ViewDefinition_RunMode()) } );
+    return widgetsList;
+  }
 
 }
 
@@ -353,9 +366,7 @@ var paramsList = [
     "label": "Date Prod",
     "sql_tag": "date_prod",
     "type": "date",
-    "default": "now",
-    "date_min": "now - 1y",
-    "date_max": "now"
+    "default": "now - 3y"
   },
   {
     "label": "Company",
@@ -374,5 +385,6 @@ var paramsList = [
 declare var TestSqlWidgets;
 TestSqlWidgets = function(){
   var sqlWidgetsCollection = new SqlWidgetsCollectionController(paramsList);
-  webix.ui(sqlWidgetsCollection.ViewDefinition_EditMode());
+  //webix.ui(sqlWidgetsCollection.ViewDefinition_EditMode());
+  webix.ui(sqlWidgetsCollection.ViewDefinition_RunMode());
 };
