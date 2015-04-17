@@ -56,7 +56,6 @@ webix.protoUI({
   },
 
   $setSize: function(x, y) {
-    console.log("setSize: " + x + ", " + y);
     if (webix.ui.view.prototype.$setSize.call(this, x, y)) {
       this.$view.childNodes[0].style.width = this.$width + "px";
       this.$view.childNodes[0].style.height = this.$height + "px";
