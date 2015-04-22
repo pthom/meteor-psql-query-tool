@@ -25,7 +25,7 @@ query_list_view = {
       width: 100,
       click: function() {
         //var row = $$('querytable').add({name:'',query:''});
-        var row = $$('querytable').add({name:'Edit me...', params:'{}'});
+        var row = $$('querytable').add({name:'Edit me...', params:'[]'});
         $$('querytable').select(row);
         $$('querytable').editCell(row, 'name');
       }
@@ -75,7 +75,7 @@ query_list_view = {
         var id = $$('querytable').getSelectedId();
         if (id) {
           $$('query_edit_view').show();
-          query_edit_view.copyToEditor(true); //true <=> setNullOnError
+          query_edit_view.onShow();
         }
         else
           webix.message('Please select a query');

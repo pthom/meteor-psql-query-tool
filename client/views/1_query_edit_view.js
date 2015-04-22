@@ -10,12 +10,16 @@ query_edit_view = {
     $$('queryForm').bind($$('querytable'));
   },
 
+  onShow: function() {
+    //this.copyToEditor(true);
+  },
+
   copyToEditor : function(setNullOnError) {
-    $$("queryform_jsonedit").fillFromTextWidget( $$("queryform_jsontext"), setNullOnError );
+    //$$("queryform_jsonedit").fillFromTextWidget( $$("queryform_jsontext"), setNullOnError );
   },
 
   copyFromEditor: function() {
-    $$("queryform_jsonedit").sendToTextWidget( $$("queryform_jsontext") );
+    //$$("queryform_jsonedit").sendToTextWidget( $$("queryform_jsontext") );
   },
 
 
@@ -27,8 +31,9 @@ query_edit_view = {
       label: 'Save',
       type: 'form', // a Submit button; 'form' is an odd type name for buttons - http://docs.webix.com/api__ui.button_type_config.html#comment-1863007844
       click: function() {
-        this.getFormView().save();
-      },
+        var formValues = $$("queryForm").getValues();
+        $$("queryForm").save();
+      }.bind(this)
     };
 
     var jsonEditorAndTextArea =  {
@@ -75,8 +80,9 @@ query_edit_view = {
         { view: 'text', name: 'name', label: 'Name'},
         { view: 'text', name: 'comment', label: 'Comments'},
         { view: 'text', name: 'tags', label: 'Tags'},
-        { view: 'textarea', height : 250, name: 'query',label: 'Query SQL', css:'fixedFont'},
-        jsonEditorAndTextArea,
+        { view: 'textarea', height : 250, name: 'query',label: 'SQL', css:'fixedFont'},
+        { view: 'sqlwidgets_wx', name:'params'},
+        //jsonEditorAndTextArea,
         savequery_button
       ]
     };
@@ -99,7 +105,7 @@ query_edit_view = {
     };
 
     return edit_window;
-  },
+  }
 
 
 };
