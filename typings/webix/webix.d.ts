@@ -7,6 +7,8 @@ declare module webix {
 
 type WebixTemplate = (...args: any[])=>string;
 type WebixCallback = (...args: any[])=>any;
+
+
 interface PromisedData {
     then(handler:(data:any)=>any):PromisedData;
 }
@@ -1028,6 +1030,7 @@ interface baselayoutConfig{
 	visibleBatch?: string;
 	width?: number;
 }
+
 interface baselayout extends webix.ui.baseview{
 	addView(view:any, index?:number):webix.ui.baseview;
 	adjust():void;
@@ -1068,6 +1071,8 @@ interface baselayout extends webix.ui.baseview{
 	config: baselayoutConfig;
 	name: string;
 }
+var baselayout : webix.ui.baselayout;
+
 interface baseviewConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -1111,6 +1116,8 @@ interface baseview{
 	config: baseviewConfig;
 	name: string;
 }
+var baseview: webix.ui.baseview;
+
 interface protoConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -1215,6 +1222,8 @@ interface proto extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var proto : webix.ui.proto;
+
 interface resizeareaConfig{
 	border?: boolean;
 	container?: string|HTMLElement;
@@ -1255,7 +1264,7 @@ interface viewConfig{
 	minWidth?: number;
 	width?: number;
 }
-interface view extends webix.ui.baseview{
+interface view extends webix.ui.baseview {
 	adjust():void;
 	bind(target:any, rule?:WebixCallback, format?:string):void;
 	define(property:string, value:any):void;
@@ -1283,6 +1292,8 @@ interface view extends webix.ui.baseview{
 	config: viewConfig;
 	name: string;
 }
+var view:webix.ui.view;
+
 interface vscrollConfig{
 	container?: HTMLElement;
 	id?: string;
@@ -1313,6 +1324,8 @@ interface vscroll extends webix.ui.baseview{
 	config: vscrollConfig;
 	name: string;
 }
+var vscroll : webix.ui.vscroll;
+
 interface accordionConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -1383,6 +1396,8 @@ interface accordion extends webix.ui.baseview{
 	config: accordionConfig;
 	name: string;
 }
+var accordion : webix.ui.accordion;
+
 interface accordionitemConfig{
 	animate?: any;
 	body?: string|webix.ui.baseview;
@@ -1453,6 +1468,8 @@ interface accordionitem extends webix.ui.baseview{
 	on_dblclick: WebixCallback;
 	on_mouse_move: WebixCallback;
 }
+var accordionitem : webix.ui.accordionitem;
+
 interface barcodeConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -1507,6 +1524,8 @@ interface barcode extends webix.ui.baseview{
 	name: string;
 	types: any[];
 }
+var barcode : webix.ui.barcode;
+
 interface buttonConfig{
 	align?: string;
 	animate?: any;
@@ -1587,6 +1606,8 @@ interface button extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var button : webix.ui.button;
+
 interface calendarConfig{
 	animate?: any;
 	blockDates?: WebixCallback;
@@ -1679,6 +1700,8 @@ interface calendar extends webix.ui.baseview{
 	on_dblclick: WebixCallback;
 	on_mouse_move: WebixCallback;
 }
+var calendar : webix.ui.calendar;
+
 interface chartConfig{
 	alpha?: number;
 	animate?: any;
@@ -1817,6 +1840,8 @@ interface chart extends webix.ui.baseview{
 	on_mouse_move: WebixCallback;
 	presets: { [key: string]: any; };
 }
+var chart : webix.ui.chart;
+
 interface checkboxConfig{
 	align?: string;
 	animate?: any;
@@ -1916,6 +1941,8 @@ interface checkbox extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var checkbox : webix.ui.checkbox;
+
 interface carouselConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -1982,6 +2009,8 @@ interface carousel extends webix.ui.baseview{
 	config: carouselConfig;
 	name: string;
 }
+var carousel : webix.ui.carousel;
+
 interface colorboardConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -2045,6 +2074,8 @@ interface colorboard extends webix.ui.baseview{
 	config: colorboardConfig;
 	name: string;
 }
+var colorboard : webix.ui.colorboard;
+
 interface colorpickerConfig{
 	align?: string;
 	animate?: any;
@@ -2149,6 +2180,8 @@ interface colorpicker extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var colorpicker : webix.ui.colorpicker;
+
 interface comboConfig{
 	align?: string;
 	animate?: any;
@@ -2250,6 +2283,8 @@ interface combo extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var combo : webix.ui.combo;
+
 interface contextConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -2323,6 +2358,8 @@ interface context extends webix.ui.baseview{
 	config: contextConfig;
 	name: string;
 }
+var context : webix.ui.context;
+
 interface contextmenuConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -2504,6 +2541,8 @@ interface contextmenu extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var contextmenu : webix.ui.contextmenu;
+
 interface counterConfig{
 	align?: string;
 	animate?: any;
@@ -2605,6 +2644,8 @@ interface counter extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var counter : webix.ui.counter;
+
 interface datatableConfig{
 	animate?: any;
 	autoConfig?: boolean;
@@ -2841,6 +2882,8 @@ interface datatable extends webix.ui.baseview{
 	on_mouse_move: WebixCallback;
 	waitData: PromisedData;
 }
+var datatable : webix.ui.datatable;
+
 interface dataviewConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -2990,6 +3033,8 @@ interface dataview extends webix.ui.baseview{
 	types: { [key: string]: any; };
 	waitData: PromisedData;
 }
+var dataview : webix.ui.dataview;
+
 interface datepickerConfig{
 	align?: string;
 	animate?: any;
@@ -3095,6 +3140,8 @@ interface datepicker extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var datepicker : webix.ui.datepicker;
+
 interface fieldsetConfig{
 	animate?: any;
 	body?: webix.ui.baseview;
@@ -3142,6 +3189,8 @@ interface fieldset extends webix.ui.baseview{
 	config: fieldsetConfig;
 	name: string;
 }
+var fieldset : webix.ui.fieldset;
+
 interface formConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -3235,6 +3284,8 @@ interface form extends webix.ui.baseview{
 	config: formConfig;
 	name: string;
 }
+var form : webix.ui.form;
+
 interface grouplistConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -3392,6 +3443,8 @@ interface grouplist extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var grouplist : webix.ui.grouplist;
+
 interface headerlayoutConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -3462,6 +3515,8 @@ interface headerlayout extends webix.ui.baseview{
 	config: headerlayoutConfig;
 	name: string;
 }
+var headerlayout : webix.ui.headerlayout;
+
 interface htmlformConfig{
 	animate?: any;
 	autoheight?: any;
@@ -3543,6 +3598,8 @@ interface htmlform extends webix.ui.baseview{
 	config: htmlformConfig;
 	name: string;
 }
+var htmlform : webix.ui.htmlform;
+
 interface iconConfig{
 	align?: string;
 	animate?: any;
@@ -3623,6 +3680,8 @@ interface icon extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var icon : webix.ui.icon;
+
 interface iframeConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -3679,6 +3738,8 @@ interface iframe extends webix.ui.baseview{
 	config: iframeConfig;
 	name: string;
 }
+var iframe : webix.ui.iframe;
+
 interface labelConfig{
 	align?: string;
 	animate?: any;
@@ -3760,6 +3821,8 @@ interface label extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var label : webix.ui.label;
+
 interface layoutConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -3827,6 +3890,8 @@ interface layout extends webix.ui.baseview{
 	config: layoutConfig;
 	name: string;
 }
+var layout : webix.ui.layout;
+
 interface listConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -3978,6 +4043,8 @@ interface list extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var list : webix.ui.list;
+
 interface menuConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -4138,6 +4205,8 @@ interface menu extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var menu : webix.ui.menu;
+
 interface multiviewConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -4205,6 +4274,8 @@ interface multiview extends webix.ui.baseview{
 	config: multiviewConfig;
 	name: string;
 }
+var multiview : webix.ui.multiview;
+
 interface organogramConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -4344,6 +4415,8 @@ interface organogram extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var organogram : webix.ui.organogram;
+
 interface pagerConfig{
 	animate?: any;
 	apiOnly?: any;
@@ -4420,6 +4493,8 @@ interface pager extends webix.ui.baseview{
 	on_mouse_move: WebixCallback;
 	type: { [key: string]: any; };
 }
+var pager : webix.ui.pager;
+
 interface popupConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -4490,6 +4565,8 @@ interface popup extends webix.ui.baseview{
 	config: popupConfig;
 	name: string;
 }
+var popup : webix.ui.popup;
+
 interface propertyConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -4594,6 +4671,8 @@ interface property extends webix.ui.baseview{
 	on_render: { [key: string]: any; };
 	type: { [key: string]: any; };
 }
+var property : webix.ui.property;
+
 interface radioConfig{
 	align?: string;
 	animate?: any;
@@ -4693,6 +4772,8 @@ interface radio extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var radio : webix.ui.radio;
+
 interface resizerConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -4746,6 +4827,8 @@ interface resizer extends webix.ui.baseview{
 	on_dblclick: WebixCallback;
 	on_mouse_move: WebixCallback;
 }
+var resizer : webix.ui.resizer;
+
 interface richselectConfig{
 	align?: string;
 	animate?: any;
@@ -4847,6 +4930,8 @@ interface richselect extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var richselect : webix.ui.richselect;
+
 interface multitextConfig{
 	align?: string;
 	animate?: any;
@@ -4950,6 +5035,8 @@ interface multitext extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var multitext : webix.ui.multitext;
+
 interface multiselectConfig{
 	align?: string;
 	animate?: any;
@@ -5054,6 +5141,8 @@ interface multiselect extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var multiselect : webix.ui.multiselect;
+
 interface scrollviewConfig{
 	animate?: any;
 	body?: any;
@@ -5106,6 +5195,8 @@ interface scrollview extends webix.ui.baseview{
 	config: scrollviewConfig;
 	name: string;
 }
+var scrollview : webix.ui.scrollview;
+
 interface searchConfig{
 	align?: string;
 	animate?: any;
@@ -5202,6 +5293,8 @@ interface search extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var search : webix.ui.search;
+
 interface segmentedConfig{
 	align?: string;
 	animate?: any;
@@ -5302,6 +5395,8 @@ interface segmented extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var segmented : webix.ui.segmented;
+
 interface selectConfig{
 	align?: string;
 	animate?: any;
@@ -5398,6 +5493,8 @@ interface select extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var select : webix.ui.select;
+
 interface sliderConfig{
 	align?: string;
 	animate?: any;
@@ -5498,6 +5595,8 @@ interface slider extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var slider : webix.ui.slider;
+
 interface spacerConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -5542,6 +5641,8 @@ interface spacer extends webix.ui.baseview{
 	config: spacerConfig;
 	name: string;
 }
+var spacer : webix.ui.spacer;
+
 interface submenuConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -5720,6 +5821,8 @@ interface submenu extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var submenu : webix.ui.submenu;
+
 interface suggestConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -5806,6 +5909,8 @@ interface suggest extends webix.ui.baseview{
 	config: suggestConfig;
 	name: string;
 }
+var suggest : webix.ui.suggest;
+
 interface multisuggestConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -5895,6 +6000,8 @@ interface multisuggest extends webix.ui.baseview{
 	config: multisuggestConfig;
 	name: string;
 }
+var multisuggest : webix.ui.multisuggest;
+
 interface datasuggestConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -5981,6 +6088,8 @@ interface datasuggest extends webix.ui.baseview{
 	config: datasuggestConfig;
 	name: string;
 }
+var datasuggest : webix.ui.datasuggest;
+
 interface gridsuggestConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -6067,6 +6176,8 @@ interface gridsuggest extends webix.ui.baseview{
 	config: gridsuggestConfig;
 	name: string;
 }
+var gridsuggest : webix.ui.gridsuggest;
+
 interface tabbarConfig{
 	align?: string;
 	animate?: any;
@@ -6179,6 +6290,8 @@ interface tabbar extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var tabbar : webix.ui.tabbar;
+
 interface tabviewConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -6253,6 +6366,8 @@ interface tabview extends webix.ui.baseview{
 	config: tabviewConfig;
 	name: string;
 }
+var tabview : webix.ui.tabview;
+
 interface templateConfig{
 	animate?: any;
 	autoheight?: any;
@@ -6327,6 +6442,8 @@ interface template extends webix.ui.baseview{
 	config: templateConfig;
 	name: string;
 }
+var template : webix.ui.template;
+
 interface textConfig{
 	align?: string;
 	animate?: any;
@@ -6422,6 +6539,8 @@ interface text extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var text : webix.ui.text;
+
 interface textareaConfig{
 	align?: string;
 	animate?: any;
@@ -6517,6 +6636,8 @@ interface textarea extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var textarea : webix.ui.textarea;
+
 interface toggleConfig{
 	align?: string;
 	animate?: any;
@@ -6598,6 +6719,8 @@ interface toggle extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var toggle : webix.ui.toggle;
+
 interface toolbarConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -6690,6 +6813,8 @@ interface toolbar extends webix.ui.baseview{
 	config: toolbarConfig;
 	name: string;
 }
+var toolbar : webix.ui.toolbar;
+
 interface tooltipConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -6750,6 +6875,8 @@ interface tooltip extends webix.ui.baseview{
 	name: string;
 	type: { [key: string]: any; };
 }
+var tooltip : webix.ui.tooltip;
+
 interface treeConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -6912,6 +7039,8 @@ interface tree extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var tree : webix.ui.tree;
+
 interface treetableConfig{
 	animate?: any;
 	autoConfig?: boolean;
@@ -7161,6 +7290,8 @@ interface treetable extends webix.ui.baseview{
 	on_mouse_move: WebixCallback;
 	waitData: PromisedData;
 }
+var treetable : webix.ui.treetable;
+
 interface unitlistConfig{
 	animate?: any;
 	autoheight?: boolean;
@@ -7316,6 +7447,8 @@ interface unitlist extends webix.ui.baseview{
 	type: { [key: string]: any; };
 	types: { [key: string]: any; };
 }
+var unitlist : webix.ui.unitlist;
+
 interface uploaderConfig{
 	align?: string;
 	animate?: any;
@@ -7409,6 +7542,8 @@ interface uploader extends webix.ui.baseview{
 	on_click: WebixCallback;
 	touchable: any;
 }
+var uploader : webix.ui.uploader;
+
 interface videoConfig{
 	animate?: any;
 	borderless?: boolean;
@@ -7456,6 +7591,8 @@ interface video extends webix.ui.baseview{
 	config: videoConfig;
 	name: string;
 }
+var video : webix.ui.video;
+
 interface windowConfig{
 	animate?: any;
 	autofit?: boolean;
@@ -7527,6 +7664,7 @@ interface window extends webix.ui.baseview{
 	config: windowConfig;
 	name: string;
 }
+var window : webix.ui.window;
 
 }}
 
