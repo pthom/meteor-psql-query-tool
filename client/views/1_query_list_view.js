@@ -25,7 +25,7 @@ query_list_view = {
       width: 100,
       click: function() {
         //var row = $$('querytable').add({name:'',query:''});
-        var row = $$('querytable').add({name:'Edit me...', params:'[]'});
+        var row = $$('querytable').add({name:'Edit me...', params:[]});
         $$('querytable').select(row);
         $$('querytable').editCell(row, 'name');
       }

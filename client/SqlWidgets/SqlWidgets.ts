@@ -198,6 +198,12 @@ module SqlWidgets {
       this.SetParams(paramsList);
     }
 
+
+    layout_EditMode() : webix.ui.baselayout {
+      var layout = <webix.ui.baselayout>$$(this.idProvider.Id("View_EditMode"));
+      return layout;
+    }
+
     SetParams(paramsList:Array<QueryParam>) {
       this.sqlWidgetsControllers = [];
 
@@ -248,9 +254,11 @@ module SqlWidgets {
             ]
           },
           {
+            view:"scrollview",
             id: this.idProvider.Id('widgetEditList'),
-            minWidth: '1',
-            rows: this.ViewDefinition_EditMode_WidgetsList()
+            body:{
+              rows: this.ViewDefinition_EditMode_WidgetsList()
+            }
           }
         ]
       };
@@ -266,9 +274,9 @@ module SqlWidgets {
     }
 
     RefreshView_EditMode() {
-      var parentElement = $$(this.idProvider.Id('widgetEditList'));
+      var parentElement = <webix.ui.scrollview>$$(this.idProvider.Id('widgetEditList'));
       if (parentElement)
-        webix.ui(this.ViewDefinition_EditMode_WidgetsList(), parentElement);
+        webix.ui(this.ViewDefinition_EditMode_WidgetsList(), parentElement.getBody());
     }
 
 
@@ -330,53 +338,4 @@ AND freight > _minfreight\
 ";
 
 
-  declare var TestSqlWidgets;
-
-  TestSqlWidgets = function () {
-    var paramsList = [
-      {
-        "label": "Date Prod",
-        "sql_tag": "date_prod",
-        "type": "date",
-        "default": "now - 3y"
-      },
-      {
-        "label": "Company",
-        "sql_tag": "company",
-        "type": "text",
-        "default": ""
-      },
-      {
-        "label": "Product",
-        "sql_tag": "product",
-        "type": "text",
-        "default": ""
-      }
-    ];
-
-
-    //var sqlWidgetsCollection = new SqlWidgetsCollectionController(paramsList);
-    //var ui = { view:"form", container:"webix_content", id:"myform", elements:[ sqlWidgetsCollection.ViewDefinition_EditMode() ]};
-    //webix.ui( ui );
-
-    //webix.ui(sqlWidgetsCollection.ViewDefinition_RunMode());
-
-    var data = {zorro: paramsList};
-    var ui = {
-      view: "form",
-      data: data,
-      container: "webix_content",
-      id: "myform",
-      elements: [{view: "sqlwidgets_wx", name: "zorro"}]
-    };
-    webix.ui(ui);
-
-  };
-//$$('form1').setDirty();
-//http://docs.webix.com/desktop__controls_guide.html
-//http://docs.webix.com/api__link__ui.form_parse.html
-
-//Faire demo custom form component tout simple
-//et debugger hors meteor
-//Si pas trouvé, poser question ici ; http://forum.webix.com/search?Search=custom+control
 }
