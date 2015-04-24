@@ -47,28 +47,14 @@ module SqlWidgets {
     ViewDefinition_EditMode():any {
       var controller = this;
 
-
       var toolbar = {
-        id: this.idProvider.Id("View_EditMode"),
-        view: 'toolbar',
-        cols: [
-          {
-            view: 'label',
-            label: 'Widget ' + this.modelQueryParam_EditMode.type,
-            gravity: 6
-          },
+        maxWidth : 50,
+        borderless : true,
+        rows: [
           {
             view: 'button',
-            label: 'remove',
-            click: () => {
-              controller.UpdateModel_EditMode();
-              this.parentSqlWidgetsCollection.sqlWidgetsControllers.removeByValue(this);
-              this.parentSqlWidgetsCollection.RefreshView_EditMode();
-            }
-          },
-          {
-            view: 'button',
-            label: 'Move Up',
+            type:"iconButton",
+            icon:"arrow-up",
             click: () => {
               controller.UpdateModel_EditMode();
               this.parentSqlWidgetsCollection.sqlWidgetsControllers.moveUp(this);
@@ -77,7 +63,24 @@ module SqlWidgets {
           },
           {
             view: 'button',
-            label: 'Move Down',
+            type:"iconButton",
+            icon:"trash",
+            click: () => {
+              webix.confirm(
+                "Are you sure to remove this parameter ?",
+                function onConfirm(userConfirmation) {
+                  if (userConfirmation) {
+                    controller.UpdateModel_EditMode();
+                    this.parentSqlWidgetsCollection.sqlWidgetsControllers.removeByValue(this);
+                    this.parentSqlWidgetsCollection.RefreshView_EditMode();
+                  }
+              }.bind(this));
+            }
+          },
+          {
+            view: 'button',
+            type:"iconButton",
+            icon:"arrow-down",
             click: () => {
               controller.UpdateModel_EditMode();
               this.parentSqlWidgetsCollection.sqlWidgetsControllers.moveDown(this);
@@ -91,6 +94,7 @@ module SqlWidgets {
       var stdFields =
       {
         view: "form",
+        borderless : true,
         id: this.idProvider.Id("formEdit"),
         elementsConfig: {
           labelPosition: "top"
@@ -110,9 +114,12 @@ module SqlWidgets {
 
       var result =
       {
+        borderless : true,
         rows: [
-          toolbar,
-          stdFields,
+          { view: "template", template: "Widget " + this.modelQueryParam_EditMode.type, type: "section" },
+          {
+            cols:[stdFields, toolbar]
+          }
         ]
       };
 
@@ -218,12 +225,14 @@ module SqlWidgets {
       var result =
       {
         view: 'layout',
+        borderless : true,
         //container:"webix_content",
         id: this.idProvider.Id("View_EditMode"),
         //scrollable:true,
         //minWidth:'4000px',
         rows: [
           {
+            borderless : true,
             view: "toolbar",
             cols: [
               {view: 'label', label: 'Query Params', gravity: 1.5},
