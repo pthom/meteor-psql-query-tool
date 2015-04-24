@@ -1,7 +1,7 @@
 ///<reference path="../../typings/webix/webix.d.ts"/>
-///<reference path="lib/ArrayUtils.ts" />
-///<reference path="lib/HtmlElementIdProvider.ts" />
-///<reference path="lib/date_expressive.ts" />
+///<reference path="../../lib/ArrayUtils.ts" />
+///<reference path="../../lib/HtmlElementIdProvider.ts" />
+///<reference path="../../lib/date_expressive.ts" />
 
 module SqlWidgets {
 
