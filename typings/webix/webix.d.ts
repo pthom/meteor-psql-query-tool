@@ -1108,6 +1108,7 @@ interface baseview{
 	show(force?:boolean, animation?:boolean):void;
 	unbind():void;
 	$getSize():any[];
+	prototype:any;//needed for custom component creation : see http://docs.webix.com/desktop__custom_component.html
 	$height: number;
 	$setSize(x:number, y:number):boolean;
 	$skin: any;
