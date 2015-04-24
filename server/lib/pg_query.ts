@@ -21,6 +21,10 @@ console.log("Load pg_query.js");
 
 function pg_query(sql_query, callback) {
 
+    if ( ! sql_query ) {
+        callback("sql_query is null", null);
+    }
+
     //Enter here your connection info
     var pg_connection_string = "postgres://northwind_user:thewindisblowing@127.0.0.1/northwind";
 
