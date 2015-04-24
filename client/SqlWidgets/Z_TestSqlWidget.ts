@@ -37,7 +37,7 @@ TestSqlWidgets = function () {
         data: data,
         container: "webix_content",
         id: "myform",
-        elements: [{view: "sqlwidgets_wx", name: "zorro"}]
+        elements: [{view: "SqlWidgetCollection_View_EditMode", name: "zorro"}]
     };
     webix.ui(ui);
 

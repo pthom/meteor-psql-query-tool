@@ -5,7 +5,7 @@
 
 webix.protoUI({
 
-    name: "sqlwidgets_wx",
+    name: "SqlWidgetCollection_View_EditMode",
     sqlWidgetsCollectionController:new  SqlWidgets.SqlWidgetsCollectionController([]),
 
     setupUi : function() {
@@ -15,7 +15,7 @@ webix.protoUI({
 
 
     $init: function(config) {
-        this.$view.className = "sqlwidgets_wx";
+        this.$view.className = "SqlWidgetCollection_View_EditMode";
         this.setupUi();
     },
 

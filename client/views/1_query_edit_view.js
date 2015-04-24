@@ -82,7 +82,7 @@ query_edit_view = {
         { view: 'text', name: 'tags', label: 'Tags'},
         { view: 'textarea', height : 150, name: 'query',label: 'SQL', css:'fixedFont'},
         { view:'resizer'},
-        { view: 'sqlwidgets_wx', name:'params'},
+        { view: 'SqlWidgetCollection_View_EditMode', name:'params'},
         //jsonEditorAndTextArea,
         savequery_button
       ]
