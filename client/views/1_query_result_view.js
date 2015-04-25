@@ -41,11 +41,14 @@ query_result_view = {
       }
     };
 
+    var nbresults = { view:'label', label:'Results : 0', id:'query_nb_results'};
+
     var toolbar = {
       view: 'toolbar',
       elements: [
         exportjson_button,
-        exportcsv_button
+        exportcsv_button,
+        nbresults
       ]
     };
 

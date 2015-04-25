@@ -4,11 +4,11 @@ X Message webix/meteor : how to us without insecure mode
 
 X Backup db mongo / script import
 X Faire fonctionner filtres de recherche
+X Aff date en plus court
 
+Aff Nb résultats
 Dupliquer requete
 
-Aff date en plus court
-Aff Nb résultats
 
 Layout : Search en dessous de params, autres boutons sur liste query
 
