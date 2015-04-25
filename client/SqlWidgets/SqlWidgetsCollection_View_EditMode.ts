@@ -1,4 +1,4 @@
-///<reference path="./SqlWidgets.ts"/>
+///<reference path="./SqlWidgetsCollectionController.ts"/>
 ///<reference path="../../typings/webix/webix.d.ts"/>
 
 
