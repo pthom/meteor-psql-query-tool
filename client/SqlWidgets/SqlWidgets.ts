@@ -138,7 +138,14 @@ module SqlWidgets {
 
   class SqlWidgetController_Text extends SqlWidgetController_Base {
     ViewDefinition_RunMode():any {
-      return {view: "text", label: this.modelQueryParam_EditMode.label, value: this.modelQueryParam_EditMode.default};
+      return {
+        view: "text",
+        label: this.modelQueryParam_EditMode.label,
+        value: this.modelQueryParam_EditMode.default,
+        maxHeight:30,
+        inputHeight:30,
+        inputWidth:240
+      };
     }
   }
 
@@ -148,7 +155,10 @@ module SqlWidgets {
       var result =
       {
         view: "datepicker", label: this.modelQueryParam_EditMode.label,
-        value: DateExpressive.date_expressive(this.modelQueryParam_EditMode.default)
+        value: DateExpressive.date_expressive(this.modelQueryParam_EditMode.default),
+        maxHeight:30,
+        inputHeight:30,
+        inputWidth:240
       };
       return result;
     }
@@ -175,7 +185,10 @@ module SqlWidgets {
       var result =
       {
         view: "checkbox", label: this.modelQueryParam_EditMode.label,
-        value: this.modelQueryParam_EditMode.default
+        value: this.modelQueryParam_EditMode.default,
+        maxHeight:30,
+        inputHeight:30,
+        inputWidth:240
       };
       return result;
     }
@@ -206,7 +219,7 @@ module SqlWidgets {
     }
 
 
-    layout_EditMode() : webix.ui.baselayout {
+    MainLayout_EditMode() : webix.ui.baselayout {
       var layout = <webix.ui.baselayout>$$(this.idProvider.Id("View_EditMode"));
       return layout;
     }
@@ -288,7 +301,6 @@ module SqlWidgets {
         webix.ui(this.ViewDefinition_EditMode_WidgetsList(), parentElement.getBody());
     }
 
-
     AddParam_EditMode(type:string) {
       var sqlParam = new QueryParam();
       sqlParam.type = type;
@@ -317,12 +329,16 @@ module SqlWidgets {
       var result =
       {
         view: 'form',
-        container: "webix_content",
+        borderless:true,
         id: this.idProvider.Id("View_RunMode"),
-        scrollable: true,
-        rows: this.ViewDefinition_RunMode_WidgetsList()
+        cols: this.ViewDefinition_RunMode_WidgetsList()
       };
       return result;
+    }
+
+    MainLayout_RunMode() : webix.ui.baselayout {
+      var layout = <webix.ui.baselayout>$$(this.idProvider.Id("View_RunMode"));
+      return layout;
     }
 
     private ViewDefinition_RunMode_WidgetsList() {

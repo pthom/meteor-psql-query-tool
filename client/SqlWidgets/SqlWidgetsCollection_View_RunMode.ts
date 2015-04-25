@@ -4,27 +4,29 @@
 
 webix.protoUI({
 
-    name: "SqlWidgetCollection_View_EditMode",
+    name: "SqlWidgetCollection_View_RunMode",
     sqlWidgetsCollectionController:new  SqlWidgets.SqlWidgetsCollectionController([]),
 
     setupUi : function() {
-        webix.ui( this.sqlWidgetsCollectionController.ViewDefinition_EditMode(), this.$view );
-        this.sqlWidgetsCollectionController.RefreshView_EditMode();
+        webix.ui( this.sqlWidgetsCollectionController.ViewDefinition_RunMode(), this.$view );
     },
 
 
     $init: function(config) {
-        this.$view.className = "SqlWidgetCollection_View_EditMode";
+        this.$view.className = "SqlWidgetCollection_View_RunMode";
         this.setupUi();
     },
 
     getValue : function() {
-        return this.sqlWidgetsCollectionController.GetModel_EditMode();
+        console.log("SqlWidgetCollection_View_RunMode => not implemented!")
+        //return this.sqlWidgetsCollectionController.GetModel_EditMode();
     },
 
     setValue : function(value) {
-        this.sqlWidgetsCollectionController.SetParams(value);
-        this.sqlWidgetsCollectionController.RefreshView_EditMode();
+        this.sqlWidgetsCollectionController = new  SqlWidgets.SqlWidgetsCollectionController(value);
+        this.setupUi();
+        //this.sqlWidgetsCollectionController.SetParams(value);
+        //this.sqlWidgetsCollectionController.RefreshView_RunMode();
     },
 
     /*
@@ -36,13 +38,13 @@ webix.protoUI({
      gravity
      */
     $getSize : function() {
-        return [200, 2000, 200, 2000, 1];
+        return [200, 2000, 50, 2000, 1];
     },
 
     $setSize:function(x,y){
         if (webix.ui.view.prototype.$setSize.call(this,x,y)) {
-
-            var layout  = this.sqlWidgetsCollectionController.MainLayout_EditMode();
+            console.log("setSize " + x+","+y);
+            var layout  = this.sqlWidgetsCollectionController.MainLayout_RunMode();
 
             layout.config.height = y;
             layout.config.width = x;

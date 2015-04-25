@@ -93,10 +93,40 @@ query_list_view = {
       ]
     };
 
+    var paramsList = [
+      {
+        "label": "Date Prod",
+        "sql_tag": "date_prod",
+        "type": "date",
+        "default": "now - 3y"
+      },
+      {
+        "label": "Company",
+        "sql_tag": "company",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "label": "Product",
+        "sql_tag": "product",
+        "type": "text",
+        "default": ""
+      }
+    ];
+    var data = {zorro: paramsList};
+
+    var sqlParamsWidget = {
+      view: "form",
+      data: data,
+      id: "sqlParamsWidget",
+      elements: [{view: "SqlWidgetCollection_View_RunMode", name: "zorro"}]
+    };
+
+
     var panel = {
       view: 'layout',
       gravity:1,
-      rows: [querytable, toolbar]
+      rows: [querytable, sqlParamsWidget, toolbar]
     };
 
     return panel;
