@@ -13,6 +13,9 @@ X Add northwind queries
 X Export JSON / CSV
 X Datatable / scroll horizontal (marche sous chrome, pas osx firefox)
 
+X classement SqlWidgets/lib
+
+Run Mode Responsive....
 
 
 connect db ivs

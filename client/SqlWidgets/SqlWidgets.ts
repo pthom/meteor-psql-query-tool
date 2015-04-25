@@ -331,7 +331,9 @@ module SqlWidgets {
         view: 'form',
         borderless:true,
         id: this.idProvider.Id("View_RunMode"),
-        cols: this.ViewDefinition_RunMode_WidgetsList()
+        rows:[
+          { cols: this.ViewDefinition_RunMode_WidgetsList(), responsive:this.idProvider.Id("View_RunMode")}
+        ]
       };
       return result;
     }
