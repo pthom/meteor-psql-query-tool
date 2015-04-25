@@ -237,10 +237,11 @@ module SqlWidgets {
 
     SetParams(paramsList:Array<QueryParam>) {
       this.sqlWidgetsControllers = [];
-
-      paramsList.forEach(params => {
-        this.sqlWidgetsControllers.push(SqlWidgetFactory(params, this));
-      });
+      if (paramsList) {
+        paramsList.forEach(params => {
+          this.sqlWidgetsControllers.push(SqlWidgetFactory(params, this));
+        });
+      }
     }
 
 

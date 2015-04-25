@@ -19,7 +19,8 @@ webix.protoUI({
     },
 
     getValue : function() {
-        console.log("getValue SqlWidgetCollection_View_RunMode => not implemented!")
+        console.log("getValue SqlWidgetCollection_View_RunMode => not implemented!");
+        return [];
         //return this.sqlWidgetsCollectionController.GetModel_EditMode();
     },
 

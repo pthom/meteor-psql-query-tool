@@ -118,7 +118,7 @@ query_list_view = {
 
     var sqlParamsWidget = {
       view: "form",
-      data: [],
+      data: {params:[]},
       id: "sqlParamsWidget",
       elements: [{view: "SqlWidgetCollection_View_RunMode", name: "params"}]
     };
