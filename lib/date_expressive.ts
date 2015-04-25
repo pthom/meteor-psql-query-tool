@@ -21,7 +21,7 @@ module DateExpressive {
     return new Date(parts[0], parts[1] - 1, parts[2]); // Note: months are 0-based
   }
 
-  function today_00AM() {
+  export function today_00AM() {
     var now = new Date();
     var result = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     return result;

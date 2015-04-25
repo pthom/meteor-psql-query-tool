@@ -15,31 +15,26 @@ X Datatable / scroll horizontal (marche sous chrome, pas osx firefox)
 
 X classement SqlWidgets/lib
 
+Bind run mode
 Run Mode Responsive....
+Saut de ligne dans form...
 
 
 connect db ivs
   Import query
 
-Editeur query
-  Notes :
-    SqlWidgetController_Base
-  Samples
-
 Search query
   Tags / Tag lists
+  Ou encore routage par tags
   Name
 
 Pivot
   http://nnajm.github.io/orb/
-Query Display
-  Params
-    Calendar
-    Text
-
 
 Restrict Edit to login admin
+Pas donner log erreur sql dans boites dialogue
 
+push github definitelytyped
 
 traineq
   ssh-agent

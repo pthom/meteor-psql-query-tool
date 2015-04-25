@@ -9,6 +9,7 @@ webix.protoUI({
 
     setupUi : function() {
         webix.ui( this.sqlWidgetsCollectionController.ViewDefinition_RunMode(), this.$view );
+        this.sqlWidgetsCollectionController.RefreshView_RunMode();
     },
 
 
@@ -18,15 +19,14 @@ webix.protoUI({
     },
 
     getValue : function() {
-        console.log("SqlWidgetCollection_View_RunMode => not implemented!")
+        console.log("getValue SqlWidgetCollection_View_RunMode => not implemented!")
         //return this.sqlWidgetsCollectionController.GetModel_EditMode();
     },
 
     setValue : function(value) {
-        this.sqlWidgetsCollectionController = new  SqlWidgets.SqlWidgetsCollectionController(value);
-        this.setupUi();
-        //this.sqlWidgetsCollectionController.SetParams(value);
-        //this.sqlWidgetsCollectionController.RefreshView_RunMode();
+        console.log("setvalue " + JSON.stringify(value));
+        this.sqlWidgetsCollectionController.SetParams(value);
+        this.sqlWidgetsCollectionController.RefreshView_RunMode();
     },
 
     /*

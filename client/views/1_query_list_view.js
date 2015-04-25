@@ -92,7 +92,7 @@ query_list_view = {
         removequery_button,
       ]
     };
-
+/*
     var paramsList = [
       {
         "label": "Date Prod",
@@ -114,14 +114,14 @@ query_list_view = {
       }
     ];
     var data = {zorro: paramsList};
+    */
 
     var sqlParamsWidget = {
       view: "form",
-      data: data,
+      data: [],
       id: "sqlParamsWidget",
-      elements: [{view: "SqlWidgetCollection_View_RunMode", name: "zorro"}]
+      elements: [{view: "SqlWidgetCollection_View_RunMode", name: "params"}]
     };
-
 
     var panel = {
       view: 'layout',
@@ -130,6 +130,10 @@ query_list_view = {
     };
 
     return panel;
+  },
+
+  do_bind : function() {
+    $$("sqlParamsWidget").bind( $$("querytable") );
 
   }
 };

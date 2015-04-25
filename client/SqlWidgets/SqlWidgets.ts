@@ -144,7 +144,8 @@ module SqlWidgets {
         value: this.modelQueryParam_EditMode.default,
         maxHeight:30,
         inputHeight:30,
-        inputWidth:240
+        inputWidth:300,
+        labelWidth:150
       };
     }
   }
@@ -152,13 +153,22 @@ module SqlWidgets {
 
   class SqlWidgetController_Date extends SqlWidgetController_Base {
     ViewDefinition_RunMode():any {
+      var date;
+      try {
+        date = DateExpressive.date_expressive(this.modelQueryParam_EditMode.default);
+      }
+      catch(e) {
+        console.log("Can not parse date " + this.modelQueryParam_EditMode.default);
+        date = DateExpressive.today_00AM();
+      }
       var result =
       {
         view: "datepicker", label: this.modelQueryParam_EditMode.label,
-        value: DateExpressive.date_expressive(this.modelQueryParam_EditMode.default),
+        value: date,
         maxHeight:30,
         inputHeight:30,
-        inputWidth:240
+        inputWidth:300,
+        labelWidth:150
       };
       return result;
     }
@@ -188,7 +198,8 @@ module SqlWidgets {
         value: this.modelQueryParam_EditMode.default,
         maxHeight:30,
         inputHeight:30,
-        inputWidth:240
+        inputWidth:300,
+        labelWidth:150
       };
       return result;
     }
@@ -332,11 +343,22 @@ module SqlWidgets {
         borderless:true,
         id: this.idProvider.Id("View_RunMode"),
         rows:[
-          { cols: this.ViewDefinition_RunMode_WidgetsList(), responsive:this.idProvider.Id("View_RunMode")}
+          {
+            id: this.idProvider.Id("View_RunMode_Content"),
+            cols: this.ViewDefinition_RunMode_WidgetsList(),
+            responsive:this.idProvider.Id("View_RunMode")
+          }
         ]
       };
       return result;
     }
+
+    RefreshView_RunMode() {
+      var parentElement = <webix.ui.scrollview>$$(this.idProvider.Id('View_RunMode_Content'));
+      if (parentElement)
+        webix.ui(this.ViewDefinition_RunMode_WidgetsList(), parentElement);
+    }
+
 
     MainLayout_RunMode() : webix.ui.baselayout {
       var layout = <webix.ui.baselayout>$$(this.idProvider.Id("View_RunMode"));

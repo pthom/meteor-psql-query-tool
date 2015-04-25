@@ -14,6 +14,7 @@ function SetupUi() {
 
   webix.ui(query_edit_view.ui_definition());
   webix.ui(json_export_view.ui_definition());
+  query_list_view.do_bind();
 }
 
 Accounts.onLogin(function() {
