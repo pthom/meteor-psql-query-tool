@@ -212,14 +212,18 @@ module SqlWidgets {
   class SqlWidgetController_Bool extends SqlWidgetController_Base {
     ViewDefinition_RunMode():any {
       var result =
-      {
-        view: "checkbox", label: this.modelQueryParam_EditMode.label,
-        value: this.modelQueryParam_EditMode.default,
-        maxHeight:30,
-        inputHeight:30,
-        inputWidth:300,
-        labelWidth:150
+      { view:"radio",
+        label:this.modelQueryParam_EditMode.label,
+        labelWidth:150,
+        name:"bool_choice",
+        value:this.modelQueryParam_EditMode.default,
+        options:[
+          { id:"all", value:"All" },
+          { id:"yes", value:"Yes" },
+          { id:"no", value:"No" }
+        ]
       };
+
       return result;
     }
 
@@ -244,9 +248,27 @@ module SqlWidgets {
           + "<pre>"
           + "SELECT * FROM products\n WHERE\nTRUE\n AND TRUE"
           + "</pre><br>"
+          + "Notes :<br>"
+          + "If Type is set to '0 or 1', then 0 or 1 values will be used instead of true / false values.<br/>"
+          + "Default value can be one of : all / yes / no"
       ;
       return help;
     }
+
+    SpecificViewDefinition_EditMode():any {
+      var result =
+      {
+        cols: [
+          {view: "text", label: "Sql Field", name: 'sqlfield'},
+          {view:"radio", label:"Type", name:"bool_type",  value:"bool", options:[
+            { id:"bool", value:"Boolean" },
+            { id:"int", value:"0 or 1" }
+          ]}
+        ]
+      };
+      return result;
+    }
+
   }
 
   function SqlWidgetFactory(params:QueryParam, sqlWidgetsCollection:SqlWidgetsCollectionController):SqlWidgetController_Base {
