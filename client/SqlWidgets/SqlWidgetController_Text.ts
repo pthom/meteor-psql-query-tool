@@ -9,9 +9,10 @@ module SqlWidgets {
                 name: "value",
                 label: this.modelQueryParam_EditMode.label,
                 value: this.modelQueryParam_EditMode.default,
+                css: "form-stacked",
                 maxHeight:30,
                 inputHeight:30,
-                inputWidth:150,
+                inputWidth:300,
                 minWidth:150,
                 labelWidth:150
             };

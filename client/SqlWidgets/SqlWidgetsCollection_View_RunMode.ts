@@ -44,7 +44,7 @@ webix.protoUI({
      gravity
      */
     $getSize : function() {
-        return [200, 2000, 50, 2000, 1];
+        return [200, 2000, 200, 2000, 1];
     },
 
     $setSize:function(x,y){

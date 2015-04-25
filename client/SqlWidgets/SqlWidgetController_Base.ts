@@ -132,11 +132,9 @@ module SqlWidgets {
             {
                 view: "form",
                 borderless: true,
-                elementsConfig: {
-                    labelPosition: "top"
-                },
+                css:"form-stacked",
                 id: this.idProvider.Id("formRun"),
-                elements: [ this.ViewDefinition_RunMode_Element() ]
+                rows: [ this.ViewDefinition_RunMode_Element() ]
             };
             return result;
         }

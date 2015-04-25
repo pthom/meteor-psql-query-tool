@@ -122,17 +122,18 @@ module SqlWidgets {
 
 
         ViewDefinition_RunMode() {
-
+            /*
             var responsiveWidgetsColumns = ResponsiveHelper.MakeResponsiveRow(
                 this.ViewDefinition_RunMode_WidgetsList(),
                 this.idProvider.Id("View_RunMode_Content"));
+                */
 
             var result =
             {
                 view: 'form',
                 borderless:true,
-                id: this.idProvider.Id("View_RunMode"),
-                elements: [ responsiveWidgetsColumns ]
+                id: this.idProvider.Id("View_RunMode_Content"),
+                elements: [ this.ViewDefinition_RunMode_WidgetsList() ]
             };
             return result;
         }
@@ -145,7 +146,7 @@ module SqlWidgets {
 
 
         MainLayout_RunMode() : webix.ui.baselayout {
-            var layout = <webix.ui.baselayout>$$(this.idProvider.Id("View_RunMode"));
+            var layout = <webix.ui.baselayout>$$(this.idProvider.Id("View_RunMode_Content"));
             return layout;
         }
 

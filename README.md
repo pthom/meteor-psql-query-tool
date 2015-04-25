@@ -6,11 +6,10 @@ X Backup db mongo / script import
 X Faire fonctionner filtres de recherche
 X Aff date en plus court
 
-Aff Nb résultats
+X Aff Nb résultats
+X Layout : Search en dessous de params, autres boutons sur liste query
+
 Dupliquer requete
-
-
-Layout : Search en dessous de params, autres boutons sur liste query
 
 Restrict Edit to login admin
 Pas donner log erreur sql dans boites dialogue

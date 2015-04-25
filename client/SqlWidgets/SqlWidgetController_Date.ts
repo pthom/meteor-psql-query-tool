@@ -18,9 +18,8 @@ module SqlWidgets {
                 view: "datepicker", label: this.modelQueryParam_EditMode.label,
                 value: date,
                 name: "value",
-                maxHeight:30,
-                inputHeight:30,
-                inputWidth:150,
+                css:"form-stacked",
+                inputWidth:300,
                 minWidth:150,
                 labelWidth:150
             };

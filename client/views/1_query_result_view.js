@@ -46,9 +46,10 @@ query_result_view = {
     var toolbar = {
       view: 'toolbar',
       elements: [
+        nbresults,
+        {gravity:3},
         exportjson_button,
-        exportcsv_button,
-        nbresults
+        exportcsv_button
       ]
     };
 
@@ -58,7 +59,7 @@ query_result_view = {
       view: 'layout',
       autoheight:true,
       gravity:2,
-      rows: [queryresulttable, toolbar]
+      rows: [toolbar, queryresulttable]
     };
 
     return panel;
