@@ -3,6 +3,7 @@
 ///<reference path="../../lib/HtmlElementIdProvider.ts" />
 ///<reference path="../../lib/date_expressive.ts" />
 ///<reference path="../lib/HelpPopup.ts" />
+///<reference path="../lib/ResponsiveHelper.ts" />
 
 module SqlWidgets {
 
@@ -157,6 +158,7 @@ module SqlWidgets {
         maxHeight:30,
         inputHeight:30,
         inputWidth:300,
+        minWidth:300,
         labelWidth:150
       };
     }
@@ -191,6 +193,7 @@ module SqlWidgets {
         maxHeight:30,
         inputHeight:30,
         inputWidth:300,
+        minWidth:300,
         labelWidth:150
       };
       return result;
@@ -215,6 +218,7 @@ module SqlWidgets {
       { view:"radio",
         label:this.modelQueryParam_EditMode.label,
         labelWidth:150,
+        minWidth:300,
         name:"bool_choice",
         value:this.modelQueryParam_EditMode.default,
         options:[
@@ -404,18 +408,17 @@ module SqlWidgets {
 
 
     ViewDefinition_RunMode() {
+
+      var responsiveWidgetsColumns = ResponsiveHelper.MakeResponsiveRow(
+          this.ViewDefinition_RunMode_WidgetsList(),
+          this.idProvider.Id("View_RunMode_Content"));
+
       var result =
       {
         view: 'form',
         borderless:true,
         id: this.idProvider.Id("View_RunMode"),
-        rows:[
-          {
-            id: this.idProvider.Id("View_RunMode_Content"),
-            cols: this.ViewDefinition_RunMode_WidgetsList(),
-            responsive:this.idProvider.Id("View_RunMode")
-          }
-        ]
+        elements: [ responsiveWidgetsColumns ]
       };
       return result;
     }

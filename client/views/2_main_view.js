@@ -12,7 +12,7 @@ main_view = {
   ui_definition: function() {
 
     var result = {
-      container: "webix_content",
+      //container: "webix_content",
       //rows: [ query_list_view.ui_definition(), query_result_view.ui_definition(), jsoneditor_wx_test ],
       rows: [
         { view:'label', align:'right', label:'QueryTool, made with meteor / webix / psql &nbsp;&nbsp;&nbsp;', css:'white'},

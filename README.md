@@ -19,15 +19,22 @@ X Bind run mode
 F Run Mode Responsive....
 N Saut de ligne dans form...
 
-X Bug invalid mixin target???
-Bool tristate
-Layout : Search en dessous de params, autres boutons sur liste query
+X Bool tristate
 
-Recherche
+X Bug save query + info / save
+
+responsive search fields
+
+Faire fonctionner filtres de recherche
+
+
 Restrict Edit to login admin
 Pas donner log erreur sql dans boites dialogue
 
 Export CSV
+skin small
+
+Layout : Search en dessous de params, autres boutons sur liste query
 
 connect db ivs
 

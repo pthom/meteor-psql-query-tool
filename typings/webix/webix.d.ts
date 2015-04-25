@@ -4553,7 +4553,11 @@ interface popup extends webix.ui.baseview{
 	resize():void;
 	resizeChildren():void;
 	setPosition(x:number, y:number):void;
+
 	show(force?:boolean, animation?:boolean):void;
+	//See example at : view-source:http://docs.webix.com/samples/10_window/08_position.html
+	//show(target:webix.ui.baseview, params:any);
+
 	unbind():void;
 	unblockEvent():void;
 	$getSize():any[];

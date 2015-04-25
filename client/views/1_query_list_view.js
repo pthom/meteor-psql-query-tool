@@ -4,7 +4,7 @@ query_list_view = {
     var querytable = {
       view: 'datatable',
       id: 'querytable',
-      gravity: 2,
+      gravity: 1,
       //autoConfig: true, // infer columns from data
       columns:[
       { id:"name",	header:"Name", fillspace:8},
@@ -104,7 +104,7 @@ query_list_view = {
 
     var panel = {
       view: 'layout',
-      gravity:1.5,
+      gravity:2.5,
       rows: [querytable, sqlParamsWidget, toolbar]
     };
 

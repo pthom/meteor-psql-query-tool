@@ -5,6 +5,7 @@ function SetupUi() {
 
   var ui_def = main_view.ui_definition();
   var webixContainer = webix.ui(ui_def);
+
   // The problem with mixing Webix components and non-Webix HTML markup is that Webix UI components won't resize
   // automatically if you place them in an HTML container. You have to resize them manually, like below.
   // Read more at http://forum.webix.com/discussion/comment/3650/#Comment_3650.
@@ -26,7 +27,8 @@ Accounts.onLogout(function() {
 });
 
 Meteor.startup(function() {
-  //TestSqlWidgets(); return;
+  //TestWidgets(); return;
+
   SetupUi();
 
   main_view.on_document_ready();
