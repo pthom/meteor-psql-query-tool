@@ -7,7 +7,7 @@ function ShowQueryResults() {
   var widget = $$('queryresulttable');
   if ( !  widget )
     return;
-  populate_datatable_psql_results(data, widget);
+  DatatableUtils.PopulateWithSqlResult(data, widget);
 }
 
 Tracker.autorun(ShowQueryResults);

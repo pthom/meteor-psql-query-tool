@@ -3,17 +3,14 @@ X Message webix/meteor : how to us without insecure mode
   En attente retour => maj module
 
 X Backup db mongo / script import
-
-Option tolower sur widget text
+X Faire fonctionner filtres de recherche
 
 Dupliquer requete
-Faire fonctionner filtres de recherche
-Classer fichiers widgets
-
-Layout a revoir ???
 
 Aff date en plus court
 Aff Nb résultats
+
+Layout : Search en dessous de params, autres boutons sur liste query
 
 Restrict Edit to login admin
 Pas donner log erreur sql dans boites dialogue
@@ -21,7 +18,7 @@ Pas donner log erreur sql dans boites dialogue
 Export CSV
 skin small
 
-Layout : Search en dessous de params, autres boutons sur liste query
+Option tolower sur widget text
 
 connect db ivs
 
