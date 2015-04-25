@@ -19,6 +19,7 @@ webix.protoUI({
     },
 
     getValue : function() {
+        this.sqlWidgetsCollectionController.UpdateModel_EditMode();
         return this.sqlWidgetsCollectionController.GetModel_EditMode();
     },
 

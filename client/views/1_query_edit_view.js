@@ -11,15 +11,6 @@ query_edit_view = {
   },
 
   onShow: function() {
-    //this.copyToEditor(true);
-  },
-
-  copyToEditor : function(setNullOnError) {
-    //$$("queryform_jsonedit").fillFromTextWidget( $$("queryform_jsontext"), setNullOnError );
-  },
-
-  copyFromEditor: function() {
-    //$$("queryform_jsonedit").sendToTextWidget( $$("queryform_jsontext") );
   },
 
 
@@ -29,46 +20,17 @@ query_edit_view = {
     {
       view: 'button',
       label: 'Save',
-      type: 'form', // a Submit button; 'form' is an odd type name for buttons - http://docs.webix.com/api__ui.button_type_config.html#comment-1863007844
+      maxWidth:150,
+      //type: 'form', // a Submit button; 'form' is an odd type name for buttons - http://docs.webix.com/api__ui.button_type_config.html#comment-1863007844
       click: function() {
         var formValues = $$("queryForm").getValues();
         $$("queryForm").save();
-      }.bind(this)
-    };
 
-    var jsonEditorAndTextArea =  {
-      cols : [
-      {
-        view: 'textarea',
-        id:'queryform_jsontext',
-        height : 250,
-        name: 'params',
-        label: 'Query Params',
-        css: 'fixedFont'
-      },
-      {
-        width : 30,
-        rows : [
-          {
-            view: 'button',
-            label: '=>',
-            click: this.copyToEditor
-          },
-          {
-            view: 'button',
-            label: '<=',
-            click: this.copyFromEditor
-          }
-        ]
-      },
-      {
-        view: 'jsoneditor_wx',
-        id:'queryform_jsonedit',
-        height : 250,
-        label: 'Query Params',
-        json: null
-      },
-      ]
+        //La sauvegarde est immédiate, mais comme on s'en aperçoit pas, on affiche un spin wheel
+        //pour faire comprendre que c'est bon...
+        SpinningWheel.show();
+        setTimeout(function() { SpinningWheel.hide()} , 500);
+      }.bind(this)
     };
 
 
@@ -82,9 +44,7 @@ query_edit_view = {
         { view: 'text', name: 'tags', label: 'Tags'},
         { view: 'textarea', height : 150, name: 'query',label: 'SQL', css:'fixedFont'},
         { view:'resizer'},
-        { view: 'SqlWidgetCollection_View_EditMode', name:'params'},
-        //jsonEditorAndTextArea,
-        savequery_button
+        { view: 'SqlWidgetCollection_View_EditMode', name:'params'}
       ]
     };
 
@@ -99,6 +59,7 @@ query_edit_view = {
       head:{
         view:"toolbar", cols:[
           {view:"label", label: "Edit Query" },
+          savequery_button,
           { view:"button", label: 'Close', width: 100, align: 'right', click:"$$('query_edit_view').hide();"}
           ]
       },
