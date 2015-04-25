@@ -30,7 +30,12 @@ class HelpPopup {
                         click: () => { this.windowElement().hide(); }}
                 ]
             },
-            body: help
+            body: {
+                view:"scrollview",
+                body:{
+                    rows:[{view:"template", template:help, autoheight:true}]
+                }
+            }
         }
         webix.ui(popup);//.show();
     }
