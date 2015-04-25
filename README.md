@@ -19,10 +19,11 @@ X Bind run mode
 F Run Mode Responsive....
 N Saut de ligne dans form...
 
-Bug invalid mixin target???
+X Bug invalid mixin target???
 Bool tristate
-Recherche
 Layout : Search en dessous de params, autres boutons sur liste query
+
+Recherche
 Restrict Edit to login admin
 Pas donner log erreur sql dans boites dialogue
 

@@ -1,4 +1,5 @@
 ///<reference path="../../typings/webix/webix.d.ts"/>
+///<reference path="../lib/HelpPopup.ts" />
 
 declare var TestSqlWidgets;
 
@@ -24,13 +25,16 @@ TestSqlWidgets = function () {
         }
     ];
 
+    var helpPopup = new HelpPopup("This is help, <b>do read it</b>", "this is title");
+    var ui = {
+        container: "webix_content",
+        rows:[
+            helpPopup.HelpButton()
+        ]
+    };
+    webix.ui(ui);
 
-    //var sqlWidgetsCollectionController = new SqlWidgetsCollectionController(paramsList);
-    //var ui = { view:"form", container:"webix_content", id:"myform", elements:[ sqlWidgetsCollectionController.ViewDefinition_EditMode() ]};
-    //webix.ui( ui );
-
-    //webix.ui(sqlWidgetsCollectionController.ViewDefinition_RunMode());
-
+    /*
     var data = {zorro: paramsList};
     var ui = {
         view: "form",
@@ -41,5 +45,8 @@ TestSqlWidgets = function () {
         elements: [{view: "SqlWidgetCollection_View_RunMode", name: "zorro"}]
     };
     webix.ui(ui);
+    */
+
+
 
 };

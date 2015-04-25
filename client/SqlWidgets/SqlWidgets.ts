@@ -2,6 +2,7 @@
 ///<reference path="../../lib/ArrayUtils.ts" />
 ///<reference path="../../lib/HtmlElementIdProvider.ts" />
 ///<reference path="../../lib/date_expressive.ts" />
+///<reference path="../lib/HelpPopup.ts" />
 
 module SqlWidgets {
 
@@ -52,7 +53,7 @@ module SqlWidgets {
         borderless : true,
         rows: [
           {
-            view: 'button',
+            view: 'icon',
             type:"iconButton",
             icon:"arrow-up",
             click: () => {
@@ -62,8 +63,8 @@ module SqlWidgets {
             }
           },
           {
-            view: 'button',
-            type:"iconButton",
+            view: 'icon',
+            //type:"iconButton",
             icon:"trash",
             click: () => {
               webix.confirm(
@@ -78,7 +79,7 @@ module SqlWidgets {
             }
           },
           {
-            view: 'button',
+            view: 'icon',
             type:"iconButton",
             icon:"arrow-down",
             click: () => {
@@ -90,6 +91,8 @@ module SqlWidgets {
         ]
       };
 
+      var widgetLabelName = "Widget " + this.modelQueryParam_EditMode.type;
+      var helpPopup = new HelpPopup(this.Help_EditMode(), widgetLabelName);
 
       var stdFields =
       {
@@ -106,29 +109,38 @@ module SqlWidgets {
               {view: "text", label: "Label", name: 'label'},
               {view: "text", label: "Sql Tag", name: 'sql_tag'},
               {view: "text", label: "Default value", name: 'default'},
+                helpPopup.HelpButton()
             ]
           },
           this.SpecificViewDefinition_EditMode()
         ]
       };
 
+
+
       var result =
       {
         borderless : true,
         rows: [
-          { view: "template", template: "Widget " + this.modelQueryParam_EditMode.type, type: "section" },
+          { view: "template", template: widgetLabelName, type: "section" },
           {
             cols:[stdFields, toolbar]
           }
         ]
       };
 
+
       return result;
+    }
+
+    Help_EditMode():string {
+      return "";
     }
 
     SpecificViewDefinition_EditMode():any {
       return {};
     }
+
 
     ViewDefinition_RunMode():any {
       return {};
@@ -148,6 +160,16 @@ module SqlWidgets {
         labelWidth:150
       };
     }
+    Help_EditMode():string {
+      var help =
+            "A simple text search field. <br/>"
+          + "If you have a query like <br/><pre>"
+          + "select * from orders\n where\n TRUE\n AND shipname like '%_shipname_%'"
+          + "</pre><br/>"
+          + "Then add a parameter with '_shipname_' as Sql Tag";
+      return help;
+    }
+
   }
 
 
@@ -173,20 +195,16 @@ module SqlWidgets {
       return result;
     }
 
-    SpecificViewDefinition_EditMode():any {
+    Help_EditMode():string {
       var help =
-          "<font size=-1>" +
-          "Default date can be expressed expressively, such as :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+          "Default date can be expressed expressively, such as <br/>" +
           "<em>now - 1d</em> (now minus 1 day), <em>now + 3m</em> (now + 3 months), <em>now - 2y</em> (now minus 2 years), <br/>" +
-          "<em>this_monday</em>, <em>next_monday</em> (this_monday is today or in the past) , <em>this_tuesday + 1m</em>, <em>last_wednesday + 1y</em> <br/>" +
-          "<em>last_year - 2d </em>, <em>this_month</em>,  <em>next_month</em>" +
-          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(Spaces around '+' and '-' are required)</b>" +
-          "</font>";
-      var result =
-      {
-        view: "template", template: help, height: 80
-      }
-      return result;
+          "<em>this_monday</em>, <em>next_monday</em> (this_monday is today or in the past) , <br/>" +
+          "<em>this_tuesday + 1m</em>, <em>last_wednesday + 1y</em> <br/>" +
+          "<em>last_year - 2d </em>, <em>this_month</em>,  <em>next_month</em><br/>" +
+          "<br/>" +
+          "<b>(Spaces around '+' and '-' are required)</b>";
+      return help;
     }
   }
 

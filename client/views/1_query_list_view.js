@@ -4,6 +4,7 @@ query_list_view = {
     var querytable = {
       view: 'datatable',
       id: 'querytable',
+      gravity: 2,
       //autoConfig: true, // infer columns from data
       columns:[
       { id:"name",	header:"Name", fillspace:8},
@@ -92,29 +93,7 @@ query_list_view = {
         removequery_button,
       ]
     };
-/*
-    var paramsList = [
-      {
-        "label": "Date Prod",
-        "sql_tag": "date_prod",
-        "type": "date",
-        "default": "now - 3y"
-      },
-      {
-        "label": "Company",
-        "sql_tag": "company",
-        "type": "text",
-        "default": ""
-      },
-      {
-        "label": "Product",
-        "sql_tag": "product",
-        "type": "text",
-        "default": ""
-      }
-    ];
-    var data = {zorro: paramsList};
-    */
+
 
     var sqlParamsWidget = {
       view: "form",
@@ -125,7 +104,7 @@ query_list_view = {
 
     var panel = {
       view: 'layout',
-      gravity:1,
+      gravity:1.5,
       rows: [querytable, sqlParamsWidget, toolbar]
     };
 
