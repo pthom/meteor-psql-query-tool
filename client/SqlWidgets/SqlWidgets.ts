@@ -160,6 +160,7 @@ module SqlWidgets {
         labelWidth:150
       };
     }
+
     Help_EditMode():string {
       var help =
             "A simple text search field. <br/>"
@@ -220,6 +221,31 @@ module SqlWidgets {
         labelWidth:150
       };
       return result;
+    }
+
+    Help_EditMode():string {
+      var help =
+          "A tri-state bool field. <br/>"
+          + "Usage : write a query like <br/><pre>"
+          + "SELECT * FROM products\n WHERE\nTRUE\n AND _discontinued_"
+          + "</pre><br/>"
+          + "add a bool parameter with '_discontinued_' as 'Sql Tag' <br/>"
+          + "add 'discontinued' as 'Sql Field' <br/>"
+          + "<br/>"
+          + "The query will be then executed as :<br/>"
+          + "<pre>"
+          + "SELECT * FROM products\n WHERE\nTRUE\n AND discontinued=true"
+          + "</pre><br>"
+          + "or<br>"
+          + "<pre>"
+          + "SELECT * FROM products\n WHERE\nTRUE\n AND discontinued=false"
+          + "</pre><br>"
+          + "or<br>"
+          + "<pre>"
+          + "SELECT * FROM products\n WHERE\nTRUE\n AND TRUE"
+          + "</pre><br>"
+      ;
+      return help;
     }
   }
 
