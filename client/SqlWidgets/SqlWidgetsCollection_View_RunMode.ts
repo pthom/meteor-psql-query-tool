@@ -1,6 +1,7 @@
 ///<reference path="./SqlWidgets.ts"/>
 ///<reference path="../../typings/webix/webix.d.ts"/>
 
+declare var currentSqlWidgetsCollectionController;
 
 webix.protoUI({
 
@@ -14,20 +15,24 @@ webix.protoUI({
 
 
     $init: function(config) {
+        currentSqlWidgetsCollectionController = this.sqlWidgetsCollectionController;
         this.$view.className = "SqlWidgetCollection_View_RunMode";
         this.setupUi();
     },
 
     getValue : function() {
-        console.log("getValue SqlWidgetCollection_View_RunMode => not implemented!");
+        //console.log("getValue SqlWidgetCollection_View_RunMode => not implemented!");
         return [];
-        //return this.sqlWidgetsCollectionController.GetModel_EditMode();
     },
 
     setValue : function(value) {
-        console.log("setvalue " + JSON.stringify(value));
+        //console.log("setvalue " + JSON.stringify(value));
         this.sqlWidgetsCollectionController.SetParams(value);
         this.sqlWidgetsCollectionController.RefreshView_RunMode();
+    },
+
+    getController : function() {
+        return this.sqlWidgetsCollectionController;
     },
 
     /*
@@ -44,7 +49,7 @@ webix.protoUI({
 
     $setSize:function(x,y){
         if (webix.ui.view.prototype.$setSize.call(this,x,y)) {
-            console.log("setSize " + x+","+y);
+            //console.log("setSize " + x+","+y);
             var layout  = this.sqlWidgetsCollectionController.MainLayout_RunMode();
 
             layout.config.height = y;

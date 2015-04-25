@@ -4,29 +4,16 @@ X Message webix/meteor : how to us without insecure mode
 
 X Backup db mongo / script import
 
-X Review table width
-X Tab / Create view / Use View
-X Spin
+Option tolower sur widget text
 
-X Add northwind queries
-
-X Export JSON / CSV
-X Datatable / scroll horizontal (marche sous chrome, pas osx firefox)
-
-X classement SqlWidgets/lib
-
-X Bind run mode
-F Run Mode Responsive....
-N Saut de ligne dans form...
-
-X Bool tristate
-
-X Bug save query + info / save
-
-responsive search fields
-
+Dupliquer requete
 Faire fonctionner filtres de recherche
+Classer fichiers widgets
 
+Layout a revoir ???
+
+Aff date en plus court
+Aff Nb résultats
 
 Restrict Edit to login admin
 Pas donner log erreur sql dans boites dialogue

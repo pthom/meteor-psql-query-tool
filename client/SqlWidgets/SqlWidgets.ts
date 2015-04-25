@@ -144,23 +144,55 @@ module SqlWidgets {
 
 
     ViewDefinition_RunMode():any {
+      var result =
+      {
+        view: "form",
+        borderless: true,
+        elementsConfig: {
+          labelPosition: "top"
+        },
+        id: this.idProvider.Id("formRun"),
+        elements: [ this.ViewDefinition_RunMode_Element() ]
+      };
+      return result;
+    }
+
+    ViewDefinition_RunMode_Element() {
       return {};
+    }
+
+    TransformQuery(query:string) : string {
+      //return query;
+      var form = <webix.ui.form>$$(this.idProvider.Id("formRun"));
+      var params = form.getValues();
+      return this.TransformQueryWithParams(query, params);
+    }
+
+    TransformQueryWithParams(query:string, params:any) {
+      return query;
     }
   }
 
 
   class SqlWidgetController_Text extends SqlWidgetController_Base {
-    ViewDefinition_RunMode():any {
+    ViewDefinition_RunMode_Element():any {
       return {
         view: "text",
+        name: "value",
         label: this.modelQueryParam_EditMode.label,
         value: this.modelQueryParam_EditMode.default,
         maxHeight:30,
         inputHeight:30,
-        inputWidth:300,
-        minWidth:300,
+        inputWidth:150,
+        minWidth:150,
         labelWidth:150
       };
+    }
+
+    TransformQueryWithParams(query:string, params:any) {
+      var replace = params.value ? params.value : "";
+      query = query.replace(this.modelQueryParam_EditMode.sql_tag, replace);
+      return query;
     }
 
     Help_EditMode():string {
@@ -177,7 +209,7 @@ module SqlWidgets {
 
 
   class SqlWidgetController_Date extends SqlWidgetController_Base {
-    ViewDefinition_RunMode():any {
+    ViewDefinition_RunMode_Element():any {
       var date;
       try {
         date = DateExpressive.date_expressive(this.modelQueryParam_EditMode.default);
@@ -190,14 +222,24 @@ module SqlWidgets {
       {
         view: "datepicker", label: this.modelQueryParam_EditMode.label,
         value: date,
+        name: "value",
         maxHeight:30,
         inputHeight:30,
-        inputWidth:300,
-        minWidth:300,
+        inputWidth:150,
+        minWidth:150,
         labelWidth:150
       };
       return result;
     }
+
+    TransformQueryWithParams(query:string, params:any) {
+      var date = params.value ? <Date>params.value : DateExpressive.today_00AM();
+      var date_sqlstring = DateExpressive.dateToSqlString(date);
+
+      query = query.replace(this.modelQueryParam_EditMode.sql_tag, date_sqlstring);
+      return query;
+    }
+
 
     Help_EditMode():string {
       var help =
@@ -213,12 +255,12 @@ module SqlWidgets {
   }
 
   class SqlWidgetController_Bool extends SqlWidgetController_Base {
-    ViewDefinition_RunMode():any {
+    ViewDefinition_RunMode_Element():any {
       var result =
       { view:"radio",
         label:this.modelQueryParam_EditMode.label,
         labelWidth:150,
-        minWidth:300,
+        minWidth:150,
         name:"bool_choice",
         value:this.modelQueryParam_EditMode.default,
         options:[
@@ -229,6 +271,39 @@ module SqlWidgets {
       };
 
       return result;
+    }
+
+    TransformQueryWithParams(query:string, params:any) {
+      var bool_choice = params.bool_choice ? params.bool_choice : "All";
+      if (bool_choice === "")
+        bool_choice = "All";
+      var boolParams = <any>this.modelQueryParam_EditMode;
+
+      var bool_or_int = (value : boolean) : string => {
+        if (boolParams.bool_type === "int") {
+          if (value)
+            return "1";
+          else
+            return "0";
+        }
+        else {
+          if (value)
+            return "TRUE";
+          else
+            return "FALSE";
+        }
+      };
+
+      var replace  = "";
+      if (bool_choice == "yes")
+        replace = boolParams.sqlfield + " = " + bool_or_int(true);
+      else if (bool_choice == "no")
+        replace = boolParams.sqlfield + " = " + bool_or_int(false);
+      else
+        replace = "TRUE";
+
+      var queryTransformed = query.replace(this.modelQueryParam_EditMode.sql_tag, replace);
+      return queryTransformed;
     }
 
     Help_EditMode():string {
@@ -443,6 +518,13 @@ module SqlWidgets {
       return widgetsList;
     }
 
+    TransformQuery(query:string) : string {
+      var queryTransformed = query;
+      this.sqlWidgetsControllers.forEach(widget => {
+        queryTransformed = widget.TransformQuery(queryTransformed);
+      });
+      return queryTransformed;
+    }
   }
 
   var sqlQuery = "\

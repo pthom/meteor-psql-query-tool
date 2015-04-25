@@ -192,6 +192,10 @@ module DateExpressive {
     return result;
   };
 
+  export function dateToSqlString(date:Date) : string {
+    var result = "" + date.getFullYear() + "-" + ( date.getMonth() + 1) + "-" + date.getDate();
+    return result;
+  }
 }
 
 /*

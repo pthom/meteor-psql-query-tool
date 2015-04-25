@@ -60,11 +60,12 @@ query_list_view = {
         label: 'Run',
         width:150,
         click: function() {
-          var sql = $$('querytable').getSelectedItem().query;
-          //alert("Run : " + sql);
-          Meteor.call("runPostgresqlQuery", sql);
+          var query = $$('querytable').getSelectedItem().query;
+          var controller = currentSqlWidgetsCollectionController;
+          var queryTransformed = currentSqlWidgetsCollectionController.TransformQuery(query);
+          Meteor.call("runPostgresqlQuery", queryTransformed);
           SpinningWheel.show();
-        },
+        }
     };
 
     var editquery_button =
@@ -98,8 +99,11 @@ query_list_view = {
     var sqlParamsWidget = {
       view: "form",
       data: {params:[]},
-      id: "sqlParamsWidget",
-      elements: [{view: "SqlWidgetCollection_View_RunMode", name: "params"}]
+      id: "sqlParamsWidget_form",
+      elements: [
+        { view: "SqlWidgetCollection_View_RunMode",
+          name: "params"}
+      ]
     };
 
     var panel = {
@@ -112,7 +116,7 @@ query_list_view = {
   },
 
   do_bind : function() {
-    $$("sqlParamsWidget").bind( $$("querytable") );
+    $$("sqlParamsWidget_form").bind( $$("querytable") );
 
   }
 };
