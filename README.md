@@ -15,13 +15,20 @@ X Datatable / scroll horizontal (marche sous chrome, pas osx firefox)
 
 X classement SqlWidgets/lib
 
-Bind run mode
-Run Mode Responsive....
-Saut de ligne dans form...
+X Bind run mode
+F Run Mode Responsive....
+N Saut de ligne dans form...
 
+Bug invalid mixin target???
+Bool tristate
+Recherche
+Layout : Search en dessous de params, autres boutons sur liste query
+Restrict Edit to login admin
+Pas donner log erreur sql dans boites dialogue
+
+Export CSV
 
 connect db ivs
-  Import query
 
 Search query
   Tags / Tag lists
@@ -31,8 +38,6 @@ Search query
 Pivot
   http://nnajm.github.io/orb/
 
-Restrict Edit to login admin
-Pas donner log erreur sql dans boites dialogue
 
 push github definitelytyped
 
