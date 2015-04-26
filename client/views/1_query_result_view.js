@@ -19,7 +19,7 @@ query_result_view = {
       scrollY:true,
       //autowidth:false,
       //maxWidth:600,
-      data: [ {content : "goes", here:"yes"} ]
+      data: []
     };
 
     var exportjson_button =

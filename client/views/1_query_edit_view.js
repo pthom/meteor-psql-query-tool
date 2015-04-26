@@ -40,6 +40,7 @@ query_edit_view = {
       id: 'queryForm',
       elements: [
         { view: 'text', name: 'name', label: 'Name'},
+        { view: 'textarea', height : 50, name: 'comment', label: 'Comments'},
         { view: 'text', name: 'tags', label: 'Tags'},
         { view: 'textarea', height : 150, name: 'query',label: 'SQL', css:'fixedFont'},
         { view:'resizer'},
