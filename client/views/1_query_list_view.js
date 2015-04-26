@@ -7,6 +7,12 @@ query_list_view = {
     return result;
   },
 
+  selected_query : function() {
+    var id = $$('querytable').getSelectedId();
+    var query = Queries.findOne({_id: id});
+    return query;
+  },
+
   ui_definition: function() {
 
     var styleTag = "width:100px;text-align:center;font-style:italic;float:right;background-color:#888;color:white;border-radius:3px;";
@@ -25,6 +31,9 @@ query_list_view = {
           var labelElement = $$("LabelQueryHeading");
           labelElement.config.label = query_list_view.selected_query_name();
           labelElement.refresh();
+
+          var commentElement = /*<webux.ui.template>*/$$("CurrentQueryComments");
+          commentElement.setHTML(query_list_view.selected_query().comment);
         }
       }
     };
@@ -148,7 +157,7 @@ query_list_view = {
         ]
     };
 
-    var sqlParamsWidget = {
+    var sqlParamsWidget_form = {
       view: "form",
       data: {params:[]},
       id: "sqlParamsWidget_form",
@@ -157,6 +166,15 @@ query_list_view = {
         { cols: [{gravity : 2}, { view:"button", type:"form", label:"Search", click : function() { runquery(); }  }] }
       ]
     };
+
+    var sqlParamsWidget = {
+      cols:[
+        sqlParamsWidget_form,
+        {id:"CurrentQueryComments", gravity:0.3, view: "template", template: "", borderless:true, type: "body"},
+      ]
+    };
+
+
 
     var panelQuery = {
       view: 'layout',
