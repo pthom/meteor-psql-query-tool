@@ -69,14 +69,36 @@ query_list_view = {
       }
     };
 
+    var clonequery_button =
+    {
+      view: "button",
+      type:"icon",
+      icon:"clipboard",
+      label: 'Clone',
+      click: function() {
+        var id = $$('querytable').getSelectedId();
+        if (id) {
+          var src_query = Queries.findOne({_id:id});
+          var dst_query = src_query;
+          delete dst_query["_id"];
+          dst_query["name"] = dst_query["name"] + " - Copy";
+          Queries.insert(dst_query, function afterInsert(err, id){
+            $$('querytable').select(id);
+          });
+        }
+        else
+          webix.message('Please select a query');
+      }
+    };
 
     var toolbarQueryList = {
       view: 'toolbar',
       cols: [
         {view:"label", label:"Query list"},
-        {gravity: 1},
+        {gravity: 0.5},
         editquery_button,
         addquery_button,
+        clonequery_button,
         removequery_button,
       ]
     };
@@ -126,7 +148,7 @@ query_list_view = {
     };
     var panelParams = {
       view: 'layout',
-      gravity:2,
+      gravity:1.5,
       rows: [toolbarQueryRun, sqlParamsWidget]
     };
 

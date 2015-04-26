@@ -1,24 +1,17 @@
 #TODO
-X Message webix/meteor : how to us without insecure mode
-  En attente retour => maj module
 
-X Backup db mongo / script import
-X Faire fonctionner filtres de recherche
-X Aff date en plus court
-
-X Aff Nb résultats
-X Layout : Search en dessous de params, autres boutons sur liste query
 
 Dupliquer requete
+Export CSV
+
 
 Restrict Edit to login admin
 Pas donner log erreur sql dans boites dialogue
-
-Export CSV
 skin small
-
 Option tolower sur widget text
 
+
+Relance / retour github metero typescript
 connect db ivs
 
 Search query
