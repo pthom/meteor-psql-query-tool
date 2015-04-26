@@ -1,4 +1,4 @@
-/// <reference path="../packages/typescript-libs/meteor.d.ts" />
+/// <reference path="../../packages/typescript-libs/meteor.d.ts" />
 
 declare var Router;//kill compilation errors about Router
 

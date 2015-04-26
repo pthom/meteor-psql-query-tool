@@ -1,6 +1,6 @@
-/// <reference path="../packages/typescript-libs/meteor.d.ts" />
-/// <reference path="../typings/webix/webix.d.ts" />
-/// <reference path="lib/DatatableUtils.ts" />
+/// <reference path="../../packages/typescript-libs/meteor.d.ts" />
+/// <reference path="../../typings/webix/webix.d.ts" />
+/// <reference path="../lib/base/DatatableUtils.ts" />
 
 declare var SpinningWheel;
 declare var ServerSession;

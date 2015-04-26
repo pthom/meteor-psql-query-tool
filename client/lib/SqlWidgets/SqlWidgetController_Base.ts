@@ -1,8 +1,8 @@
-///<reference path="../../typings/webix/webix.d.ts"/>
-///<reference path="../../lib/HtmlElementIdProvider.ts" />
-///<reference path="../../lib/ArrayUtils.ts" />
-///<reference path="../lib/HelpPopup.ts" />
-///<reference path="./QueryParam.ts" />
+///<reference path="../../../typings/webix/webix.d.ts"/>
+///<reference path="../../../lib/HtmlElementIdProvider.ts" />
+///<reference path="../../../lib/ArrayUtils.ts" />
+///<reference path="../base/HelpPopup.ts" />
+///<reference path="QueryParam.ts" />
 ///<reference path="SqlWidgetsCollectionController" />
 
 module SqlWidgets {

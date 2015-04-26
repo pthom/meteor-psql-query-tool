@@ -1,5 +1,10 @@
 
-function SetupUi() {
+function Prepare() {
+  SqlWidgets.SqlWidgetsCollection_View_EditMode_Init();
+  SqlWidgets.SqlWidgetsCollection_View_RunMode_Init();
+}
+
+function MainUi() {
   if ( ! Meteor.userId())
     return;
 
@@ -19,7 +24,7 @@ function SetupUi() {
 }
 
 Accounts.onLogin(function() {
-  SetupUi();
+  MainUi();
 });
 
 Accounts.onLogout(function() {
@@ -27,9 +32,11 @@ Accounts.onLogout(function() {
 });
 
 Meteor.startup(function() {
+  Prepare();
+
   //TestWidgets(); return;
 
-  SetupUi();
+  MainUi();
 
   main_view.on_document_ready();
 });

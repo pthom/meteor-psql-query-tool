@@ -1,4 +1,4 @@
-///<reference path="../../lib/DateExpressive.ts" />
+///<reference path="../../../lib/DateExpressive.ts" />
 ///<reference path="SqlWidgetController_Base.ts" />
 
 module SqlWidgets {

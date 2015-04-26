@@ -1,7 +1,6 @@
 query_list_view = {
 
   selected_query_name : function() {
-    debugger;
     var id = $$('querytable').getSelectedId();
     var query = Queries.findOne({_id: id});
     var result = query["name"];
