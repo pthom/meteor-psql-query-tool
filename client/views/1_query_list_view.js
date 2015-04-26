@@ -20,7 +20,14 @@ query_list_view = {
       select: true,
       sortable: true,
       url: webix.proxy('meteor', Queries),
-      save: webix.proxy('meteor', Queries) // Mongo.Collection
+      save: webix.proxy('meteor', Queries),
+      on: {
+        'onAfterSelect' : function UpdateLabelQueryHeading(){
+          var labelElement = $$("LabelQueryHeading");
+          labelElement.config.label = query_list_view.selected_query_name();
+          labelElement.refresh();
+        }
+      }
     };
 
     var addquery_button = {
@@ -133,7 +140,9 @@ query_list_view = {
       cols: [
         {
           view:"label",
-          label:"Query Params"
+          label:"Query Params",
+          id: "LabelQueryHeading",
+          name : "name"
         },
         {gravity:1},
         runquery_button
