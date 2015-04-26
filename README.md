@@ -1,9 +1,11 @@
 #TODO
 
 
-Dupliquer requete
-Export CSV
+X Dupliquer requete
+X Export CSV
 
+meteor.d.ts => check and correct missing (Tracker, Router, ...)
+push github definitelytyped
 
 Restrict Edit to login admin
 Pas donner log erreur sql dans boites dialogue
@@ -22,9 +24,7 @@ Search query
 Pivot
   http://nnajm.github.io/orb/
 
-iratemonk
 
-push github definitelytyped
 
 traineq
   ssh-agent

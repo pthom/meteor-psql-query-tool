@@ -1,4 +1,13 @@
 query_list_view = {
+
+  selected_query_name : function() {
+    debugger;
+    var id = $$('querytable').getSelectedId();
+    var query = Queries.findOne({_id: id});
+    var result = query["name"];
+    return result;
+  },
+
   ui_definition: function() {
 
     var styleTag = "width:100px;text-align:center;font-style:italic;float:right;background-color:#888;color:white;border-radius:3px;";

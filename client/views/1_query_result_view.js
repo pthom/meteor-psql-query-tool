@@ -35,9 +35,25 @@ query_result_view = {
     var exportcsv_button =
     {
       view: 'button',
-      value: 'Export as CSV',
+      value: 'CSV ,',
       width: 100,
       click: function() {
+        var data = ServerSession.get("QueryResult");
+        var csv = JsonToCsv_Comma(data.rows);
+        var filename = query_list_view.selected_query_name();
+        DownloadCsv(csv, filename);
+      }
+    };
+    var exportcsv2_button =
+    {
+      view: 'button',
+      value: 'CSV ;',
+      width: 100,
+      click: function() {
+        var data = ServerSession.get("QueryResult");
+        var csv = JsonToCsv_Semicolon(data.rows);
+        var filename = query_list_view.selected_query_name();
+        DownloadCsv(csv, filename);
       }
     };
 
@@ -49,7 +65,8 @@ query_result_view = {
         nbresults,
         {gravity:3},
         exportjson_button,
-        exportcsv_button
+        exportcsv_button,
+        exportcsv2_button
       ]
     };
 
