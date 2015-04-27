@@ -15,7 +15,6 @@ deps@1.0.7
 ejson@1.0.6
 email@1.0.6
 enteye:spinner@2.0.3
-erasaur:server-session@0.0.4
 fastclick@1.0.3
 fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.3
