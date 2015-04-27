@@ -1,17 +1,25 @@
-query_list_view = {
+var Queries_Filtered;
 
-  selected_query_name : function() {
-    var id = $$('querytable').getSelectedId();
-    var query = Queries.findOne({_id: id});
-    var result = query["name"];
-    return result;
-  },
+function UpdateQueries_Filtered() {
+  var tag = Session.get("QueryTagSearch");
+  Queries_Filtered = Queries.find({tags: new RegExp(tag)});
+  var querytable = $$("querytable");
+  if (querytable) {
+    querytable.clearAll();
+    querytable.load(webix.proxy("meteor", Queries_Filtered));
+  }
+}
+Tracker.autorun(UpdateQueries_Filtered);
+
+
+query_list_view = {
 
   selected_query : function() {
     var id = $$('querytable').getSelectedId();
     var query = Queries.findOne({_id: id});
     return query;
   },
+
 
   ui_definition: function() {
 
@@ -24,12 +32,12 @@ query_list_view = {
       template:"#name# <div style='" + styleTag + "'>#tags#</div>",
       select: true,
       sortable: true,
-      url: webix.proxy('meteor', Queries),
+      url: webix.proxy('meteor', Queries_Filtered),
       save: webix.proxy('meteor', Queries),
       on: {
         'onAfterSelect' : function UpdateLabelQueryHeading(){
           var labelElement = $$("LabelQueryHeading");
-          labelElement.config.label = query_list_view.selected_query_name();
+          labelElement.config.label = query_list_view.selected_query().name;
           labelElement.refresh();
 
           var commentElement = /*<webux.ui.template>*/$$("CurrentQueryComments");
@@ -37,6 +45,35 @@ query_list_view = {
         }
       }
     };
+
+    var querySearchPanel = {
+      type:"clear",
+      cols:[
+        { view:"combo", id:"QueryTagSearch", options:"/tags", yCount:10, label: "Filter", editable:false,
+          on: {
+            onChange : function() {
+              var filter = $$("QueryTagSearch").getValue();
+              Session.set("QueryTagSearch", filter);
+            }
+          }
+        },
+        {
+          view:"button",
+          icon:"eraser",
+          type:"iconButton",
+          width:40,
+          click : function() {
+            $$("QueryTagSearch").setValue("");
+            Session.set("QueryTagSearch", "");
+          }
+        }
+      ]
+    };
+
+    var queryTablePanel = {
+      rows:[ querySearchPanel, querytable]
+    };
+
 
     var addquery_button = {
       view: "button",
@@ -135,14 +172,6 @@ query_list_view = {
       SpinningWheel.show();
     };
 
-    var runquery_button = {
-      view: "button",
-      type:"icon",
-      icon:"filter",
-      label:"Run",
-      click : function() { runquery(); }
-    };
-
     var toolbarQueryRun = {
       view: 'toolbar',
       cols: [
@@ -151,9 +180,7 @@ query_list_view = {
           label:"Query Params",
           id: "LabelQueryHeading",
           name : "name"
-        },
-        {gravity:1},
-        runquery_button
+        }
         ]
     };
 
@@ -179,7 +206,7 @@ query_list_view = {
     var panelQuery = {
       view: 'layout',
       gravity:1,
-      rows: [toolbarQueryList, querytable]
+      rows: [toolbarQueryList, queryTablePanel]
     };
     var panelParams = {
       view: 'layout',
