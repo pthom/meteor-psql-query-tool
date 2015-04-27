@@ -15,9 +15,9 @@ deps@1.0.7
 ejson@1.0.6
 email@1.0.6
 enteye:spinner@2.0.3
-erasaur:server-session@0.0.3
+erasaur:server-session@0.0.4
 fastclick@1.0.3
-fortawesome:fontawesome@4.2.0_2
+fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.3
 gwendall:auth-client-callbacks@0.1.0
 html-tools@1.0.4
@@ -72,4 +72,5 @@ underscore@1.0.3
 url@1.0.4
 webapp@1.2.0
 webapp-hashing@1.0.3
-webix:webix@2.2.3_1
+webix:skin-flat@2.3.8
+webix:webix@2.3.8_1
