@@ -28,9 +28,10 @@ Router.map(function() {
   });
 });
 
+
 declare var MainUi;
 declare var TestWidgets;
-
+declare var Collection_Crud;
 
 
 Accounts.onLogin(function() {
@@ -52,7 +53,10 @@ function BrokenRoute_AccordingToUrl_RepairMe() {
   console.log("window.location.href=" + window.location.href);
   if (window.location.href.indexOf("test") >= 0) {
     TestWidgets();
-  } else {
+  } else if (window.location.href.indexOf("crud") >=0) {
+    Collection_Crud();
+  }
+  else {
     MainUi();
   }
 }
