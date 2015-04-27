@@ -1,12 +1,7 @@
 #TODO
 
 
-Search query
-  Tags / Tag lists => search atmosphere packages and webix
-  Ou encore routage par tags
-  Name
-
-  ==> Bug : Apres filtre, les champs a droite (titre et commentaire) ne sont plus mis à jour...
+Routage par tags
 
 
 prepared queries ou sql escape
