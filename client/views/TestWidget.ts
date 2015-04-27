@@ -1,6 +1,6 @@
 ///<reference path="../../typings/webix/webix.d.ts"/>
-///<reference path="base/HelpPopup.ts" />
-///<reference path="base/ResponsiveHelper.ts" />
+///<reference path="../lib/base/HelpPopup.ts" />
+///<reference path="../lib/base/ResponsiveHelper.ts" />
 
 declare var TestWidgets;
 TestWidgets = function() {

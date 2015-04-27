@@ -1,10 +1,6 @@
 
-function Prepare() {
-  SqlWidgets.SqlWidgetsCollection_View_EditMode_Init();
-  SqlWidgets.SqlWidgetsCollection_View_RunMode_Init();
-}
 
-function MainUi() {
+MainUi = function() {
   if ( ! Meteor.userId())
     return;
 
@@ -21,22 +17,7 @@ function MainUi() {
   webix.ui(query_edit_view.ui_definition());
   webix.ui(json_export_view.ui_definition());
   query_list_view.do_bind();
+  main_view.on_document_ready();
+
 }
 
-Accounts.onLogin(function() {
-  MainUi();
-});
-
-Accounts.onLogout(function() {
-  window.location.reload(false);
-});
-
-Meteor.startup(function() {
-  Prepare();
-
-  //TestWidgets(); return;
-
-  MainUi();
-
-  main_view.on_document_ready();
-});

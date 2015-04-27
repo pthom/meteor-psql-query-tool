@@ -1,34 +1,3 @@
-#TODO
-
-
-X Dupliquer requete
-X Export CSV
-
-meteor.d.ts => check and correct missing (Tracker, Router, ...)
-push github definitelytyped
-
-Restrict Edit to login admin
-Pas donner log erreur sql dans boites dialogue
-skin small
-Option tolower sur widget text
-
-
-Relance / retour github metero typescript
-connect db ivs
-
-Search query
-  Tags / Tag lists => search atmosphere packages and webix
-  Ou encore routage par tags
-  Name
-
-Pivot
-  http://nnajm.github.io/orb/
-
-
-
-traineq
-  ssh-agent
-  install
 
 #METEOR GREAT RESOURCES
 ***********************
