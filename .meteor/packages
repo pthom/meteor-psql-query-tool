@@ -1,8 +1,6 @@
 standard-app-packages
 iron:router
 less
-postgresql
-typescript-libs
 webix:webix
 accounts-ui
 accounts-password
@@ -13,3 +11,5 @@ fortawesome:fontawesome
 webix:skin-flat
 msavin:mongol
 alanning:roles
+meteortypescript:typescript-libs
+austinrivas:postgresql

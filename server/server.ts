@@ -11,7 +11,7 @@ declare var ServerSession;
 function DoRunQuery(sql_query) {
   ServerSession.set("QueryError", null);
   ServerSession.set("QueryRunning", "true");
-  console.log("runPostgresqlQuery : " + sql_query);
+  console.log("DoRunQuery : " + sql_query);
 
   try {
     //pg_query is async, but pg_query_wrapAsync is sync,
