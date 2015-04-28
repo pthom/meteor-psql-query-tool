@@ -159,11 +159,21 @@ module SqlWidgets {
             return widgetsList;
         }
 
-        TransformQuery(query:string) : string {
-            var queryTransformed = query;
+        GetFormValues_RunMode() {
+            var paramsRunMode = [];
             this.sqlWidgetsControllers.forEach(widget => {
-                queryTransformed = widget.TransformQuery(queryTransformed);
+                paramsRunMode.push(widget.GetFormValues_RunMode());
             });
+            return paramsRunMode;
+        }
+
+        TransformQuery(query:string, paramsRunMode: any) : string {
+            var queryTransformed = query;
+            for (var i = 0; i < this.sqlWidgetsControllers.length; i++) {
+                var params = paramsRunMode[i];
+                var widget = this.sqlWidgetsControllers[i];
+                queryTransformed = widget.TransformQueryWithParams(queryTransformed, params);
+            }
             return queryTransformed;
         }
     }

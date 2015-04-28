@@ -142,12 +142,11 @@ module SqlWidgets {
         ViewDefinition_RunMode_Element() {
             return {};
         }
-
-        TransformQuery(query:string) : string {
-            //return query;
+        
+        GetFormValues_RunMode() {
             var form = <webix.ui.form>$$(this.idProvider.Id("formRun"));
             var params = form.getValues();
-            return this.TransformQueryWithParams(query, params);
+            return params;
         }
 
         TransformQueryWithParams(query:string, params:any) {

@@ -192,10 +192,15 @@ query_list_view = {
 
 
     var runquery =  function() {
-      var query = $$('querytable').getSelectedItem().query;
+      var queryId = $$('querytable').getSelectedItem().id;
+      /*
       var controller = currentSqlWidgetsCollectionController;
       var queryTransformed = currentSqlWidgetsCollectionController.TransformQuery(query);
       Meteor.call("runPostgresqlQuery", queryTransformed);
+      */
+
+      var params_RunMode = currentSqlWidgetsCollectionController.GetFormValues_RunMode();
+      Meteor.call("runStoredQuery", queryId, params_RunMode);
       SpinningWheel.show();
     };
 
