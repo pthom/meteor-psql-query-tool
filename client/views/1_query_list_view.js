@@ -11,6 +11,20 @@ function UpdateQueries_Filtered() {
 }
 Tracker.autorun(UpdateQueries_Filtered);
 
+function ShowHideToolbarEditQuery() {
+  var userId = Meteor.userId();
+  var canManageQueries = Roles.userIsInRole(Meteor.userId(), "manage-queries");
+  console.log("userId = " + userId);
+  console.log("canManageQueries = " + canManageQueries);
+  var toolbar = $$("toolbarEditQuery");
+  if (toolbar) {
+    if ( ! canManageQueries)
+      toolbar.hide();
+    else
+      toolbar.show();
+  }
+}
+Tracker.autorun(ShowHideToolbarEditQuery);
 
 query_list_view = {
 
@@ -36,6 +50,9 @@ query_list_view = {
       save: webix.proxy('meteor', Queries),
       on: {
         'onAfterSelect' : function UpdateLabelQueryHeading(){
+
+          ShowHideToolbarEditQuery();
+
           var labelElement = $$("LabelQueryHeading");
           labelElement.config.label = query_list_view.selected_query().name;
           labelElement.refresh();
@@ -152,17 +169,27 @@ query_list_view = {
       }
     };
 
-    var toolbarQueryList = {
-      view: 'toolbar',
-      cols: [
-        {view:"label", label:"Query list"},
-        {gravity: 0.5},
+    var toolbarEditQuery = {
+      id : "toolbarEditQuery",
+      hidden:true,
+      cols:[
         editquery_button,
         addquery_button,
         clonequery_button,
-        removequery_button,
+        removequery_button
       ]
     };
+
+    var toolbarQueryList = {
+      view: 'toolbar',
+      cols: [
+        {view:"label", label:"Queries", gravity:0.3},
+        //{gravity: 0.1},
+        toolbarEditQuery
+      ]
+    };
+
+
 
     var runquery =  function() {
       var query = $$('querytable').getSelectedItem().query;
