@@ -13,7 +13,7 @@ class HelpPopup {
         var popup = {
             view:"window",
             id: this.idProvider.Id("popup"),
-            height:250, width:600,
+            height:500, width:600,
             position: 'center',
             move:true,
             hidden:true,
