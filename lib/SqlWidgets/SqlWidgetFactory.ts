@@ -2,6 +2,7 @@
 ///<reference path="SqlWidgetController_Bool.ts" />
 ///<reference path="SqlWidgetController_Date.ts" />
 ///<reference path="SqlWidgetController_Text.ts" />
+///<reference path="SqlWidgetController_Combo.ts" />
 
 
 module SqlWidgets {
@@ -14,6 +15,9 @@ module SqlWidgets {
         }
         else if (params.type === "bool") {
             return new SqlWidgetController_Bool(params, sqlWidgetsCollection);
+        }
+        else if (params.type === "combo") {
+            return new SqlWidgetController_Combo(params, sqlWidgetsCollection);
         }
         return null;
     }

@@ -65,6 +65,12 @@ module SqlWidgets {
                             }
                             },
                             {
+                                view: 'button', label: 'Add Combo Param', click: () => {
+                                this.UpdateModel_EditMode();
+                                this.AddParam_EditMode('combo');
+                            }
+                            },
+                            {
                                 view: 'button', label: 'Values', click: () => {
                                 this.UpdateModel_EditMode();
                                 alert(JSON.stringify(this.GetModel_EditMode(), null, 2))
