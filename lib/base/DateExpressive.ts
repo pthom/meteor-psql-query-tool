@@ -104,10 +104,10 @@ module DateExpressive {
   }
 
 
-//syntaxe stringWhatToAdd :
-//"-25d"  ( moins 25 jours)
-//"3m"  (plus 3 mois)
-//"-2y" (moins 2 ans)
+//syntax stringWhatToAdd :
+//"-25d"  ( minus 25 days)
+//"3m"  (plus 3 mmont)
+//"-2y" (minus 2 years)
   var date_add = function (_oldDate, stringWhatToAdd) {
     var oldDate;
 
@@ -148,7 +148,7 @@ module DateExpressive {
   };
 
 
-// Syntaxe / date_expression
+// Syntax / date_expression
 // "now - 1d" / "now + 3m" / "now - 2y"
 // "2012-04-02 + 5d"
 //  "this_monday" "next_monday"
