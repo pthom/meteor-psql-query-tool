@@ -1,7 +1,7 @@
-///<reference path="../../../typings/webix/webix.d.ts"/>
-///<reference path="../../../lib/HtmlElementIdProvider.ts" />
-///<reference path="../../../lib/ArrayUtils.ts" />
-///<reference path="../base/HelpPopup.ts" />
+///<reference path="../../typings/webix/webix.d.ts"/>
+///<reference path="../base/HtmlElementIdProvider.ts" />
+///<reference path="../base/ArrayUtils.ts" />
+///<reference path="../../client/lib/base/HelpPopup.ts" />
 ///<reference path="QueryParam.ts" />
 ///<reference path="SqlWidgetsCollectionController" />
 

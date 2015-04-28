@@ -1,4 +1,5 @@
 ///<reference path="./SqlWidgetController_Base.ts" />
+///<reference path="../base/EscapePostgresql.ts" />
 
 module SqlWidgets {
 
@@ -20,6 +21,8 @@ module SqlWidgets {
 
         TransformQueryWithParams(query:string, params:any) {
             var replace = params.value ? params.value : "";
+            //EscapePostgresql is called server-side, in order to protect from javascript kiddies
+            replace = Postgres.EscapePostgresql(replace);
             query = query.replace(this.modelQueryParam_EditMode.sql_tag, replace);
             return query;
         }

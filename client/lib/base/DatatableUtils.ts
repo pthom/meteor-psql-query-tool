@@ -1,5 +1,5 @@
 ///<reference path="../../../typings/webix/webix.d.ts" />
-///<reference path="../../../lib/DateExpressive.ts" />
+///<reference path="../../../lib/base/DateExpressive.ts" />
 
 
 //Helper function in order to populate a datatable with psql results

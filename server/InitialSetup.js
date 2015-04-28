@@ -20,6 +20,6 @@ _.each(users, function (user) {
 });
  */
 
-//var idAdmin = "hHtr2JmynxQ586Y8R";
+//var idAdmin = "qWaH3xgF3EhYYMaXh";
 //Roles.addUsersToRoles(idAdmin, ["admin", "manage-users", "manage-queries"]);
 

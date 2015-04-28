@@ -1,5 +1,5 @@
 /// <reference path="../packages/typescript-libs/meteor.d.ts" />
-///<reference path="lib/SqlWidgets/SqlWidgetsInit.ts" />
+///<reference path="../lib/SqlWidgets/SqlWidgetsInit.ts" />
 
 declare var Router;//kill compilation errors about Router
 

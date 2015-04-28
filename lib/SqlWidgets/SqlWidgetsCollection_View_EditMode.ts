@@ -1,5 +1,5 @@
 ///<reference path="./SqlWidgetsCollectionController.ts"/>
-///<reference path="../../../typings/webix/webix.d.ts"/>
+///<reference path="../../typings/webix/webix.d.ts"/>
 module SqlWidgets {
     export function SqlWidgetsCollection_View_EditMode_Init() {
         console.log("SqlWidgetsCollection_View_EditMode_Init");

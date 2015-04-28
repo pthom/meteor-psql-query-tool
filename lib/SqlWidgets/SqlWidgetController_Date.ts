@@ -1,5 +1,6 @@
-///<reference path="../../../lib/DateExpressive.ts" />
+///<reference path="../base/DateExpressive.ts" />
 ///<reference path="SqlWidgetController_Base.ts" />
+///<reference path="../base/EscapePostgresql.ts" />
 
 module SqlWidgets {
 
@@ -29,6 +30,8 @@ module SqlWidgets {
         TransformQueryWithParams(query:string, params:any) {
             var date = params.value ? <Date>params.value : DateExpressive.today_00AM();
             var date_sqlstring = DateExpressive.dateToSqlString(date);
+            //EscapePostgresql is called server-side, in order to protect from javascript kiddies
+            date_sqlstring = Postgres.EscapePostgresql(date_sqlstring);
 
             query = query.replace(this.modelQueryParam_EditMode.sql_tag, date_sqlstring);
             return query;
