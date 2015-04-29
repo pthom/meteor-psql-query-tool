@@ -2,6 +2,7 @@
 module SqlWidgets
 {
     export class QueryParam {
+        _id:string;
         label:string;
         sql_tag:string;
         type:string;

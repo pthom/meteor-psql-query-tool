@@ -1,7 +1,7 @@
 ///<reference path="SqlWidgetController_Base.ts" />
 ///<reference path="SqlWidgetFactory.ts" />
 ///<reference path="../../client/lib/base/ResponsiveHelper.ts" />
-///<reference path="../base/HtmlElementIdProvider.ts" />
+///<reference path="../base/IdProvider.ts" />
 
 module SqlWidgets {
     export class SqlWidgetsCollectionController {

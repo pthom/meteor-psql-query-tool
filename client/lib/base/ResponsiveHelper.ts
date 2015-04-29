@@ -1,5 +1,5 @@
 ///<reference path="../../../typings/webix/webix.d.ts" />
-///<reference path="../../../lib/base/HtmlElementIdProvider.ts" />
+///<reference path="../../../lib/base/IdProvider.ts" />
 
 class ResponsiveHelper {
     static MakeResponsiveRow( widgetsArray : any, elementId?:string ) {

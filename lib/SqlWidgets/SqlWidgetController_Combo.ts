@@ -15,7 +15,7 @@ module SqlWidgets {
                 id:this.idProvider.Id("comboChoice"),
                 name:"comboChoice",
                 value:this.modelQueryParam_EditMode.default,
-                options:"/ComboQuery/" + query_list_view.selected_query()._id + "/5" //Donner un id aux widgets !!!
+                options:"/ComboQuery/" + query_list_view.selected_query()._id + "/" + this.modelQueryParam_EditMode._id
             };
 
             var eraser =
@@ -37,31 +37,19 @@ module SqlWidgets {
         }
 
         TransformQueryWithParams(query:string, params:any) {
-            var bool_choice = params.bool_choice ? params.bool_choice : "All";
-            if (bool_choice === "")
-                bool_choice = "All";
-            var boolParams = <any>this.modelQueryParam_EditMode;
-
-            var bool_or_int = (value : boolean) : string => {
-                if (boolParams.bool_type === "int") {
-                    if (value)
-                        return "1";
-                    else
-                        return "0";
-                }
-                else {
-                    if (value)
-                        return "TRUE";
-                    else
-                        return "FALSE";
-                }
-            };
+            debugger;
+            var comboChoice = params.comboChoice;
+            if (comboChoice === "")
+                comboChoice = null;
+            var comboParams = <any>this.modelQueryParam_EditMode;
+            if (comboChoice) {
+                if (comboParams.IsIdString)
+                    comboChoice= "'" + comboChoice + "'";
+            }
 
             var replace  = "";
-            if (bool_choice == "yes")
-                replace = boolParams.sqlfield + " = " + bool_or_int(true);
-            else if (bool_choice == "no")
-                replace = boolParams.sqlfield + " = " + bool_or_int(false);
+            if (comboChoice)
+                replace = comboParams.sqlfield + " = " + comboChoice;
             else
                 replace = "TRUE";
 
@@ -77,8 +65,12 @@ module SqlWidgets {
                     + "</pre><br/>"
                     + "add a combo parameter with '_supplierid_' as 'Sql Tag' <br/>"
                     + "add 'supplierid' as 'Sql Field' <br/>"
-                    + "add 'SELECT supplierid, companyname FROM suppliers ORDER BY companyname' as 'Combo Query' <br/>"
-
+                    + "add a sql query in the 'Combo Query' field, such as <pre>SELECT supplierid as id, companyname as value FROM suppliers ORDER BY companyname</pre> <br/>"
+                    + "Note:<br/>"
+                    + "The 'Combo Query' shall return two columns : <br/>"
+                    + "the first is the Id that will be used, and it shall be named 'id',<br/>"
+                    + "the second is what will be shown in the combo box, and it shall be named 'value'"
+                    + "<br/>"
                     + "<br/>"
                     + "The query will be then executed as :<br/>"
                     + "<pre>"
@@ -89,9 +81,6 @@ module SqlWidgets {
                     + "SELECT * FROM products\n WHERE\nTRUE\n AND TRUE"
                     + "</pre><br>"
                     + "<br/>"
-                    + "Note:<br/>"
-                    + "The 'Combo Query' shall return two fields : the first is the Id that will be used (and it will not be shown)<br/>"
-                    + "The second is what will be shown in the combo box"
                 ;
             return help;
         }
@@ -102,6 +91,7 @@ module SqlWidgets {
                 cols: [
                     {view: "text", label: "Sql Field", name: 'sqlfield'},
                     {view: "text", label: "Combo Query", name: 'ComboQuery'},
+                    {view: "checkbox", label: "Id is string ?", name: 'IsIdString'},
                 ]
             };
             return result;

@@ -9,15 +9,7 @@ var query = client.query({
       values: ['hi']
     });
 
-Securité
-*********
-Client.prototype.escapeLiteral
-
-==> on peut faire un escape cote client, mais comment s'assurer que ce ne soit pas hacké par les users ...
-  A mettre côté server
-    Pire, c'est en fait la méthode Meteor.Method runPostgresqlQuery qui est dangereuse...
-    A remplacer par une Meteor.Methode callQuery(queryId, params) ?...?...????
-
+ranger ComboQuery() et RunStoredQuery()
 
 
 widget list : fixed / select / autocomplete

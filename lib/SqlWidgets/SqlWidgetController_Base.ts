@@ -1,5 +1,5 @@
 ///<reference path="../../typings/webix/webix.d.ts"/>
-///<reference path="../base/HtmlElementIdProvider.ts" />
+///<reference path="../base/IdProvider.ts" />
 ///<reference path="../base/ArrayUtils.ts" />
 ///<reference path="../../client/lib/base/HelpPopup.ts" />
 ///<reference path="QueryParam.ts" />
@@ -15,9 +15,16 @@ module SqlWidgets {
 
 
         constructor(params:QueryParam, parentSqlWidgetsCollection) {
-            this.modelQueryParam_EditMode = params;
-            this.idProvider = new IdProvider();
+            if  (params._id) {
+                this.idProvider = new IdProvider(params._id);
+            }
+            else {
+                this.idProvider = new IdProvider(params._id);
+                params._id = this.idProvider.RawId();
+            }
             this.parentSqlWidgetsCollection = parentSqlWidgetsCollection;
+
+            this.modelQueryParam_EditMode = params;
         }
 
         GetFormValues_EditMode():QueryParam {
