@@ -42,7 +42,7 @@ Meteor.startup(function() {
 
 function BrokenRoute_AccordingToUrl_RepairMe() {
   console.log("window.location.href=" + window.location.href);
-  if (window.location.href.indexOf("test") >= 0) {
+  if (window.location.href.indexOf("/test") >= 0) {
     TestWidgets();
   } else {
     MainUi();
