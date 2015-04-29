@@ -3,7 +3,7 @@
 
 class ResponsiveHelper {
     static MakeResponsiveRow( widgetsArray : any, elementId?:string ) {
-        var idProvider = new HtmlElementIdProvider();
+        var idProvider = new IdProvider();
         var responsiveColId = elementId ? elementId : idProvider.Id("responsive_col");
         var ui =
         {

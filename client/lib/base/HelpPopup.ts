@@ -2,7 +2,7 @@
 ///<reference path="../../../lib/base/HtmlElementIdProvider.ts" />
 
 class HelpPopup {
-    idProvider = new HtmlElementIdProvider();
+    idProvider = new IdProvider();
 
     private windowElement() {
         var window = <webix.ui.window> $$(this.idProvider.Id("popup"));

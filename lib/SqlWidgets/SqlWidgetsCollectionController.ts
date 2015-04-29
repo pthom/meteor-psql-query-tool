@@ -6,11 +6,11 @@
 module SqlWidgets {
     export class SqlWidgetsCollectionController {
         sqlWidgetsControllers:Array<SqlWidgetController_Base>;
-        idProvider:HtmlElementIdProvider;
+        idProvider:IdProvider;
 
 
         constructor(paramsList:Array<QueryParam>) {
-            this.idProvider = new HtmlElementIdProvider()
+            this.idProvider = new IdProvider()
             this.SetParams(paramsList);
         }
 

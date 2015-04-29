@@ -10,13 +10,13 @@ module SqlWidgets {
     export class SqlWidgetController_Base {
 
         modelQueryParam_EditMode:QueryParam;
-        idProvider:HtmlElementIdProvider;
+        idProvider:IdProvider;
         parentSqlWidgetsCollection:SqlWidgetsCollectionController;
 
 
         constructor(params:QueryParam, parentSqlWidgetsCollection) {
             this.modelQueryParam_EditMode = params;
-            this.idProvider = new HtmlElementIdProvider();
+            this.idProvider = new IdProvider();
             this.parentSqlWidgetsCollection = parentSqlWidgetsCollection;
         }
 

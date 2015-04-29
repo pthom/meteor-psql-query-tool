@@ -1,4 +1,4 @@
-class HtmlElementIdProvider {
+class IdProvider {
     guid:string;
 
     constructor() {
