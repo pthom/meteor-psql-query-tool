@@ -1,5 +1,9 @@
+#Bootsrap
+
 #TODO
 
+Boutons create (role manage-queries) pas montrés si pas de query....
+Recup password postgres par env
 
 Routage par tags
 
