@@ -1,4 +1,4 @@
-ComboQuery = function(idQuery, paramId) {
+Serve_ComboQuery = function(idQuery, paramId) {
     var query = Queries.findOne({_id:idQuery});
     if ( ! query )
         return [];
@@ -14,13 +14,29 @@ ComboQuery = function(idQuery, paramId) {
         return [];
 
     var sql_query = comboParam.ComboQuery;
-    console.log("ComboQuery=" + sql_query);
 
-    var queryResult  = pg_query_wrapAsync(sql_query);
-    console.log("queryResult.rows=" + JSON.stringify(queryResult.rows));
-
-    //var result = [{supplierid:123243, value:"blah"}];
+    var queryResult  = PostgresWrapper.Query_WrapAsync(sql_query);
     return queryResult.rows;
+}
+
+ExportTags = function() {
+    var tagsCursor = Queries.find({}, {tags:1, _id:0});
+    var tags = [];
+    tagsCursor.map( function(data)
+        {
+            var currentTags = data.tags;
+            if (_.isString(currentTags)) {
+                currentTags = currentTags.split(",");
+            }
+
+            if (_.isArray(currentTags)) {
+                _.each(currentTags, function(tag) { tags.push(tag); });
+            }
+        }
+    );
+    tags.sort();
+    tags = _.uniq(tags, true);
+    return JSON.stringify(tags);
 }
 
 Router.route('/tags',
@@ -39,7 +55,7 @@ Router.route('/ComboQuery/:idQuery/:paramIdx',
 
         var req = this.request;
         var res = this.response;
-        var result = ComboQuery(idQuery, paramIdx);
+        var result = Serve_ComboQuery(idQuery, paramIdx);
         res.end( JSON.stringify(result) );
     },
     {where: 'server'});
