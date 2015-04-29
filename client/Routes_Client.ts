@@ -20,6 +20,12 @@ Router.map(function() {
   });
 });
 
+Router.map(function() {
+  this.route('tag', {
+    path: '/tag/:idTag',
+    template: 'home'
+  });
+});
 
 declare var MainUi;
 declare var TestWidgets;
@@ -41,10 +47,20 @@ Meteor.startup(function() {
 
 
 function BrokenRoute_AccordingToUrl_RepairMe() {
-  console.log("window.location.href=" + window.location.href);
-  if (window.location.href.indexOf("/test") >= 0) {
+  var href = window.location.href;
+  console.log("window.location.href=" + href);
+  if (href.indexOf("/test") >= 0) {
     TestWidgets();
   } else {
+    var tagToken = "/tag/";
+    var tagTokenPos = href.indexOf(tagToken);
+    if ( tagTokenPos >= 0)
+    {
+      var tag = href.substring(tagTokenPos + tagToken.length);
+      Session.set("Queries_LimitToTag", tag);
+    } else {
+      Session.set("Queries_LimitToTag", null);
+    }
     MainUi();
   }
 }

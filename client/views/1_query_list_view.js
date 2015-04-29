@@ -2,6 +2,9 @@ var Queries_Filtered;
 
 function UpdateQueries_Filtered() {
   var tag = Session.get("QueryTagSearch");
+  if (Session.get("Queries_LimitToTag"))
+    tag = Session.get("Queries_LimitToTag");
+
   Queries_Filtered = Queries.find({tags: new RegExp(tag)});
   var querytable = $$("querytable");
   if (querytable) {
@@ -46,7 +49,7 @@ query_list_view = {
       template:"#name# <div style='" + styleTag + "'>#tags#</div>",
       select: true,
       sortable: true,
-      url: webix.proxy('meteor', Queries_Filtered),
+      //url: webix.proxy('meteor', Queries_Filtered),
       save: webix.proxy('meteor', Queries),
       on: {
         'onAfterSelect' : function UpdateLabelQueryHeading(){
@@ -87,9 +90,17 @@ query_list_view = {
       ]
     };
 
-    var queryTablePanel = {
-      rows:[ querySearchPanel, querytable]
-    };
+    var queryTablePanel;
+    if (Session.get("Queries_LimitToTag"))
+      queryTablePanel = querytable;
+    else {
+      queryTablePanel = {
+        rows: [
+          Session.get("Queries_LimitToTag") ? {cols: []} : querySearchPanel,
+          querytable
+        ]
+      }
+    }
 
 
     var addquery_button = {
