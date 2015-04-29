@@ -1,10 +1,9 @@
-/// <reference path="../../packages/typescript-libs/meteor.d.ts" />
+/// <reference path="../../typings/typescript-libs/meteor.d.ts" />
 /// <reference path="../../typings/webix/webix.d.ts" />
 /// <reference path="../lib/base/DatatableUtils.ts" />
 
 declare var SpinningWheel;
 declare var ServerSession;
-declare var Tracker;
 
 //Magic ! ShowQueryResults function is called automatically
 //whenever ServerSession.get("QueryResult") changes !

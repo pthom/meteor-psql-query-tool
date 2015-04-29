@@ -1,4 +1,4 @@
-/// <reference path="../packages/typescript-libs/all-definitions.d.ts" />
+/// <reference path="../typings/typescript-libs/all-definitions.d.ts" />
 /// <reference path="../lib/collections.ts" />
 /// <reference path="lib/pg_query.ts" />
 ///<reference path="../lib/SqlWidgets/SqlWidgetsCollectionController.ts" />

@@ -1,4 +1,4 @@
-/// <reference path="../../packages/typescript-libs/all-definitions.d.ts" />
+/// <reference path="../../typings/typescript-libs/all-definitions.d.ts" />
 
 //TRICK : pg_query_wrapAsync is a sync version of pg_query which is async@
 //
@@ -14,7 +14,6 @@ declare var pg;//kill typescript compile errors on pg
 declare module Meteor {
   function wrapAsync(func : Function) :Function;
 }
-
 
 console.log("Load pg_query.js");
 

@@ -1,7 +1,7 @@
-/// <reference path="../packages/typescript-libs/meteor.d.ts" />
+/// <reference path="../typings/typescript-libs/all-definitions.d.ts" />
 
 //Queries is a MongoDB collection stored in the mongo database
-declare var Queries; //:Mongo.Collection<...>;
-Queries = new Meteor.Collection("Queries");
+declare var Queries:Mongo.Collection<any>;
+Queries = new Mongo.Collection("Queries");
 
 
