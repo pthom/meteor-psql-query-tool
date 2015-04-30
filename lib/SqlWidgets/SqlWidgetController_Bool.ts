@@ -10,6 +10,7 @@ module SqlWidgets {
                 labelWidth:150,
                 minWidth:150,
                 name:"bool_choice",
+                css: "form-stacked",
                 value:this.modelQueryParam_EditMode.default,
                 options:[
                     { id:"all", value:"All" },

@@ -48,7 +48,11 @@ module SqlWidgets {
                 }
             };
 
-            var result ={cols:[combo, eraser], width:300, maxWidth:300};
+            var result ={
+                css:"form-stacked",
+                cols:[combo, eraser],
+                width:300, maxWidth:300
+            };
             return result;
         }
 
