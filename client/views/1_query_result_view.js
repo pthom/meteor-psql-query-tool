@@ -40,7 +40,7 @@ query_result_view = {
       click: function() {
         var data = ServerSession.get("QueryResult");
         var csv = JsonToCsv_Comma(data.rows);
-        var filename = query_list_view.selected_query_name();
+        var filename = query_list_view.selected_query().name;
         DownloadCsv(csv, filename);
       }
     };
@@ -52,7 +52,7 @@ query_result_view = {
       click: function() {
         var data = ServerSession.get("QueryResult");
         var csv = JsonToCsv_Semicolon(data.rows);
-        var filename = query_list_view.selected_query_name();
+        var filename = query_list_view.selected_query().name;
         DownloadCsv(csv, filename);
       }
     };
