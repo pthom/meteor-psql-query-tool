@@ -4,9 +4,13 @@
 // This filename begins with a 2 so that it is loaded after 1s
 
 
+
+
+
 main_view = {
   on_document_ready : function() {
     query_edit_view.on_document_ready();
+    query_list_view.on_document_ready();
   },
 
   ui_definition: function() {

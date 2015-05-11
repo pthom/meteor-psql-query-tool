@@ -2,6 +2,8 @@
 /// <reference path="../typings/typescript-libs/ironrouter.d.ts" />
 ///<reference path="../lib/SqlWidgets/SqlWidgetsInit.ts" />
 
+declare var Roles;
+
 Router.configure({
   layoutTemplate: 'layout'
 });
@@ -12,6 +14,7 @@ Router.map(function() {
     template: 'home'
   });
 });
+
 
 Router.map(function() {
   this.route('test', {
@@ -40,27 +43,29 @@ Accounts.onLogin(function() {
 });
 
 Meteor.startup(function() {
-  SqlWidgets.InitSqlWidgets();
-
-  BrokenRoute_AccordingToUrl_RepairMe();
 });
 
+(<any>Template).home.onRendered(function() {
+    SqlWidgets.InitSqlWidgets();
+
+    BrokenRoute_AccordingToUrl_RepairMe();
+});
 
 function BrokenRoute_AccordingToUrl_RepairMe() {
-  var href = window.location.href;
-  console.log("window.location.href=" + href);
-  if (href.indexOf("/test") >= 0) {
-    TestWidgets();
-  } else {
-    var tagToken = "/tag/";
-    var tagTokenPos = href.indexOf(tagToken);
-    if ( tagTokenPos >= 0)
-    {
-      var tag = href.substring(tagTokenPos + tagToken.length);
-      Session.set("Queries_LimitToTag", tag);
+    var href = window.location.href;
+    console.log("window.location.href=" + href);
+    if (href.indexOf("/test") >= 0) {
+        TestWidgets();
     } else {
-      Session.set("Queries_LimitToTag", null);
+        var tagToken = "/tag/";
+        var tagTokenPos = href.indexOf(tagToken);
+        if ( tagTokenPos >= 0)
+        {
+            var tag = href.substring(tagTokenPos + tagToken.length);
+            Session.set("Queries_LimitToTag", tag);
+        } else {
+            Session.set("Queries_LimitToTag", null);
+        }
+        MainUi();
     }
-    MainUi();
-  }
 }

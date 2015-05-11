@@ -29,6 +29,20 @@ function ShowHideToolbarEditQuery() {
 }
 Tracker.autorun(ShowHideToolbarEditQuery);
 
+function HideQueriesIfSeeAllQueriesForbidden() {
+  var userId = Meteor.userId();
+  var hide =  ! Roles.userIsInRole(Meteor.userId(), ['see-all-queries']) && ! Session.get("Queries_LimitToTag");
+
+  var query_list_view =$$("query_list_view");
+  if ( ! query_list_view )
+    return;
+  if (hide)
+    query_list_view.hide();
+  else
+    query_list_view.show();
+}
+Tracker.autorun(HideQueriesIfSeeAllQueriesForbidden);
+
 query_list_view = {
 
   selected_query : function() {
@@ -37,6 +51,9 @@ query_list_view = {
     return query;
   },
 
+  on_document_ready : function() {
+    HideQueriesIfSeeAllQueriesForbidden();
+  },
 
   ui_definition: function() {
 
@@ -258,6 +275,7 @@ query_list_view = {
     };
 
     var panelComplete = {
+      id: 'query_list_view',
       cols:[
         panelQuery,
         {view:'resizer'},
