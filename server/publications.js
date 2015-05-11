@@ -3,7 +3,7 @@
 
 Meteor.publish('Queries', function() {
   if (! this.userId )
-    return {};
+    return null;
   return Queries.find();
 });
 
