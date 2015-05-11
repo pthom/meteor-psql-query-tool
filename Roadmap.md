@@ -3,8 +3,7 @@
 #TODO
 
 LDAP
-limiter taille des colonnes
-Pas donner log erreur sql dans boites dialogue
+N limiter taille des colonnes
 
 Pivot
   http://nnajm.github.io/orb/

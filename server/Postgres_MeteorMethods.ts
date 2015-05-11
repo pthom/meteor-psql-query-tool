@@ -21,7 +21,7 @@ function DoRunQuery(sql_query) {
   }
   catch(e) {
     console.log("Caught query error");
-    ServerSession.set("QueryError", "Error in query : " + sql_query);
+    ServerSession.set("QueryError", "Error during query, please consult server logs for more details");
     ServerSession.set("QueryRunning", false);
   }
 }
