@@ -2,12 +2,15 @@
 
 #TODO
 
-LDAP
+LDAP => remettre check dans MainUi.js et Publications.js
+
 N limiter taille des colonnes
 
-Limiter acces à / selon autorisation
-Acces /tag/truc public ?
+X Limiter acces à / selon autorisation
+X Acces /tag/truc public ?
+
 Deploy without debug infos
+
 
 Roles.addUsersToRoles('qWaH3xgF3EhYYMaXh', ['see-all-queries'])
 
