@@ -11,18 +11,23 @@ module SqlWidgets {
                 label: this.modelQueryParam_EditMode.label,
                 value: this.modelQueryParam_EditMode.default,
                 css: "form-stacked",
-                maxHeight:30,
-                inputHeight:30,
-                inputWidth:300,
-                minWidth:150,
-                labelWidth:150
+                maxHeight: 30,
+                inputHeight: 30,
+                inputWidth: 300,
+                minWidth: 150,
+                labelWidth: 150
             };
         }
 
         TransformQueryWithParams(query:string, params:any) {
-            var replace = params.value ? params.value : "";
+            var replace:string = params.value ? params.value : "";
             //EscapePostgresql is called server-side, in order to protect from javascript kiddies
             replace = Postgres.EscapePostgresql(replace);
+            var params = <any>this.modelQueryParam_EditMode;
+
+            if (params.toLower) {
+                replace = replace.toLowerCase();
+            }
             query = query.replace(this.modelQueryParam_EditMode.sql_tag, replace);
             return query;
         }
@@ -37,6 +42,16 @@ module SqlWidgets {
             return help;
         }
 
-    }
+        SpecificViewDefinition_EditMode():any {
+            var row1 =
+            {
+                cols: [
+                    {view: "checkbox", label: "Transform content to lower cas before search ?", name: 'toLower'},
+                ]
+            };
+            return row1;
+        }
 
+
+    }
 }

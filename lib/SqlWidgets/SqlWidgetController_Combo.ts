@@ -57,7 +57,6 @@ module SqlWidgets {
         }
 
         TransformQueryWithParams(query:string, params:any) {
-            debugger;
             var comboChoice = params.comboChoice;
             if (comboChoice === "")
                 comboChoice = null;
