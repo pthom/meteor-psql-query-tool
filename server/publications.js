@@ -2,8 +2,8 @@
 /// <reference path="../lib/collections.ts" />
 
 Meteor.publish('Queries', function() {
-  if (! this.userId )
-    return null;
+  //if (! this.userId )
+    //return null;
   return Queries.find();
 });
 

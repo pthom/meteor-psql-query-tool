@@ -1,8 +1,8 @@
 
 
 MainUi = function() {
-  if ( ! Meteor.userId())
-    return;
+  //if ( ! Meteor.userId())
+    //return;
 
   var ui_def = main_view.ui_definition();
   var webixContainer = webix.ui(ui_def);
