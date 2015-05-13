@@ -66,7 +66,7 @@ query_list_view = {
       template:"#name# <div style='" + styleTag + "'>#tags#</div>",
       select: true,
       sortable: true,
-      //url: webix.proxy('meteor', Queries_Filtered),
+      url: webix.proxy('meteor', Queries_Filtered),
       save: webix.proxy('meteor', Queries),
       on: {
         'onAfterSelect' : function UpdateLabelQueryHeading(){

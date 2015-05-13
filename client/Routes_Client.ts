@@ -42,14 +42,18 @@ Accounts.onLogin(function() {
   window.location.reload(false);
 });
 
+declare var MyOnStartup;
+MyOnStartup = function() {
+    var userId = Meteor.userId();
+    var canManageQueries = Roles.userIsInRole(Meteor.userId(), "manage-queries");
+    SqlWidgets.InitSqlWidgets();
+    BrokenRoute_AccordingToUrl_RepairMe();
+}
+
+
 Meteor.startup(function() {
 });
 
-(<any>Template).home.onRendered(function() {
-    SqlWidgets.InitSqlWidgets();
-
-    BrokenRoute_AccordingToUrl_RepairMe();
-});
 
 function BrokenRoute_AccordingToUrl_RepairMe() {
     var href = window.location.href;
