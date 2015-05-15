@@ -50,5 +50,9 @@ Meteor.methods({
         var sqlTransformed = sqlWidgetsCollectionController.TransformQuery(sql, paramsRunMode);
         DoRunQuery(sqlTransformed);
       }
+    },
+
+    userDisconnected : function() {
+        ServerSession.set("QueryResult", { fields:[], rows:[] });
     }
 });

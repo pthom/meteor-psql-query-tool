@@ -5,6 +5,14 @@
 declare var SpinningWheel;
 declare var ServerSession;
 
+Tracker.autorun( () => {
+    if (Meteor.userId() == null) {
+        Meteor.call("userDisconnected");
+    }
+});
+
+
+
 //Magic ! ShowQueryResults function is called automatically
 //whenever ServerSession.get("QueryResult") changes !
 function ShowQueryResults() {
