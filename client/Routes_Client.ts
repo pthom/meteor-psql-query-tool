@@ -3,73 +3,40 @@
 ///<reference path="../lib/SqlWidgets/SqlWidgetsInit.ts" />
 
 declare var Roles;
-
-Router.configure({
-  layoutTemplate: 'layout'
-});
-
-Router.map(function() {
-  this.route('home', {
-    path: '/',
-    template: 'home'
-  });
-});
-
-
-Router.map(function() {
-  this.route('test', {
-    path: '/test',
-    template: 'home'
-  });
-});
-
-Router.map(function() {
-  this.route('tag', {
-    path: '/tag/:idTag',
-    template: 'home'
-  });
-});
-
 declare var MainUi;
 declare var TestWidgets;
 
 
-Accounts.onLogin(function() {
-  BrokenRoute_AccordingToUrl_RepairMe();
+Router.configure({
+    layoutTemplate: 'layout',
+    loadingTemplate: 'loading',
+    waitOn: function() {
+        return Meteor.subscribe('Queries');
+    }
 });
 
-(<any>Accounts).onLogout(function() {
-  window.location.reload(false);
+Router.route("/", function() {
+    console.log ("Route /");
+    this.render("home");
+    Session.set("Queries_LimitToTag", null);
+    MainUi();
 });
 
-declare var MyOnStartup;
-MyOnStartup = function() {
-    var userId = Meteor.userId();
-    var canManageQueries = Roles.userIsInRole(Meteor.userId(), "manage-queries");
-    SqlWidgets.InitSqlWidgets();
-    BrokenRoute_AccordingToUrl_RepairMe();
-}
+Router.route("/tag/:tagId", function() {
+    console.log ("Route tag " + this.params.tagId);
+    this.render("home");
+    Session.set("Queries_LimitToTag", this.params.tagId);
+    MainUi();
+});
+
+Router.route("/test", function() {
+    console.log ("Route /");
+    this.render("home");
+    TestWidgets();
+});
 
 
 Meteor.startup(function() {
+    SqlWidgets.InitSqlWidgets();
 });
 
-
-function BrokenRoute_AccordingToUrl_RepairMe() {
-    var href = window.location.href;
-    console.log("window.location.href=" + href);
-    if (href.indexOf("/test") >= 0) {
-        TestWidgets();
-    } else {
-        var tagToken = "/tag/";
-        var tagTokenPos = href.indexOf(tagToken);
-        if ( tagTokenPos >= 0)
-        {
-            var tag = href.substring(tagTokenPos + tagToken.length);
-            Session.set("Queries_LimitToTag", tag);
-        } else {
-            Session.set("Queries_LimitToTag", null);
-        }
-        MainUi();
-    }
-}
