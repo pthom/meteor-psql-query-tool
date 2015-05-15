@@ -2,7 +2,6 @@ standard-app-packages
 iron:router
 less
 webix:webix
-accounts-ui
 accounts-password
 gwendall:auth-client-callbacks
 enteye:spinner
@@ -16,3 +15,5 @@ austinrivas:postgresql
 msavin:jetsetter
 webix:skin-compact
 sacha:spin
+ian:accounts-ui-bootstrap-3
+twbs:bootstrap

@@ -13,7 +13,6 @@ Fck Deploy without debug infos
 
 
 Accounts bootstrap
-loading screen
 query params
 
 

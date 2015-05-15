@@ -5,17 +5,29 @@
 </head>
 
 <body>
-  <div class="login">
-    {{> loginButtons}}login
-  </div>
-
-  <!--
-  <div id="webix_content" class="webix-fullscreen"> </div>
--->
   <div id="spinwheel"></div>
 
 </body>
 
 <template name="layout">
-  {{> yield}}
+  <div class="container">
+    {{> header}}
+    <div id="main">
+      {{> yield}}
+    </div>
+  </div>
+</template>
+
+
+<template name="header">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Query Tool</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navigation">
+      <ul class="nav navbar-nav navbar-right">
+        {{> loginButtons}}
+      </ul>
+    </div>
+  </nav>
 </template>

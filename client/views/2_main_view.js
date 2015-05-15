@@ -19,7 +19,7 @@ main_view = {
       //container: "webix_content",
       //rows: [ query_list_view.ui_definition(), query_result_view.ui_definition(), jsoneditor_wx_test ],
       rows: [
-        { view:'label', align:'right', label:'QueryTool, made with meteor / webix / psql &nbsp;&nbsp;&nbsp;', css:'white'},
+        { view:'label', align:'right', label:'Made with meteor / webix / psql &nbsp;&nbsp;&nbsp;', css:'white'},
         query_list_view.ui_definition(),
         { view:'resizer'},
         query_result_view.ui_definition() 
